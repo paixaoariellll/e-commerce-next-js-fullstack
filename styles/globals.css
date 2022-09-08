@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: Big;
   src: url('../assets/fonts/The\ Bigger\ The\ Better.ttf');
@@ -14,8 +18,9 @@ body {
 :root {
   --primary-color: #fff;
   --secondary-color: #fff;
-  --body-bg: #fff;
+  --body-bg: linear-gradient(180deg, rgb(3, 4, 52) 0%, rgb(55, 38, 70));
   --text-color: #fff;
+  --gray: #828282;
 }
 
 
@@ -30,7 +35,7 @@ a {
 
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: var(dark);
   }
 
   body {
