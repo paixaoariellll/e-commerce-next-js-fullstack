@@ -1,16 +1,18 @@
 import Head from "next/head";
+import Link from "next/link";
+import Layout from "../components/Layout";
 
 
-export default function Home() {
+
+export default function Home({ title }) {
   return (
     <div>
       <Head>
-        <title>Ariel</title>
+        <title>{title ? title + ' e-commerce' : ' e-commerce'} </title>
         <meta name="description" content="E-commerce shop created by create next app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 className="text-4xl text-center
-       hover:bg-white hover:text-red-600" >E-commerce</h1>
+      <Layout />
     </div>
   )
 }
