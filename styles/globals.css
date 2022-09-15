@@ -33,13 +33,24 @@ a {
   box-sizing: border-box;
 }
 
+.card {
+  @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
+  overflow: hidden;
+}
+
+.card img:hover {
+  transform: scale(1.1);
+  transition: 300ms;
+  overflow: hidden;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: var(dark);
   }
 
   body {
-    color: white;
-    background: black;
+    color: black;
+    background: aliceblue;
   }
 }
