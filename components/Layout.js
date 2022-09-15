@@ -1,10 +1,14 @@
+import Head from 'next/head'
 import React from 'react'
 
-
-export default function Layout({ children }) {
+export default function Layout({ children, title }) {
     return (
         <>
-            <title>Home</title>
+            <Head>
+                <title>{title ? title + ' e-commerce' : ' e-commerce'} </title>
+                <meta name="description" content="E-commerce shop created by create next app" />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
             <div>
                 <header>
                     <nav class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 shadow-lg">
@@ -21,14 +25,15 @@ export default function Layout({ children }) {
                             </div>
                             <div>
                                 <p>login</p>
-
                             </div>
                         </div>
                     </nav>
                 </header>
                 <main>
-                    Main
-                    {children}
+                    <h1 className='text-center py-5 text-3xl'>Requisições do banco de dados</h1>
+                    <div className=''>
+                        {children}
+                    </div>
                 </main>
                 <footer>
                     footer

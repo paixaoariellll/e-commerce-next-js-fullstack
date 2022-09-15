@@ -1,18 +1,20 @@
-import Head from "next/head";
-import Link from "next/link";
-import Layout from "../components/Layout";
+import Layout from "../components/Layout"
+import ProductItem from "../components/productItem"
+import data from '../utils/data'
 
 
 
 export default function Home({ title }) {
   return (
     <div>
-      <Head>
-        <title>{title ? title + ' e-commerce' : ' e-commerce'} </title>
-        <meta name="description" content="E-commerce shop created by create next app" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Layout />
+      <Layout title="Home">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+          {data.products.map((product) => (
+            <ProductItem product={product} key={product.slug}>
+            </ProductItem>
+          ))}
+        </div>
+      </Layout>
     </div>
   )
 }
