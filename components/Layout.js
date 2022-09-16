@@ -31,7 +31,7 @@ export default function Layout({ children, title }) {
                 </header>
                 <main>
                     <h1 className='container m-auto mt-4 px-4 text-center py-5 text-3xl'>Requisições do banco de dados</h1>
-                    <div className='container m-auto mt-4 px-4'>
+                    <div className='container m-auto mt-4 px-10'>
                         {children}
                     </div>
                 </main>

@@ -10,7 +10,7 @@ export default function ProductItem({ product }) {
                     <img
                         src={product.image}
                         alt={product.name}
-                        className="rounded card hover:scale-100 shadow"
+                        className="rounded card"
                     />
                 </a>
             </Link>

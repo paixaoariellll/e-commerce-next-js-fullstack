@@ -2,8 +2,9 @@ const data = {
     products: [
         {
             name: 'Produto 1',
-            image: '/img/produto01.jpg',
+            image: '/img/produto (34).png',
             slug: 'produto-01',
+            category: NFT,
             price: 100.00,
             description: 'É um produto incrível',
             rating: 4.5,
@@ -13,8 +14,9 @@ const data = {
         },
         {
             name: 'Produto 2',
-            image: '/img/produto02.png',
+            image: '/img/produto (35).png',
             slug: 'produto-02',
+            category: NFT,
             price: 100.00,
             description: 'É um produto incrível',
             rating: 4.5,
@@ -24,8 +26,9 @@ const data = {
         },
         {
             name: 'Produto 3',
-            image: '/img/produto03.png',
+            image: '/img/produto (36).png',
             slug: 'produto-03',
+            category: NFT,
             price: 100.00,
             description: 'É um produto incrível',
             rating: 4.5,
@@ -35,8 +38,9 @@ const data = {
         },
         {
             name: 'Produto 4',
-            image: '/img/produto04.jpg',
+            image: '/img/produto (37).png',
             slug: 'produto-04',
+            category: NFT,
             price: 100.00,
             description: 'É um produto incrível',
             rating: 4.5,
@@ -46,8 +50,9 @@ const data = {
         },
         {
             name: 'Produto 5',
-            image: '/img/produto05.jpg',
+            image: '/img/Produto (38).png',
             slug: 'produto-05',
+            category: NFT,
             price: 100.00,
             description: 'É um produto incrível',
             rating: 4.5,
@@ -57,8 +62,21 @@ const data = {
         },
         {
             name: 'Produto 6',
-            image: '/img/produto06.jpg',
+            image: '/img/produto (39).png',
             slug: 'produto-06',
+            category: NFT,
+            price: 100.00,
+            description: 'É um produto incrível',
+            rating: 4.5,
+            numReviews: 10,
+            countInStock: 3,
+            publisher: 'Ariel Paixão'
+        },
+        {
+            name: 'Produto 7',
+            image: '/img/produto (1).jpg',
+            slug: 'produto-06',
+            category: NFT,
             price: 100.00,
             description: 'É um produto incrível',
             rating: 4.5,
