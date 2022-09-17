@@ -1,7 +1,17 @@
 import Head from 'next/head'
-import React from 'react'
+import Link from 'next/link'
+import React, { useContext, useEffect, useState } from 'react'
+import { Store } from '../utils/Store'
 
-export default function Layout({ children, title }) {
+export default function Layout({ title, children }) {
+    const { state } = useContext(Store)
+    const { cart } = state
+    const year = new Date().getFullYear();
+    const [cartItemsCount, setCartItemsCount] = useState(0)
+    useEffect(() => {
+        setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
+    }, [cart.cartItems])
+
     return (
         <>
             <Head>
@@ -24,7 +34,11 @@ export default function Layout({ children, title }) {
                                 <a className='px-3 hover:text-blue-500 cursor-pointer text-black'>Contact</a>
                             </div>
                             <div>
-                                <p>login</p>
+                                <Link href="/cart">
+                                    <a className='p-2 text-2xl'>
+                                        {cartItemsCount > 0 && ({ cartItemsCount })}
+                                    </a>
+                                </Link>
                             </div>
                         </div>
                     </nav>
@@ -35,8 +49,8 @@ export default function Layout({ children, title }) {
                         {children}
                     </div>
                 </main>
-                <footer>
-                    footer
+                <footer className="flex text-xl h-10 justify-center items-center shadow-inner">
+                    <p>Copyright © {year}, Ariel Paixão</p>
                 </footer>
             </div>
         </>

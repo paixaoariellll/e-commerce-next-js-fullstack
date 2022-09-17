@@ -4,15 +4,14 @@ import Layout from '../../components/Layout'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-
-
+import { Store } from '../../utils/Store'
 
 export default function ProductScreen() {
     const { state, dispatch } = useContext(Store)
     const { query } = useRouter()
     const { slug } = query
     const router = useRouter()
-    const product = data.products.find(x => x.slug === slug)
+    const product = data.products.find((x) => x.slug === slug)
     if (!product) {
         return (
             <div>
@@ -73,6 +72,5 @@ export default function ProductScreen() {
                 </ul>
             </div>
         </Layout >
-
     )
 }
