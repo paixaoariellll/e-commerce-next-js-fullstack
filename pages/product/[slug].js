@@ -38,20 +38,18 @@ export default function ProductScreen() {
                     Voltar
                 </Link>
             </div>
-            <div className='basis'>
-                <div className='basis-1/2 grid md:grid-cols-4 md:gap-3'>
-                    <div className='md:col-span-2'>
-                        <Image
-                            src={product.image}
-                            alt={product.name}
-                            width={640}
-                            height={640}
-                            layout="responsive"
-                        >
-                        </Image>
-                    </div>
+            <div className='grid md:grid-cols-4 md:gap-3'>
+                <div className='md:col-span-2'>
+                    <Image
+                        src={product.image}
+                        alt={product.name}
+                        width={640}
+                        height={640}
+                        layout="responsive"
+                    >
+                    </Image>
                 </div>
-                <div className='basis-1/2 card' >
+                <div className='card' >
                     <ul>
                         <li>
                             <h1>
