@@ -4,7 +4,7 @@ import 'remixicon/fonts/remixicon.css'
 
 export default function ProductItem({ product }) {
     return (
-        <div className="card bg-black">
+        <div className="card">
             <Link href={`/product/${product.slug}`}>
                 <a>
                     <img

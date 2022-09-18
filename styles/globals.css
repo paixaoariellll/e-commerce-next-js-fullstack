@@ -12,13 +12,13 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Big'
+  font-family: 'Big';
 }
 
 :root {
   --primary-color: #fff;
   --secondary-color: #fff;
-  --body-bg: linear-gradient(180deg, rgb(3, 4, 52) 0%, rgb(55, 38, 70));
+  --body-bg: aliceblue;
   --text-color: #fff;
   --gray: #828282;
 }
@@ -36,14 +36,29 @@ a {
   box-sizing: border-box;
 }
 
+button {
+  @apply rounded py-2 px-4 m-2 shadow outline-none;
+}
+
+.primary-button {
+  @apply rounded bg-sky-100 py-0 m-2 px-8 shadow outline-none;
+}
+
+
+button:hover,
+.primary-button:hover {
+  @apply bg-sky-900 text-white;
+}
+
 .card {
   @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
+  transition: 300ms ease-in-out;
 }
 
 .card img:hover {
   transform: scale(1.1);
-  transition: 300ms;
 }
+
 
 @media (prefers-color-scheme: dark) {
   html {
@@ -52,6 +67,6 @@ a {
 
   body {
     color: black;
-    background: aliceblue;
+    background: var(--body-bg);
   }
 }

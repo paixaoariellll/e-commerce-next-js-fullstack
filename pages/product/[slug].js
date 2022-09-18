@@ -33,13 +33,16 @@ export default function ProductScreen() {
     }
     return (
         <Layout title={product.name}>
-            <div className='py-2'>
-                <Link href="/">
-                    Voltar
-                </Link>
+            <div className='flex'>
+                <div className='py-2'>
+                    <Link href="/">
+                        <button className='bg-red-300 hover:bg-red-500'> Voltar</button>
+                    </Link>
+                </div>
+                <h1 className='container mt-4 px-4 py-5 text-center text-3xl'>{product.name}</h1>
             </div>
             <div className='grid md:grid-cols-4 md:gap-3'>
-                <div className='md:col-span-2'>
+                <div className='md:col-span-2 mb-5 shadow-gray-900 shadow-xl rounded border-8'>
                     <Image
                         src={product.image}
                         alt={product.name}
@@ -49,7 +52,7 @@ export default function ProductScreen() {
                     >
                     </Image>
                 </div>
-                <div className='card' >
+                <div>
                     <ul>
                         <li>
                             <h1>
@@ -69,6 +72,24 @@ export default function ProductScreen() {
                             Descrição: {product.description}
                         </li>
                     </ul>
+                </div>
+                <div className='p-6 card '>
+                    <div className='mb-2 flex justify-between'>
+                        <div className='text-2xl' >Preço</div>
+                        <div className='text-2xl text-red-600'>
+                            {product.countInStock > 0 ? `R$ ${product.price}` : "Vendido"}
+                        </div>
+                    </div>
+                    <div className='mb-2 flex justify-between'>
+                        <div className='text-md'>Status</div>
+                        <div>
+                            {
+                                product.countInStock ?
+                                    "Disponivel" :
+                                    <span className='text-red-500'> Indisponível</span>
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
         </Layout >
