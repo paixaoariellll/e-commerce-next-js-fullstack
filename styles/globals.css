@@ -23,6 +23,9 @@ body {
   --gray: #828282;
 }
 
+.menu {
+  @apply text-xl text-black justify-between;
+}
 
 a {
   color: inherit;

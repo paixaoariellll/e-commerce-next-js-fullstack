@@ -3,6 +3,25 @@ import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import { Store } from '../utils/Store'
 
+const nav_links = [
+    {
+        path: "home",
+        display: "Home",
+    },
+    {
+        path: "categoria",
+        display: "Categorias",
+    },
+    {
+        path: "sobre",
+        display: "Sobre",
+    },
+    {
+        path: "contato",
+        display: "Contatos",
+    },
+]
+
 export default function Layout({ title, children }) {
     const { state } = useContext(Store)
     const { cart } = state
@@ -26,12 +45,18 @@ export default function Layout({ title, children }) {
                             <div class="container-fluid">
                                 <a class="text-xl text-black" href="#">E-commerce do Ariel</a>
                             </div>
-                            <div className='flex'>
-                                <a className='px-3 hover:text-blue-500 cursor-pointer text-black'>Home</a>
-                                <a className='px-3 hover:text-blue-500 cursor-pointer text-black'>Shop</a>
-                                <a className='px-3 hover:text-blue-500 cursor-pointer text-black'>Feature</a>
-                                <a className='px-3 hover:text-blue-500 cursor-pointer text-black'>About</a>
-                                <a className='px-3 hover:text-blue-500 cursor-pointer text-black'>Contact</a>
+                            <div className='menu'>
+                                {
+                                    nav_links.map((item, index) => (
+                                        <ul>
+                                            <li key={index}>
+                                                <a href={item.path}>
+                                                    {item.display}
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    ))
+                                }
                             </div>
                             <div>
                                 <Link href="/cart">

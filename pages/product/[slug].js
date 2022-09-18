@@ -32,44 +32,46 @@ export default function ProductScreen() {
         router.push('/cart')
     }
     return (
-        <Layout id title={product.name}>
+        <Layout title={product.name}>
             <div className='py-2'>
-                <Link href="/index">
-                    Ver mais produtos
+                <Link href="/">
+                    Voltar
                 </Link>
             </div>
-            <div className='grid md:grid-cols-4 md:gap-3'>
-                <div className='md:col-span2'>
-                    <Image
-                        src={product.image}
-                        alt={product.name}
-                        width={540}
-                        height={400}
-                        layout="responsive"
-                    >
-                    </Image>
+            <div className='basis'>
+                <div className='basis-1/2 grid md:grid-cols-4 md:gap-3'>
+                    <div className='md:col-span-2'>
+                        <Image
+                            src={product.image}
+                            alt={product.name}
+                            width={640}
+                            height={640}
+                            layout="responsive"
+                        >
+                        </Image>
+                    </div>
                 </div>
-            </div>
-            <div className='card' >
-                <ul>
-                    <li>
-                        <h1>
-                            {product.name}
-                        </h1>
-                    </li>
-                    <li>
-                        {product.category}
-                    </li>
-                    <li>
-                        {product.publisher}
-                    </li>
-                    <li>
-                        {product.rating} de {product.numReviews} compras
-                    </li>
-                    <li>
-                        Descrição: {product.description}
-                    </li>
-                </ul>
+                <div className='basis-1/2 card' >
+                    <ul>
+                        <li>
+                            <h1>
+                                {product.name}
+                            </h1>
+                        </li>
+                        <li>
+                            {product.category}
+                        </li>
+                        <li>
+                            {product.publisher}
+                        </li>
+                        <li>
+                            {product.rating} de {product.numReviews} compras
+                        </li>
+                        <li>
+                            Descrição: {product.description}
+                        </li>
+                    </ul>
+                </div>
             </div>
         </Layout >
     )
