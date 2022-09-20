@@ -39,12 +39,12 @@ export default function Layout({ title, children }) {
                 <meta name="description" content="E-commerce shop created by create next app" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div>
+            <div className='flex min-h-screen flex-col justify-between'>
                 <header>
                     <nav class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 shadow-lg">
                         <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                             <div class="container-fluid">
-                                <a class="text-xl text-black" href="/">E-commerce do Ariel</a>
+                                <a class="text-xl text-black" href="/">E-commerce FullStack</a>
                             </div>
                             <div className='menu flex gap-5'>
                                 {

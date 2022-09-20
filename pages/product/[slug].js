@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Store } from '../../utils/Store'
+import toast, { Toaster } from 'react-hot-toast'
 
 export default function ProductScreen() {
     const { state, dispatch } = useContext(Store)
@@ -23,7 +24,11 @@ export default function ProductScreen() {
         const existItem = state.cart.cartItems.find((x) => x.slug === product.slug)
         const quantity = existItem ? existItem.quantity + 1 : 1
         if (product.countInStock < quantity) {
-            alert('Produdo indisponível!')
+            toast.error(
+                <span className='p-2 text-red-500 text-2xl'>
+                    O produto está indisponível!
+                </span>
+            )
             return
         }
         dispatch({
@@ -95,6 +100,7 @@ export default function ProductScreen() {
                         </div>
                     </div>
                 </div>
+                <Toaster />
             </div>
         </Layout >
     )
