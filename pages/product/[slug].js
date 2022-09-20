@@ -23,7 +23,8 @@ export default function ProductScreen() {
         const existItem = state.cart.cartItems.find((x) => x.slug === product.slug)
         const quantity = existItem ? existItem.quantity + 1 : 1
         if (product.countInStock < quantity) {
-            alert('Não tem mais produto, ORE!')
+            alert('Produdo indisponível!')
+            return
         }
         dispatch({
             type: 'CART_ADD_ITEM',
@@ -52,42 +53,45 @@ export default function ProductScreen() {
                     >
                     </Image>
                 </div>
-                <div>
+                <div className='text-xl'>
                     <ul>
-                        <li>
-                            <h1>
-                                {product.name}
-                            </h1>
-                        </li>
                         <li>
                             {product.category}
                         </li>
                         <li>
-                            {product.publisher}
+                            Criador: {product.publisher}
                         </li>
                         <li>
-                            {product.rating} de {product.numReviews} compras
+                            {product.rating} de {product.numReviews} avalizações
                         </li>
                         <li>
                             Descrição: {product.description}
                         </li>
                     </ul>
                 </div>
-                <div className='p-6 card '>
-                    <div className='mb-2 flex justify-between'>
-                        <div className='text-2xl' >Preço</div>
-                        <div className='text-2xl text-red-600'>
-                            {product.countInStock > 0 ? `R$ ${product.price}` : "Vendido"}
+                <div>
+                    <div className='p-6 card'>
+                        <div className='mb-2 flex justify-between'>
+                            <div className='text-2xl' >Preço</div>
+                            <div className='text-2xl text-red-600'>
+                                {product.countInStock > 0 ? `R$ ${product.price}` : "Vendido"}
+                            </div>
                         </div>
-                    </div>
-                    <div className='mb-2 flex justify-between'>
-                        <div className='text-md'>Status</div>
-                        <div>
-                            {
-                                product.countInStock ?
-                                    "Disponivel" :
-                                    <span className='text-red-500'> Indisponível</span>
-                            }
+                        <div className='mb-2 flex justify-between'>
+                            <div className='text-md'>Status</div>
+                            <div>
+                                {
+                                    product.countInStock ?
+                                        "Disponivel" :
+                                        <span className='text-red-500'> Indisponível</span>
+                                }
+                            </div>
+                        </div>
+                        <div className='flex mt-7 text-center '>
+                            <button onClick={addToCartHandler} className='w-full bg-sky-100 flex justify-between'>
+                                Comprar
+                                <i class="ri-shopping-cart-line"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

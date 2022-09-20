@@ -41,7 +41,7 @@ button {
 }
 
 .primary-button {
-  @apply rounded bg-sky-100 py-0 m-2 px-8 shadow outline-none;
+  @apply rounded bg-sky-100 py-2 m-2 px-8 shadow outline-none;
 }
 
 
