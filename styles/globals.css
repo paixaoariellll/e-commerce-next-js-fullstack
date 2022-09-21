@@ -8,19 +8,19 @@
   font-weight: 600;
 }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: 'Big';
-}
-
 :root {
   --primary-color: #fff;
   --secondary-color: #fff;
   --body-bg: aliceblue;
   --text-color: #fff;
   --gray: #828282;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Big';
 }
 
 .menu {

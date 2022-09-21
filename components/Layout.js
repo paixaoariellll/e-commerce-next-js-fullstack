@@ -31,7 +31,6 @@ export default function Layout({ title, children }) {
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     }, [cart.cartItems])
-
     return (
         <>
             <Head>
@@ -39,7 +38,7 @@ export default function Layout({ title, children }) {
                 <meta name="description" content="E-commerce shop created by create next app" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className='flex min-h-screen flex-col justify-between'>
+            <div className='flex flex-col justify-between'>
                 <header>
                     <nav class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 shadow-lg">
                         <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
@@ -61,7 +60,7 @@ export default function Layout({ title, children }) {
                             </div>
                             <div>
                                 <Link href="/cart">
-                                    <a className='p-2 text-black text-2xl'>
+                                    <a className='p-2 wra text-black text-2xl'>
                                         {cartItemsCount > 0 && (
                                             <span style={{ color: 'white', background: 'red' }} className=' ml-1 rounded-full px-2 py-1 text-xs font-bold'>
                                                 {cartItemsCount}
@@ -71,7 +70,7 @@ export default function Layout({ title, children }) {
                                     </a>
                                 </Link>
                                 <Link href="/login">
-                                    <a className='p-2'>
+                                    <a className='p-2 text-2xl text-black'>
                                         <i class="ri-login-box-line"></i>
                                     </a>
                                 </Link>
@@ -80,11 +79,9 @@ export default function Layout({ title, children }) {
                     </nav>
                 </header>
                 <main>
-                    <div className='container m-auto mt-4 px-10'>
-                        {children}
-                    </div>
+                    <div className='container min-h-screen m-auto mt-8 px-0'>{children}</div>
                 </main>
-                <footer className="flex text-xl h-10 justify-center items-center shadow-inner">
+                <footer className="flex justify-center items-center h-10 shadow-inner">
                     <p>Copyright © {year}, Ariel Paixão</p>
                 </footer>
             </div>

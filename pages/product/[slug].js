@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { Store } from '../../utils/Store'
 import toast, { Toaster } from 'react-hot-toast'
+import imgErro from '../../public/img/Saly-11.svg'
 
 export default function ProductScreen() {
     const { state, dispatch } = useContext(Store)
@@ -15,9 +16,26 @@ export default function ProductScreen() {
     const product = data.products.find((x) => x.slug === slug)
     if (!product) {
         return (
-            <div>
-                O produto não existe, Ore!
-            </div>
+            <Layout title="Página não encontrada">
+                <div className='text-5xl text-center'>
+                    <h1>Você se perdeu!</h1>
+                </div>
+                <div className='flex text-center'>
+                    <Image
+                        src={imgErro}
+                        width={500}
+                        height={500}
+                    ></Image>
+                    <div className='text-9xl'>
+                        Erro 404!
+                        <div className='py-2 text-2xl text-center'>
+                            <Link href="/">
+                                <button className=' bg-white hover:bg-red-500'> Voltar</button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </Layout>
         )
     }
     const addToCartHandler = () => {
@@ -87,8 +105,8 @@ export default function ProductScreen() {
                             <div>
                                 {
                                     product.countInStock ?
-                                        "Disponivel" :
-                                        <span className='text-red-500'> Indisponível</span>
+                                        `restantes ${product.countInStock}` :
+                                        <span className='text-red-600'> Indisponível</span>
                                 }
                             </div>
                         </div>
