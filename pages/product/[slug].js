@@ -113,7 +113,7 @@ export default function ProductScreen() {
                         <div className='flex mt-7 text-center '>
                             <button onClick={addToCartHandler} className='w-full bg-sky-100 flex justify-between'>
                                 Comprar
-                                <i class="ri-shopping-cart-line"></i>
+                                <i className="ri-shopping-cart-line"></i>
                             </button>
                         </div>
                     </div>

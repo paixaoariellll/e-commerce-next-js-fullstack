@@ -40,10 +40,10 @@ export default function Layout({ title, children }) {
             </Head>
             <div className='flex flex-col justify-between'>
                 <header>
-                    <nav class="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 shadow-lg">
-                        <div class="container-fluid w-full flex flex-wrap items-center justify-between px-6">
-                            <div class="container-fluid">
-                                <a class="text-xl text-black" href="/">E-commerce FullStack</a>
+                    <nav className="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 shadow-lg">
+                        <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
+                            <div className="container-fluid">
+                                <a className="text-xl text-black" href="/">E-commerce FullStack</a>
                             </div>
                             <div className='menu flex gap-5'>
                                 {
@@ -66,12 +66,12 @@ export default function Layout({ title, children }) {
                                                 {cartItemsCount}
                                             </span>
                                         )}
-                                        <i class="ri-shopping-cart-line"></i>
+                                        <i className="ri-shopping-cart-line"></i>
                                     </a>
                                 </Link>
                                 <Link href="/login">
                                     <a className='p-2 text-2xl text-black'>
-                                        <i class="ri-login-box-line"></i>
+                                        <i className="ri-login-box-line"></i>
                                     </a>
                                 </Link>
                             </div>

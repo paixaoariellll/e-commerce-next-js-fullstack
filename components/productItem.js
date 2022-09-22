@@ -26,7 +26,7 @@ export default function ProductItem({ product }) {
                     <button
                         className="primary-button"
                         type="button">
-                        <i class="ri-shopping-cart-line"></i>
+                        <i className="ri-shopping-cart-line"></i>
                     </button>
                 </div>
             </div>

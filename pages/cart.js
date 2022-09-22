@@ -80,7 +80,7 @@ function CartScreen() {
                                                 <td className="p-5 text-red-600 text-right">${item.price}</td>
                                                 <td className="p-5 text-center">
                                                     <a style={{ cursor: 'pointer' }} className='bg-none' onClick={() => removeItemHandler(item)}>
-                                                        <i class="ri-delete-bin-line"></i>
+                                                        <i className="ri-delete-bin-line"></i>
                                                     </a>
                                                 </td>
                                             </tr>
