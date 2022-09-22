@@ -43,7 +43,11 @@ export default function Layout({ title, children }) {
                     <nav className="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 shadow-lg">
                         <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                             <div className="container-fluid">
-                                <a className="text-xl text-black" href="/">E-commerce FullStack</a>
+                                <Link
+                                    href="/"
+                                    className="text-xl text-black">
+                                    E-commerce FullStack
+                                </Link>
                             </div>
                             <div className='menu flex gap-5'>
                                 {
@@ -59,20 +63,20 @@ export default function Layout({ title, children }) {
                                 }
                             </div>
                             <div>
-                                <Link href="/cart">
-                                    <a className='p-2 wra text-black text-2xl'>
-                                        {cartItemsCount > 0 && (
-                                            <span style={{ color: 'white', background: 'red' }} className=' ml-1 rounded-full px-2 py-1 text-xs font-bold'>
-                                                {cartItemsCount}
-                                            </span>
-                                        )}
-                                        <i className="ri-shopping-cart-line"></i>
-                                    </a>
+                                <Link
+                                    href="/cart"
+                                    className='p-2 wra text-black text-2xl'>
+                                    {cartItemsCount > 0 && (
+                                        <span style={{ color: 'white', background: 'red' }} className=' ml-1 rounded-full px-2 py-1 text-xs font-bold'>
+                                            {cartItemsCount}
+                                        </span>
+                                    )}
+                                    <i className="ri-shopping-cart-line"></i>
                                 </Link>
-                                <Link href="/login">
-                                    <a className='p-2 text-2xl text-black'>
-                                        <i className="ri-login-box-line"></i>
-                                    </a>
+                                <Link
+                                    href="/login"
+                                    className='p-2 text-2xl text-black'>
+                                    <i className="ri-login-box-line"></i>
                                 </Link>
                             </div>
                         </div>
