@@ -1,7 +1,16 @@
 import React from 'react'
 import Layout from '../components/Layout'
+import { useForm } from 'react-hook-form'
 
 export default function LoginScreen() {
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+    } = useForm();
+    const submitHandler = ({ email, password }) => {
+        console.log(email, password)
+    }
     return (
         <Layout>
             <section className="h-full">
@@ -19,7 +28,7 @@ export default function LoginScreen() {
                             />
                         </div>
                         <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
-                            <form>
+                            <form onSubmit={handleSubmit(submitHandler)}>
                                 <div class="flex flex-row items-center justify-center lg:justify-start">
                                     <p class="text-lg mb-0 mr-4">Conecte-se com</p>
                                     <button
@@ -68,43 +77,62 @@ export default function LoginScreen() {
                                     <p class="text-center font-semibold mx-4 mb-0">Ou</p>
                                 </div>
                                 <div class="mb-6">
+                                    <label
+                                        htmlFor='email'
+                                    >Email</label>
                                     <input
-                                        type="text"
+                                        {...register('email', {
+                                            required: 'Por favor, digite seu email', pattern: {
+                                                value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
+                                                message: 'Por favor, digite seu email',
+                                            }
+                                        })}
+                                        type="email"
                                         class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Email"
-                                    />
+                                        id="email"
+                                        autoFocus
+                                    /> {errors.email && (<div className='text-sm text-red-500'>{errors.email.message}</div>)}
                                 </div>
                                 <div class="mb-6">
+                                    <label
+                                        htmlFor='password'
+                                    >Senha</label>
                                     <input
+                                        {...register('passord', {
+                                            required: 'Por favor, digite sua senha',
+                                            minLength: { value: 6, message: 'A senha deve ter mais de 5 caracteres' },
+                                            pattern: {
+                                                value: /^[a-zA-Z0-9_.+-]+$/i,
+                                                message: 'Por favor, digite sua senha',
+                                            }
+                                        })}
                                         type="password"
                                         class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                        id="exampleFormControlInput2"
-                                        placeholder="Senha"
-                                    />
+                                        id="password"
+                                        autoFocus
+                                    />{errors.password && (<div className='text-sm text-red-500'>{errors.password.message}</div>)}
                                 </div>
                                 <div class="flex justify-between items-center mb-6">
                                     <div class="form-group form-check">
                                         <input
                                             type="checkbox"
                                             class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                                            id="exampleCheck2"
+                                            id="checkbox"
                                         />
-                                        <label class="form-check-label inline-block text-gray-800" for="exampleCheck2">Lembrar-me</label>
+                                        <label class="form-check-label inline-block text-gray-800" for="checkbox">Lembrar-me</label>
                                     </div>
-                                    <a href="#!" class="text-gray-800">Forgot password?</a>
-                                </div>
-                                <div class="text-center lg:text-left">
-                                    <button
-                                        type="button"
-                                        class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    >Entrar
-                                    </button>
-                                    <p class="text-sm font-semibold mt-2 pt-1 mb-0">
-                                        Não possui uma conta?<a
+                                    <p class="text-md font-semibold mt-2 pt-1 mb-0">
+                                        Não possui uma conta?
+                                        <a
                                             href="#!"
                                             class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out">Registre-se</a>
                                     </p>
+                                </div>
+                                <div class="text-center lg:text-left">
+                                    <button
+                                        class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-md leading-snug rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                                    >Entrar
+                                    </button>
                                 </div>
                             </form>
                         </div>
