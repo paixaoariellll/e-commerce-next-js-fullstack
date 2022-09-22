@@ -2,7 +2,7 @@ import Layout from "../components/Layout"
 import ProductItem from "../components/productItem"
 import data from '../utils/data'
 
-export default function Home({ title }) {
+export default function Home() {
   return (
     <div>
       <Layout title="Home">

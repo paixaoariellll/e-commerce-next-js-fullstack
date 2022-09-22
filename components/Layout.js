@@ -50,9 +50,9 @@ export default function Layout({ title, children }) {
                                     nav_links.map((item, index) => (
                                         <ul>
                                             <li key={index}>
-                                                <a href={item.path}>
+                                                <Link href={item.path}>
                                                     {item.display}
-                                                </a>
+                                                </Link>
                                             </li>
                                         </ul>
                                     ))
