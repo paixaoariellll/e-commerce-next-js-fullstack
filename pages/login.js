@@ -127,9 +127,11 @@ export default function LoginScreen() {
                                     </div>
                                     <p className="text-md font-semibold mt-2 pt-1 mb-0">
                                         Não possui uma conta?
-                                        <Link
-                                            href="#!"
-                                            className="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out">Registre-se</Link>
+                                        <Link href="#!">
+                                            <div className="hover:text-blue-700 text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
+                                                Registre-se
+                                            </div>
+                                        </Link>
                                     </p>
                                 </div>
                                 <div className="text-center lg:text-left">

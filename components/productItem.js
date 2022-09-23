@@ -11,8 +11,8 @@ export default function ProductItem({ product }) {
                     <Image
                         src={product.image}
                         alt={product.name}
-                        width={350}
-                        height={350}
+                        width={500}
+                        height={500}
                         className="rounded card"
                     />
                 </div>
