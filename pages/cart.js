@@ -49,7 +49,7 @@ function CartScreen() {
                                             <tr key={item.slug} className="border-b">
                                                 <td>
                                                     <Link href={`/product/${item.slug}`}>
-                                                        <a className="flex items-center">
+                                                        <div className="flex cursor-pointer items-center">
                                                             <Image
                                                                 src={item.image}
                                                                 alt={item.name}
@@ -58,7 +58,7 @@ function CartScreen() {
                                                             ></Image>
                                                             &nbsp;
                                                             {item.name}
-                                                        </a>
+                                                        </div>
                                                     </Link>
                                                 </td>
                                                 <td className="p-5 text-right">
@@ -79,9 +79,11 @@ function CartScreen() {
                                                 </td>
                                                 <td className="p-5 text-red-600 text-right">${item.price}</td>
                                                 <td className="p-5 text-center">
-                                                    <a style={{ cursor: 'pointer' }} className='bg-none' onClick={() => removeItemHandler(item)}>
-                                                        <i className="ri-delete-bin-line"></i>
-                                                    </a>
+                                                    <button onClick={() => removeItemHandler(item)}>
+                                                        <div className='bg-none'>
+                                                            <i className="ri-delete-bin-line"></i>
+                                                        </div>
+                                                    </button>
                                                 </td>
                                             </tr>
                                         ))}

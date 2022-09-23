@@ -59,8 +59,9 @@ export default function ProductScreen() {
         <Layout title={product.name}>
             <div className='flex'>
                 <div className='py-2'>
-                    <Link href="/">
-                        <button className='bg-red-300 hover:bg-red-500'> Voltar</button>
+                    <Link
+                        href="/">
+                        <button >Voltar</button>
                     </Link>
                 </div>
                 <h1 className='container mt-4 px-4 py-5 text-center text-3xl'>{product.name}</h1>
@@ -69,7 +70,7 @@ export default function ProductScreen() {
                 <div className='md:col-span-2 mb-5 shadow-gray-900 shadow-xl rounded border-8'>
                     <Image
                         src={product.image}
-                        alt={product.name}
+                        alt=""
                         width={640}
                         height={640}
                         layout="responsive"
