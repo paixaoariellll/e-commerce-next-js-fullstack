@@ -9,18 +9,18 @@ const nav_links = [
         path: "/",
         display: "Home",
     },
-    {
-        path: "categoria",
-        display: "Categorias",
-    },
-    {
-        path: "sobre",
-        display: "Sobre",
-    },
-    {
-        path: "contato",
-        display: "Contatos",
-    },
+    /*     {
+            path: "categoria",
+            display: "Categorias",
+        },
+        {
+            path: "sobre",
+            display: "Sobre",
+        },
+        {
+            path: "contato",
+            display: "Contatos",
+        }, */
 ]
 
 export default function Layout({ title, children }) {
@@ -53,8 +53,8 @@ export default function Layout({ title, children }) {
                             <div className='menu flex gap-5'>
                                 {
                                     nav_links.map((item, index) => (
-                                        <ul>
-                                            <li key={index}>
+                                        <ul key={index}>
+                                            <li>
                                                 <Link href={item.path}>
                                                     {item.display}
                                                 </Link>
