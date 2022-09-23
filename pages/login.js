@@ -3,6 +3,7 @@ import Layout from '../components/Layout'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link';
 import Image from 'next/image';
+import login from '../public/img/login.svg'
 
 export default function LoginScreen() {
     const {
@@ -24,8 +25,9 @@ export default function LoginScreen() {
                             className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0"
                         >
                             <Image
-                                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                                className="w-full"
+                                src={login}
+                                width={640}
+                                height={640}
                                 alt="Sample image"
                             />
                         </div>

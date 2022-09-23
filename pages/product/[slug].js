@@ -61,7 +61,7 @@ export default function ProductScreen() {
                 <div className='py-2'>
                     <Link
                         href="/">
-                        <button >Voltar</button>
+                        <button>Voltar</button>
                     </Link>
                 </div>
                 <h1 className='container mt-4 px-4 py-5 text-center text-3xl'>{product.name}</h1>

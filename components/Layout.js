@@ -45,7 +45,7 @@ export default function Layout({ title, children }) {
                             <div className="container-fluid">
                                 <Link href="/">
                                     <div
-                                        className="text-xl text-black">
+                                        className="text-xl cursor-pointer text-black">
                                         E-commerce FullStack
                                     </div>
                                 </Link>
