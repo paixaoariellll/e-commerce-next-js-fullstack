@@ -23,6 +23,7 @@ export default function ProductScreen() {
                 <div className='flex text-center'>
                     <Image
                         src={imgErro}
+                        alt="imagem do produto"
                         width={500}
                         height={500}
                     ></Image>
@@ -70,7 +71,7 @@ export default function ProductScreen() {
                 <div className='md:col-span-2 mb-5 shadow-gray-900 shadow-xl rounded border-8'>
                     <Image
                         src={product.image}
-                        alt=""
+                        alt="imagem do produto"
                         width={640}
                         height={640}
                         layout="responsive"
