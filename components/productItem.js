@@ -3,7 +3,7 @@ import Link from 'next/link'
 import 'remixicon/fonts/remixicon.css'
 import Image from "next/image";
 
-export default function ProductItem({ product }) {
+export default function productItem({ product }) {
     return (
         <div className="card">
             <Link href={`/product/${product.slug}`}>
@@ -13,6 +13,7 @@ export default function ProductItem({ product }) {
                         alt={product.name}
                         width={500}
                         height={500}
+                        unoptimized
                         className="rounded card"
                     />
                 </div>

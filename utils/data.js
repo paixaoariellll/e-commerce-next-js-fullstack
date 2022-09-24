@@ -9,7 +9,7 @@ const data = {
             description: 'É um produto incrível',
             rating: 4.5,
             numReviews: 10,
-            countInStock: 3,
+            countInStock: 1,
             publisher: 'Ariel Paixão'
         },
         {
@@ -21,7 +21,7 @@ const data = {
             description: 'É um produto incrível',
             rating: 4.5,
             numReviews: 10,
-            countInStock: 3,
+            countInStock: 5,
             publisher: 'Ariel Paixão'
         },
         {
@@ -33,7 +33,7 @@ const data = {
             description: 'É um produto incrível',
             rating: 4.5,
             numReviews: 10,
-            countInStock: 3,
+            countInStock: 7,
             publisher: 'Ariel Paixão'
         },
         {
@@ -57,7 +57,7 @@ const data = {
             description: 'É um produto incrível',
             rating: 4.5,
             numReviews: 10,
-            countInStock: 3,
+            countInStock: 2,
             publisher: 'Ariel Paixão'
         },
         {
@@ -69,7 +69,7 @@ const data = {
             description: 'É um produto incrível',
             rating: 4.5,
             numReviews: 10,
-            countInStock: 3,
+            countInStock: 8,
             publisher: 'Ariel Paixão'
         },
         {
