@@ -82,8 +82,6 @@ export default function Layout({ title, children }) {
                                         <i className="ri-shopping-cart-line"></i>
                                     </div>
                                 </Link>
-
-
                                 {status === 'loading'
                                     ? ('Carregando') :
                                     (
@@ -95,9 +93,6 @@ export default function Layout({ title, children }) {
                                             </div>
                                         </Link>
                                     )}
-
-
-
                             </div>
                         </div>
                     </nav>
