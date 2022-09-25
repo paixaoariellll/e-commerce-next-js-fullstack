@@ -2,7 +2,9 @@ import Head from 'next/head'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import { Store } from '../utils/Store'
+import { ToastContainer } from 'react-toastify'
 import 'remixicon/fonts/remixicon.css'
+import { useSession } from 'next-auth/react'
 
 const nav_links = [
     {
@@ -24,6 +26,7 @@ const nav_links = [
 ]
 
 export default function Layout({ title, children }) {
+    const { status, data: session } = useSession()
     const { state } = useContext(Store)
     const { cart } = state
     const year = new Date().getFullYear()
@@ -38,6 +41,9 @@ export default function Layout({ title, children }) {
                 <meta name="description" content="E-commerce shop created by create next app" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
+            <ToastContainer position='bottom-center' limit={1} />
+
             <div className='flex flex-col justify-between'>
                 <header>
                     <nav className="relative w-full flex flex-wrap items-center justify-between py-3 bg-gray-100 text-gray-500 shadow-lg">
@@ -76,11 +82,22 @@ export default function Layout({ title, children }) {
                                         <i className="ri-shopping-cart-line"></i>
                                     </div>
                                 </Link>
-                                <Link href="/login">
-                                    <div className='p-2 wra text-black text-2xl'>
-                                        <i className="ri-login-box-line"></i>
-                                    </div>
-                                </Link>
+
+
+                                {status === 'loading'
+                                    ? ('Carregando') :
+                                    (
+                                        <Link href='/login'>
+                                            <div className='p-2 wra text-black text-2xl'>
+                                                <a className='p-2'>
+                                                    <i className="ri-login-box-line"></i>
+                                                </a>
+                                            </div>
+                                        </Link>
+                                    )}
+
+
+
                             </div>
                         </div>
                     </nav>
