@@ -31,18 +31,18 @@ const nav_links = [
 
 export default function Layout({ title, children }) {
     const { status, data: session } = useSession()
-    const { state } = useContext(Store)
-    const { cart } = state
     const year = new Date().getFullYear()
     const [cartItemsCount, setCartItemsCount] = useState(0)
+    const { state, dispatch } = useContext(Store);
+    const { cart } = state
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     }, [cart.cartItems])
     const logoutClickHandler = () => {
         Cookies.remove('cart');
-        dispatch({ type: 'CART_RESET' });
-        signOut({ callbackUrl: '/login' });
-    };
+        dispatch({ type: 'CART_RESET' })
+        signOut({ callbackUrl: '/login' })
+    }
     return (
         <>
             <Head>
