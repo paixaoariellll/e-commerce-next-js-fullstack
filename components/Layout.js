@@ -3,8 +3,12 @@ import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import { Store } from '../utils/Store'
 import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import 'remixicon/fonts/remixicon.css'
-import { useSession } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
+import DropdownLink from './DropdownLink'
+import { Menu } from '@headlessui/react';
+import Cookies from 'js-cookie';
 
 const nav_links = [
     {
@@ -34,6 +38,11 @@ export default function Layout({ title, children }) {
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
     }, [cart.cartItems])
+    const logoutClickHandler = () => {
+        Cookies.remove('cart');
+        dispatch({ type: 'CART_RESET' });
+        signOut({ callbackUrl: '/login' });
+    };
     return (
         <>
             <Head>
@@ -82,28 +91,60 @@ export default function Layout({ title, children }) {
                                         <i className="ri-shopping-cart-line"></i>
                                     </div>
                                 </Link>
-                                {status === 'loading'
-                                    ? ('Carregando') :
-                                    (
-                                        <Link href='/login'>
-                                            <div className='p-2 wra text-black text-2xl'>
-                                                <a className='p-2'>
-                                                    <i className="ri-login-box-line"></i>
-                                                </a>
-                                            </div>
-                                        </Link>
-                                    )}
+                                {status === 'loading' ?
+                                    ('Carregando') :
+                                    session?.user ?
+                                        (
+                                            <Menu as="div" className="relative inline-block">
+                                                <Menu.Button className="text-blue-600">
+                                                    {session.user.name}
+                                                </Menu.Button>
+                                                <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
+                                                    <Menu.Item>
+                                                        <DropdownLink className="dropdown-link" href="/profile">
+                                                            Perfil
+                                                        </DropdownLink>
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        <DropdownLink
+                                                            className="dropdown-link"
+                                                            href="/order-history"
+                                                        >
+                                                            Histórico de pedidos
+                                                        </DropdownLink>
+                                                    </Menu.Item>
+                                                    <Menu.Item>
+                                                        <a
+                                                            className="dropdown-link"
+                                                            href="#"
+                                                            onClick={logoutClickHandler}
+                                                        >
+                                                            Sair
+                                                        </a>
+                                                    </Menu.Item>
+                                                </Menu.Items>
+                                            </Menu>
+                                        ) : (
+                                            <Link href='/login'>
+                                                <div className='p-2 wra text-black text-2xl'>
+                                                    <a className='p-2'>
+                                                        <i className="ri-login-box-line"></i>
+                                                    </a>
+                                                </div>
+                                            </Link>
+                                        )
+                                }
                             </div>
                         </div>
-                    </nav>
-                </header>
+                    </nav >
+                </header >
                 <main>
                     <div className='container min-h-screen m-auto mt-8 px-0'>{children}</div>
                 </main>
                 <footer className="flex justify-center items-center h-10 shadow-inner">
                     <p>Copyright © {year}, Ariel Paixão</p>
                 </footer>
-            </div>
+            </div >
         </>
     )
 }

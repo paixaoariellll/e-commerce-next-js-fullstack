@@ -10,7 +10,6 @@ import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
 
 export default function LoginScreen() {
-
     const { data: session } = useSession()
     const router = useRouter()
     const { redirect } = router.query
@@ -35,7 +34,7 @@ export default function LoginScreen() {
                 toast.error(result.error)
             }
         } catch (err) {
-            toast.error(getError.error)
+            toast.error(getError(err))
         }
     }
     return (
@@ -126,7 +125,8 @@ export default function LoginScreen() {
                                         htmlFor='password'
                                     >Senha</label>
                                     <input
-                                        {...register('passord', {
+                                        type="password"
+                                        {...register('password', {
                                             required: 'Por favor, digite sua senha',
                                             minLength: { value: 6, message: 'A senha deve ter mais de 5 caracteres' },
                                             pattern: {
@@ -134,7 +134,6 @@ export default function LoginScreen() {
                                                 message: 'Por favor, digite sua senha',
                                             }
                                         })}
-                                        type="password"
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         id="password"
                                         autoFocus
