@@ -62,7 +62,7 @@ export default function ProductScreen() {
                 <div className='py-2'>
                     <Link
                         href="/">
-                        <button>Voltar</button>
+                        <button className='bg-white'>Voltar</button>
                     </Link>
                 </div>
                 <h1 className='container mt-4 px-4 py-5 text-center text-3xl'>{product.name}</h1>
@@ -95,7 +95,7 @@ export default function ProductScreen() {
                     </ul>
                 </div>
                 <div>
-                    <div className='p-6 card'>
+                    <div className='p-6 card bg-white'>
                         <div className='mb-2 flex justify-between'>
                             <div className='text-2xl' >Preço</div>
                             <div className='text-2xl text-red-600'>

@@ -32,7 +32,7 @@ export default function ShippingScreen() {
     const submitHandler = ({ fullName, postalCode, number, address, neighborhood, city, state }) => {
         dispatch({
             type: 'SAVE_SHIPPING_ADDRESS',
-            payload: { fullName, postalCode, address, neighborhood, city, state, country }
+            payload: { fullName, postalCode, number, address, neighborhood, city, state }
         })
         Cookies.set(
             'cart',
@@ -171,7 +171,7 @@ export default function ShippingScreen() {
                     )}
                 </div>
                 <div className="mb-4 flex justify-between">
-                    <button className="primary-button">Próximo</button>
+                    <button className="primary-button">Avançar</button>
                 </div>
             </form>
         </Layout>

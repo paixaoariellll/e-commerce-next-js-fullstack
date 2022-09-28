@@ -3,6 +3,46 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: MediuN;
+  src: url('../assets/fonts/Mediu.otf');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: MediuS;
+  src: url('../assets/fonts/Supreme-Medium.otf');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Regular;
+  src: url('../assets/fonts/Supreme-Regular.otf');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: ExtraN;
+  src: url('../assets/fonts/ExtraboldItalic.otf');
+  font-weight: 800;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: ExtraS;
+  src: url('../assets/fonts/Supreme-ExtraboldItalic.otf');
+  font-weight: 800;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
   font-family: Big;
   src: url('../assets/fonts/The\ Bigger\ The\ Better.ttf');
   font-weight: 600;
@@ -20,7 +60,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Big';
+  font-family: 'ExtraS';
 }
 
 .menu {
@@ -40,11 +80,11 @@ a:hover {
 }
 
 .dropdown-link {
-  @apply flex p-2;
+  @apply flex p-2 relative z-20 bg-white;
 }
 
 .dropdown-link:hover {
-  @apply bg-gray-200;
+  @apply bg-blue-900 text-white;
 }
 
 button {
@@ -55,10 +95,17 @@ button {
   @apply rounded bg-sky-100 py-2 m-2 px-8 shadow outline-none;
 }
 
+.default-button {
+  @apply rounded bg-red-100 py-2 px-4 text-black shadow outline-none;
+}
 
 button:hover,
 .primary-button:hover {
-  @apply bg-sky-900 text-white;
+  @apply bg-blue-900 text-white;
+}
+
+.default-button:hover {
+  @apply bg-red-900 text-white;
 }
 
 .card {

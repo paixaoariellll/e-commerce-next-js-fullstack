@@ -20,7 +20,7 @@ function CartScreen() {
     }
     return (
         <Layout title="Carrinho">
-            <h1 className="mb-5 text-3xl">Carrinho de compras</h1>
+            <h1 className="mb-5 text-3xl text-blue-900 text-center">Carrinho de compras</h1>
             {
                 cartItems.length === 0 ? (
                     <div className='text-center mb-5'>
@@ -32,16 +32,16 @@ function CartScreen() {
                         </Link>
                     </div>
                 ) : (
-                    <div className=''>
+                    <div>
                         <div className="grid md:grid-cols-4 text-xl md:gap-5">
                             <div className="overflow-x-auto md:col-span-3">
                                 <table className="min-w-full">
                                     <thead className="border-b">
                                         <tr>
-                                            <th className="p-5 text-left">Item</th>
-                                            <th className="p-5 text-right">Quantidade</th>
-                                            <th className="p-5 text-right">Preço</th>
-                                            <th className="p-5">Excluir</th>
+                                            <th className="p-5 text-center">Item</th>
+                                            <th className="p-5 text-center">Quantidade</th>
+                                            <th className="p-5 text-center">Preço</th>
+                                            <th className="p-5 text-center">Excluir</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -49,21 +49,19 @@ function CartScreen() {
                                             <tr key={item.slug} className="border-b">
                                                 <td>
                                                     <Link href={`/product/${item.slug}`}>
-                                                        <div className="flex cursor-pointer items-center">
+                                                        <div className="flex cursor-pointer justify-center text-center">
                                                             <Image
                                                                 src={item.image}
                                                                 alt={item.name}
-                                                                width={50}
-                                                                height={50}
+                                                                width={80}
+                                                                height={80}
                                                             ></Image>
-                                                            &nbsp;
-                                                            {item.name}
                                                         </div>
                                                     </Link>
                                                 </td>
-                                                <td className="p-5 text-right">
+                                                <td className="p-5 text-center">
                                                     <select
-                                                        className='bg-white text-xl'
+                                                        className='bg-white-900 p-1 text-blue-800 text-xl'
                                                         value={item.quantity}
                                                         onChange={(e) =>
                                                             updateCartHandler(item, e.target.value)
@@ -77,7 +75,7 @@ function CartScreen() {
                                                             ))}
                                                     </select>
                                                 </td>
-                                                <td className="p-5 text-red-600 text-right">${item.price}</td>
+                                                <td className="p-5 text-red-600 text-center">${item.price}</td>
                                                 <td className="p-5 text-center">
                                                     <button onClick={() => removeItemHandler(item)}>
                                                         <div className='bg-none'>
@@ -90,8 +88,8 @@ function CartScreen() {
                                     </tbody>
                                 </table>
                             </div>
-                            <div className="card p-5">
-                                <ul>
+                            <div>
+                                <ul className="card bg-white p-5">
                                     <li>
                                         <div className="pb-3 text-xl">
                                             Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}) {" "}:
