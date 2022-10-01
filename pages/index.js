@@ -17,22 +17,21 @@ export default function Home({ products }) {
     const { data } = await axios.get(`/api/products/${product._id}`);
 
     if (data.countInStock < quantity) {
-      return toast.error('Sorry. Product is out of stock');
+      return toast.error('O produto está esgotado!');
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-
-    toast.success('Product added to the cart');
+    toast.success('O produto foi adicionado ao carrinho!');
   };
   return (
     <div>
-      <Layout title="Home Page">
+      <Layout title="Home">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {products.map((product) => (
             <ProductItem
               product={product}
               key={product.slug}
               addToCartHandler={addToCartHandler}
-            ></ProductItem>
+            />
           ))}
         </div>
       </Layout>
