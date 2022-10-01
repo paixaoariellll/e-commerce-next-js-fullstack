@@ -1,89 +1,68 @@
-import axios from 'axios'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import Cookies from 'js-cookie'
-import React, { useContext, useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
-import CheckoutWizard from '../components/CheckoutWizard'
-import Layout from '../components/Layout'
-import { getError } from '../utils/error'
-import { Store } from '../utils/Store'
+import axios from 'axios';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useReducer } from 'react';
+import Layout from '../../components/Layout';
+import { getError } from '../../utils/error';
 
-export default function PlaceOrderScreen() {
-    const { state, dispatch } = useContext(Store)
-    const { cart } = state
-    const { cartItems, shippingAddress, paymentMethod } = cart
-
-    const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100
-    const itemsPrice = round2(
-        cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
-    ) // 123.4567 => 123.46
-    const shippingPrice = itemsPrice > 200 ? 0 : 15
-    const taxPrice = round2(itemsPrice * 0.15)
-    const totalPrice = round2(itemsPrice + shippingPrice + taxPrice)
-    const descount = totalPrice * 0.9
-
-    const router = useRouter()
-    useEffect(() => {
-        if (!paymentMethod) {
-            router.push('/payment')
-        }
-    }, [paymentMethod, router])
-
-    const [loading, setLoading] = useState(false)
-
-    const placeOrderHandler = async () => {
-        try {
-            setLoading(true);
-            const { data } = await axios.post('/api/orders', {
-                orderItems: cartItems,
-                shippingAddress,
-                paymentMethod,
-                itemsPrice,
-                shippingPrice,
-                taxPrice,
-                totalPrice,
-                descount,
-            })
-            setLoading(false)
-            dispatch({ type: 'CART_CLEAR_ITEMS' })
-            Cookies.set(
-                'cart',
-                JSON.stringify({
-                    ...cart,
-                    cartItems: [],
-                })
-            )
-            router.push(`/order/${data._id}`)
-        } catch (err) {
-            setLoading(false)
-            toast.error(getError(err))
-        }
+function reducer(state, action) {
+    switch (action.type) {
+        case 'FETCH_REQUEST':
+            return { ...state, loading: true, error: '' };
+        case 'FETCH_SUCCESS':
+            return { ...state, loading: false, order: action.payload, error: '' };
+        case 'FETCH_FAIL':
+            return { ...state, loading: false, error: action.payload };
+        default:
+            state;
     }
+}
+function OrderScreen() {
+    // order/:id
+    const { query } = useRouter();
+    const orderId = query.id;
 
+    const [{ loading, error, order }, dispatch] = useReducer(reducer, {
+        loading: true,
+        order: {},
+        error: '',
+    });
+    useEffect(() => {
+        const fetchOrder = async () => {
+            try {
+                dispatch({ type: 'FETCH_REQUEST' });
+                const { data } = await axios.get(`/api/orders/${orderId}`);
+                dispatch({ type: 'FETCH_SUCCESS', payload: data });
+            } catch (err) {
+                dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+            }
+        };
+        if (!order._id || (order._id && order._id !== orderId)) {
+            fetchOrder();
+        }
+    }, [order, orderId]);
+    const {
+        shippingAddress,
+        paymentMethod,
+        orderItems,
+        itemsPrice,
+        taxPrice,
+        shippingPrice,
+        totalPrice,
+        isPaid,
+        paidAt,
+        isDelivered,
+        deliveredAt,
+    } = order;
+    const descount = itemsPrice * 0.9
     return (
-        <Layout title="Revisão do Pedido">
-            <CheckoutWizard activeStep={3} />
-            <h1 className="mb-4 text-center text-indigo-800 text-2xl">Revisão do Pedidor</h1>
-            {cartItems.length === 0 ? (
-                <div className='card w-full p-5 bg-white'>
-                    <h1 className="text-center text-red-500 text-3xl">Parece que você se perdeu né?</h1>
-                    {
-                        <div className="mb-4 text-xl text-center text-red-500">
-                            Você não possui itens adicionados ao carrinho
-                        </div>
-                    }
-                    <div className='text-center'>
-                        <button
-                            onClick={() => router.push('/')}
-                            type="button"
-                            className="primary-button text-xl"
-                        >
-                            Vamos às Compras!
-                        </button>
-                    </div>
-                </div>
+        <Layout title={`Pedido ${orderId}`}>
+            <h1 className="mb-4 text-2xl text-center text-indigo-700">{`Id do Pedido:  ${orderId}`}</h1>
+            {loading ? (
+                <div>Carregando...</div>
+            ) : error ? (
+                <div className="alert-error">{error}</div>
             ) : (
                 <div className="grid md:grid-cols-4 md:gap-5">
                     <div className="overflow-x-auto md:col-span-3">
@@ -99,18 +78,16 @@ export default function PlaceOrderScreen() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {cartItems.map((item) => (
+                                    {orderItems.map((item) => (
                                         <tr key={item._id} className="border-y divide-indigo-600 border-indigo-600">
                                             <td>
-                                                <Link href={`/product/${item.slug}`}>
-                                                    <Image
-                                                        src={item.image}
-                                                        alt={item.name}
-                                                        width={50}
-                                                        height={50}
-                                                        className="cursor-pointer"
-                                                    ></Image>
-                                                </Link>
+                                                <Image
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                    width={50}
+                                                    height={50}
+                                                    className="cursor-pointer"
+                                                ></Image>
                                             </td>
                                             <td className="p-5 only:text-center">{item.quantity}</td>
                                             <td className="p-5 text-center">${item.price}</td>
@@ -149,11 +126,11 @@ export default function PlaceOrderScreen() {
                                     </span>
                                 </div>
                                 <div className='flex items-center flex-col'>
-                                    <Link href="/shipping">
-                                        <div className='cursor-pointer bg-sky-100 w-fit hover:bg-indigo-700 hover:text-white text-indigo-700 text-center rounded shadow-md py-2 px-2'>
-                                            Editar
-                                        </div>
-                                    </Link>
+                                    {isDelivered ? (
+                                        <div className="alert-success">Entregue {deliveredAt}</div>
+                                    ) : (
+                                        <div className="alert-error">Não entregue</div>
+                                    )}
                                 </div>
                             </div>
                             <div className="card bg-white w-1/2 p-5">
@@ -161,11 +138,11 @@ export default function PlaceOrderScreen() {
                                     <h2 className="mb-2 text-indigo-600 text-center text-2xl">Método de pagamento</h2>
                                     <div className='mb-2 text-xl text-center'>{paymentMethod}</div>
                                     <div className='flex items-center flex-col'>
-                                        <Link href="/payment">
-                                            <div className='cursor-pointer bg-sky-100 w-fit hover:bg-indigo-700 hover:text-white text-indigo-700 text-center rounded shadow-md py-2 px-2'>
-                                                Editar
-                                            </div>
-                                        </Link>
+                                        {isPaid ? (
+                                            <div className="alert-success">Pago {paidAt}</div>
+                                        ) : (
+                                            <div className="alert-error">Ainda não confirmado</div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -204,15 +181,6 @@ export default function PlaceOrderScreen() {
                                         </div>
                                     </div>
                                 </li>
-                                <li>
-                                    <button
-                                        disabled={loading}
-                                        onClick={placeOrderHandler}
-                                        className="text-indigo-700 bg-sky-100 shadow-md w-full"
-                                    >
-                                        {loading ? 'Carregando...' : 'Realizar Pedido'}
-                                    </button>
-                                </li>
                             </ul>
                         </div>
                     </div>
@@ -222,4 +190,5 @@ export default function PlaceOrderScreen() {
     );
 }
 
-PlaceOrderScreen.auth = true;
+OrderScreen.auth = true;
+export default OrderScreen;
