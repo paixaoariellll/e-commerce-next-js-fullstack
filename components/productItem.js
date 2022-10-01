@@ -12,7 +12,6 @@ export default function ProductItem({ product, addToCartHandler }) {
                         alt={product.name}
                         width={500}
                         height={500}
-                        unoptimized
                         className="rounded card"
                     />
                 </div>
