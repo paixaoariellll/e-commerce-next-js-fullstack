@@ -1,8 +1,7 @@
 import axios from 'axios';
-import data from '../../utils/data'
 import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
@@ -43,7 +42,6 @@ export default function ProductScreen(props) {
     const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((x) => x.slug === product.slug)
         const quantity = existItem ? existItem.quantity + 1 : 1
-        const { data } = await axios.get(`/api/products/${product._id}`);
         if (product.countInStock < quantity) {
             return (
                 toast.error(
