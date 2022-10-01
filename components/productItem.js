@@ -13,7 +13,7 @@ export default function ProductItem({ product, addToCartHandler }) {
                         alt={product.name}
                         width={500}
                         height={500}
-                        className="rounded card"
+                        className="rounded card w-full"
                     />
                 </div>
             </Link>
