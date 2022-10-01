@@ -23,20 +23,18 @@ export default function Home({ products }) {
     toast.success('O produto foi adicionado ao carrinho!');
   };
   return (
-    <div>
-      <Layout title="Home">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-          {products.map((product) => (
-            <ProductItem
-              product={product}
-              key={product.slug}
-              addToCartHandler={addToCartHandler}
-            />
-          ))}
-        </div>
-      </Layout>
-    </div>
-  )
+    <Layout title="Home">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+        {products.map((product) => (
+          <ProductItem
+            product={product}
+            key={product.slug}
+            addToCartHandler={addToCartHandler}
+          ></ProductItem>
+        ))}
+      </div>
+    </Layout>
+  );
 }
 
 export async function getServerSideProps() {
