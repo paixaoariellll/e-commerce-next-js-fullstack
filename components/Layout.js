@@ -60,8 +60,8 @@ export default function Layout({ title, children }) {
                             <div className="container-fluid">
                                 <Link href="/">
                                     <div
-                                        className="text-xl cursor-pointer text-black">
-                                        E-commerce FullStack
+                                        className="text-xl cursor-pointer text-indigo-700">
+                                        Ariel Paixão
                                     </div>
                                 </Link>
                             </div>
@@ -99,7 +99,7 @@ export default function Layout({ title, children }) {
                                                 <Menu.Button className="text-blue-600">
                                                     {session.user.name}
                                                 </Menu.Button>
-                                                <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white  shadow-lg ">
+                                                <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg ">
                                                     <Menu.Item>
                                                         <DropdownLink className="dropdown-link" href="/profile">
                                                             Perfil
@@ -141,7 +141,7 @@ export default function Layout({ title, children }) {
                 <main>
                     <div className='container min-h-screen m-auto mt-8 px-0'>{children}</div>
                 </main>
-                <footer className="flex justify-center items-center h-10 shadow-inner">
+                <footer className="flex bg-white justify-center items-center h-10 shadow-inner">
                     <p>Copyright © {year}, Ariel Paixão</p>
                 </footer>
             </div >

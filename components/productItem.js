@@ -1,13 +1,14 @@
 import React from "react"
 import Link from 'next/link'
 import 'remixicon/fonts/remixicon.css'
+import Image from "next/image"
 
 export default function ProductItem({ product, addToCartHandler }) {
     return (
         <div className="card">
             <Link href={`/product/${product.slug}`}>
                 <div className="cursor-pointer">
-                    <img
+                    <Image
                         src={product.image}
                         alt={product.name}
                         width={500}

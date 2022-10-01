@@ -61,7 +61,7 @@ export default function ShippingScreen() {
     return (
         <Layout title="Endereço da Entrega">
             <CheckoutWizard activeStep={1} />
-            <div className='card w-full bg-indigo-100'>
+            <div className='card w-full'>
                 <form
                     className="mx-auto p-3 justify-center max-w-screen-md container"
                     onSubmit={handleSubmit(submitHandler)}
