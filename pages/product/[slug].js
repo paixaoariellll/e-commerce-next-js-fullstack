@@ -1,22 +1,23 @@
+import axios from 'axios';
 import data from '../../utils/data'
 import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
+import { toast, ToastContainer } from 'react-toastify';
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import Product from '../../models/Product';
+import db from '../../utils/db';
 import { Store } from '../../utils/Store'
-import toast, { Toaster } from 'react-hot-toast'
 import imgErro from '../../public/img/Saly-11.svg'
 
-export default function ProductScreen() {
+export default function ProductScreen(props) {
+    const { product } = props;
     const { state, dispatch } = useContext(Store)
-    const { query } = useRouter()
-    const { slug } = query
     const router = useRouter()
-    const product = data.products.find((x) => x.slug === slug)
     if (!product) {
         return (
-            <Layout title="Página não encontrada">
+            <Layout title="Produto não encontrado">
                 <div className='text-5xl text-center'>
                     <h1>Você se perdeu!</h1>
                 </div>
@@ -39,16 +40,18 @@ export default function ProductScreen() {
             </Layout>
         )
     }
-    const addToCartHandler = () => {
+    const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((x) => x.slug === product.slug)
         const quantity = existItem ? existItem.quantity + 1 : 1
+        const { data } = await axios.get(`/api/products/${product._id}`);
         if (product.countInStock < quantity) {
-            toast.error(
-                <span className='p-2 text-red-500 text-2xl'>
-                    O produto está indisponível!
-                </span>
+            return (
+                toast.error(
+                    <span className='p-2 text-red-500 text-2xl'>
+                        O produto está indisponível!
+                    </span>
+                )
             )
-            return
         }
         dispatch({
             type: 'CART_ADD_ITEM',
@@ -120,8 +123,21 @@ export default function ProductScreen() {
                         </div>
                     </div>
                 </div>
-                <Toaster />
             </div>
         </Layout >
     )
+}
+
+export async function getServerSideProps(context) {
+    const { params } = context;
+    const { slug } = params;
+
+    await db.connect();
+    const product = await Product.findOne({ slug }).lean();
+    await db.disconnect();
+    return {
+        props: {
+            product: product ? db.convertDocToObj(product) : null,
+        },
+    };
 }

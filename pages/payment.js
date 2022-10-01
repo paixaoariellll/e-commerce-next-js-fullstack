@@ -18,7 +18,7 @@ export default function PaymentScreen() {
     const submitHandler = (e) => {
         e.preventDefault();
         if (!selectedPaymentMethod) {
-            return toast.error('O método de pagamento é necessário!');
+            return toast.error('Por favor, selecione o método de pagamento!');
         }
         dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod });
         Cookies.set(
@@ -41,34 +41,40 @@ export default function PaymentScreen() {
     return (
         <Layout title="Payment Method">
             <CheckoutWizard activeStep={2} />
-            <form className="mx-auto max-w-screen-md " onSubmit={submitHandler}>
-                <h1 className="mb-4 text-center text-blue-900 text-2xl">Método de Pagamento</h1>
-                {['PayPal', 'Stripe', 'Dinheiro na Entrega'].map((payment) => (
-                    <div key={payment} className="mb-4 text-xl p-2 w-1/3 card bg-white hover:text-white hover:bg-blue-900">
-                        <input
-                            name="paymentMethod"
-                            className="p-2 outline-non focus:ring-0"
-                            id={payment}
-                            type="radio"
-                            checked={selectedPaymentMethod === payment}
-                            onChange={() => setSelectedPaymentMethod(payment)}
-                        />
-                        <label className="p-2" htmlFor={payment}>
-                            {payment}
-                        </label>
+            <div className='card w-full bg-indigo-100'>
+                <form className="mx-auto max-w-screen-md " onSubmit={submitHandler}>
+                    <h1 className="mb-4 text-center text-blue-900 text-2xl">Método de Pagamento</h1>
+                    <div className='flex items-center flex-col'>
+                        {['PayPal', 'Stripe', 'Dinheiro na Entrega'].map((payment) => (
+                            <div key={payment} className="mb-4 cursor-pointer text-xl p-2 w-1/3 card bg-white hover:text-white hover:bg-blue-900">
+                                <input
+                                    name="paymentMethod"
+                                    className="p-2 cursor-pointer outline-non focus:ring-0"
+                                    id={payment}
+                                    type="radio"
+                                    checked={selectedPaymentMethod === payment}
+                                    onChange={() => setSelectedPaymentMethod(payment)}
+                                />
+                                <label className="p-2 cursor-pointer" htmlFor={payment}>
+                                    {payment}
+                                </label>
+                            </div>
+                        ))}
                     </div>
-                ))}
-                <div className="mb-4 flex justify-between">
-                    <button
-                        onClick={() => router.push('/shipping')}
-                        type="button"
-                        className="default-button bg-red-400"
-                    >
-                        voltar
-                    </button>
-                    <button className="primary-button">Avançar</button>
-                </div>
-            </form>
+                    <div className="mb-4 flex justify-between">
+                        <button
+                            onClick={() => router.push('/shipping')}
+                            type="button"
+                            className="default-button bg-red-400"
+                        >
+                            Voltar
+                        </button>
+                        <button className="primary-button">Avançar</button>
+                    </div>
+                </form>
+            </div>
         </Layout>
     );
 }
+
+PaymentScreen.auth = true;

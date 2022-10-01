@@ -51,7 +51,7 @@
 :root {
   --primary-color: #fff;
   --secondary-color: #fff;
-  --body-bg: aliceblue;
+  --body-bg: rgb(211, 226, 239);
   --text-color: #fff;
   --gray: #828282;
 }
@@ -92,11 +92,11 @@ button {
 }
 
 .primary-button {
-  @apply rounded bg-sky-100 py-2 m-2 px-8 shadow outline-none;
+  @apply rounded bg-sky-100 py-2 text-blue-900 m-2 px-8 shadow outline-none;
 }
 
 .default-button {
-  @apply rounded bg-red-100 py-2 px-4 text-black shadow outline-none;
+  @apply rounded bg-red-100 py-2 px-4 text-red-600 shadow outline-none;
 }
 
 button:hover,
@@ -109,7 +109,7 @@ button:hover,
 }
 
 .card {
-  @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
+  @apply mb-5 block rounded-lg border bg-white border-gray-200 shadow-md;
   transition: 300ms ease-in-out;
 }
 
