@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
 import { toast } from 'react-toastify';
