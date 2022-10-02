@@ -15,7 +15,7 @@ const nav_links = [
         path: "/",
         display: "Home",
     },
-    /*     {
+    /*  {
             path: "categoria",
             display: "Categorias",
         },
@@ -46,12 +46,12 @@ export default function Layout({ title, children }) {
     return (
         <>
             <Head>
-                <title>{title ? title + ' e-commerce' : ' e-commerce'} </title>
-                <meta name="description" content="E-commerce shop created by create next app" />
+                <title>{title ? title + ' Game-On' : ' Game-On'} </title>
+                <meta name="Projeto Integrador" content="Game-On shop created by create next app" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <ToastContainer position='bottom-center' limit={1} />
+            <ToastContainer position='bottom-center' limit={3} />
 
             <div className='flex flex-col justify-between'>
                 <header>
@@ -60,8 +60,8 @@ export default function Layout({ title, children }) {
                             <div className="container-fluid">
                                 <Link href="/">
                                     <div
-                                        className="text-xl cursor-pointer text-indigo-700">
-                                        Ariel Paixão
+                                        className="text-xl cursor-pointer text-blue-800">
+                                        Game-On
                                     </div>
                                 </Link>
                             </div>

@@ -10,7 +10,7 @@ const handler = async (req, res) => {
     await Product.deleteMany();
     await Product.insertMany(data.products);
     await db.disconnect()
-    res.send({ message: 'Pedido concluído com sucesso!' })
+    res.send({ message: 'Seed concluída com sucesso!' })
 }
 
 export default handler

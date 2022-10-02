@@ -96,7 +96,7 @@ button {
 }
 
 .default-button {
-  @apply rounded bg-red-100 py-2 px-4 text-red-600 shadow outline-none;
+  @apply rounded bg-red-700 py-2 px-4 text-white shadow outline-none;
 }
 
 button:hover,

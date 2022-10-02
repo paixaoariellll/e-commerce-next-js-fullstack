@@ -7,32 +7,28 @@ import { useRouter } from 'next/router'
 import Product from '../../models/Product';
 import db from '../../utils/db';
 import { Store } from '../../utils/Store'
-import imgErro from '../../public/img/Saly-11.svg'
+import imgErro from '../../public/img/imgErro.svg'
+import axios from 'axios';
 
 export default function ProductScreen(props) {
-    const { product } = props;
+    const { product } = props
     const { state, dispatch } = useContext(Store)
     const router = useRouter()
     if (!product) {
         return (
             <Layout title="Produto não encontrado">
-                <div className='text-5xl text-center'>
-                    <h1>Você se perdeu!</h1>
-                </div>
-                <div className='flex text-center'>
-                    <Image
-                        src={imgErro}
-                        alt="imagem do produto"
-                        width={500}
-                        height={500}
-                    ></Image>
-                    <div className='text-9xl'>
-                        Erro 404!
-                        <div className='py-2 text-2xl text-center'>
-                            <Link href="/">
-                                <button className=' bg-white hover:bg-red-500'> Voltar</button>
-                            </Link>
-                        </div>
+                <div className='text-3xl flex items-center flex-col text-center'>
+                    <h1 className='text-indigo-700'>Que pena! você se perdeu!</h1>
+                    <div className='flex text-center'>
+                        <Image
+                            src={imgErro}
+                            alt="imagem do produto"
+                            width={500}
+                            height={500}
+                        ></Image>
+                        <Link href="/">
+                            <button className=' bg-gray-300 text-gray-800 hover:bg-red-700'> Voltar</button>
+                        </Link>
                     </div>
                 </div>
             </Layout>
@@ -41,10 +37,11 @@ export default function ProductScreen(props) {
     const addToCartHandler = async () => {
         const existItem = state.cart.cartItems.find((x) => x.slug === product.slug)
         const quantity = existItem ? existItem.quantity + 1 : 1
-        if (product.countInStock < quantity) {
+        const { data } = await axios.get(`/api/products/${product._id}`)
+        if (data.countInStock < quantity) {
             return (
                 toast.error(
-                    <span className='p-2 text-red-500 text-2xl'>
+                    <span className='p-2 text-red-500'>
                         O produto está indisponível!
                     </span>
                 )
@@ -126,15 +123,15 @@ export default function ProductScreen(props) {
 }
 
 export async function getServerSideProps(context) {
-    const { params } = context;
-    const { slug } = params;
+    const { params } = context
+    const { slug } = params
 
-    await db.connect();
-    const product = await Product.findOne({ slug }).lean();
-    await db.disconnect();
+    await db.connect()
+    const product = await Product.findOne({ slug }).lean()
+    await db.disconnect()
     return {
         props: {
             product: product ? db.convertDocToObj(product) : null,
         },
-    };
+    }
 }

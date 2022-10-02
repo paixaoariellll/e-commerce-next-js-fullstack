@@ -68,7 +68,7 @@ export default function ShippingScreen() {
                 >
                     <h1 className="mb-4 text-2xl text-center text-indigo-600">Formulário para Entrega do Produto</h1>
                     <div className="mb-4 grid col-span-1">
-                        <label className='text-xl' htmlFor="name">Nome completo</label>
+                        <label className='text-xl text-indigo-700' htmlFor="name">Nome completo</label>
                         <input
                             className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                             id="name"
@@ -85,7 +85,7 @@ export default function ShippingScreen() {
                     </div>
                     <div className='flex gap-10 justify-between'>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl' htmlFor="postalCode">Código de Endereçamento Postal ( CEP )</label>
+                            <label className='text-xl text-indigo-700' htmlFor="postalCode">CEP</label>
                             <input
                                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="postalCode"
@@ -101,7 +101,7 @@ export default function ShippingScreen() {
                             )}
                         </div>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl' htmlFor="number">Número</label>
+                            <label className='text-xl text-indigo-700' htmlFor="number">Número</label>
                             <input
                                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="number"
@@ -117,7 +117,7 @@ export default function ShippingScreen() {
                     </div>
                     <div className='flex gap-10  justify-between'>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl' htmlFor="address">Rua</label>
+                            <label className='text-xl text-indigo-700' htmlFor="address">Rua</label>
                             <input
                                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="address"
@@ -133,7 +133,7 @@ export default function ShippingScreen() {
                             )}
                         </div>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl' htmlFor="neighborhood">Bairro</label>
+                            <label className='text-xl text-indigo-700' htmlFor="neighborhood">Bairro</label>
                             <input
                                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="neighborhood"
@@ -148,7 +148,7 @@ export default function ShippingScreen() {
                     </div>
                     <div className='flex gap-10 justify-between'>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl' htmlFor="city">Cidade</label>
+                            <label className='text-xl text-indigo-700' htmlFor="city">Cidade</label>
                             <input
                                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="city"
@@ -161,7 +161,7 @@ export default function ShippingScreen() {
                             )}
                         </div>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl' htmlFor="state">UF do Estado</label>
+                            <label className='text-xl text-indigo-700' htmlFor="state">UF do Estado</label>
                             <input
                                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="state"

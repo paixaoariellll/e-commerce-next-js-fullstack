@@ -14,7 +14,7 @@ function CartScreen() {
     const { cart: { cartItems }, } = state;
     const removeItemHandler = (item) => {
         dispatch({ type: 'CART_REMOVE_ITEM', payload: item });
-    };
+    }
     const updateCartHandler = async (item, qty) => {
         const quantity = Number(qty);
         const { data } = await axios.get(`/api/products/${item._id}`);
@@ -23,7 +23,7 @@ function CartScreen() {
         }
         dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
         toast.success('Produto adicionado ao carrinho!');
-    };
+    }
     return (
         <Layout title="Carrinho">
             <h1 className="mb-5 text-3xl text-blue-900 text-center">Carrinho de compras</h1>
