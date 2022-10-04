@@ -9,25 +9,8 @@ import { signOut, useSession } from 'next-auth/react'
 import DropdownLink from './DropdownLink'
 import { Menu } from '@headlessui/react';
 import Cookies from 'js-cookie';
-
-const nav_links = [
-    {
-        path: "/",
-        display: "Home",
-    },
-    /*  {
-            path: "categoria",
-            display: "Categorias",
-        },
-        {
-            path: "sobre",
-            display: "Sobre",
-        },
-        {
-            path: "contato",
-            display: "Contatos",
-        }, */
-]
+import Image from 'next/image'
+import M from '../public/img/M.svg'
 
 export default function Layout({ title, children }) {
     const { status, data: session } = useSession()
@@ -46,45 +29,34 @@ export default function Layout({ title, children }) {
     return (
         <>
             <Head>
-                <title>{title ? title + ' Game-On' : ' Game-On'} </title>
-                <meta name="Projeto Integrador" content="Game-On shop created by create next app" />
+                <title>{title ? title + ' GameOn' : ' GameOn'} </title>
+                <meta name="Projeto Integrador" content="GameOn shop created by create next app" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
             <ToastContainer position='bottom-center' limit={3} />
-
             <div className='flex flex-col justify-between'>
                 <header>
-                    <nav className="relative w-full flex flex-wrap items-center justify-between py-1 bg-gray-100 text-gray-500 shadow-lg">
+                    <nav className="relative w-full flex flex-wrap items-center justify-between py-1 bg-white text-gray-500 shadow-lg">
                         <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                             <div className="container-fluid">
                                 <Link href="/">
-                                    <div
-                                        className="text-xl cursor-pointer text-blue-800">
-                                        Game-On
+                                    <div className='text-blue-800 cursor-pointer text-5xl'>
+                                        <span>Ga</span>
+                                        <Image src={M} width={50} height={30}></Image>
+                                        <span>e</span>
+                                        <span className='bg-blue-800 rounded-lg text-white text-5xl'>On</span>
                                     </div>
                                 </Link>
                             </div>
                             <div className='menu flex gap-5'>
-                                {
-                                    nav_links.map((item, index) => (
-                                        <ul key={index}>
-                                            <li>
-                                                <Link href={item.path}>
-                                                    {item.display}
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    ))
-                                }
                             </div>
                             <div className='flex'>
                                 <Link href="/cart">
-                                    <div className=' p-2 text-black text-2xl'>
+                                    <div className='p-2 py-2 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl'>
                                         {cartItemsCount > 0 && (
                                             <span
                                                 style={{ color: 'white', background: 'red' }}
-                                                className=' ml-1 rounded-full px-2 py-1 text-xs font-bold'>
+                                                className=' ml-1 rounded-full px-2 py-1 text-sm font-bold'>
                                                 {cartItemsCount}
                                             </span>
                                         )}
@@ -96,7 +68,7 @@ export default function Layout({ title, children }) {
                                     session?.user ?
                                         (
                                             <Menu as="div" className="relative inline-block">
-                                                <Menu.Button className="text-blue-600">
+                                                <Menu.Button className="text-blue-800 text-xl">
                                                     {session.user.name}
                                                 </Menu.Button>
                                                 <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg ">
@@ -126,10 +98,10 @@ export default function Layout({ title, children }) {
                                             </Menu>
                                         ) : (
                                             <Link href='/login'>
-                                                <div className='p-2 text-black text-2xl'>
-                                                    <a className='p-2 cursor-pointer'>
+                                                <div className='p-2 px-2 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl'>
+                                                    <div className='cursor-pointer'>
                                                         <i className="ri-login-box-line"></i>
-                                                    </a>
+                                                    </div>
                                                 </div>
                                             </Link>
                                         )
@@ -142,7 +114,7 @@ export default function Layout({ title, children }) {
                     <div className='container min-h-screen m-auto mt-8 px-0'>{children}</div>
                 </main>
                 <footer className="flex bg-white justify-center items-center h-10 shadow-inner">
-                    <p>Copyright © {year}, Ariel Paixão</p>
+                    <p>Copyright © {year}, GameON </p>
                 </footer>
             </div >
         </>

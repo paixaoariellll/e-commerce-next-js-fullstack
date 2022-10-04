@@ -48,6 +48,12 @@
   font-weight: 600;
 }
 
+@font-face {
+  font-family: Iceland;
+  src: url('../pages/font/Iceland-Regular.ttf');
+  font-weight: 700;
+}
+
 :root {
   --primary-color: #fff;
   --secondary-color: #fff;
@@ -60,7 +66,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'ExtraS';
+  font-family: 'Iceland';
 }
 
 .menu {
@@ -68,7 +74,7 @@ body {
 }
 
 a {
-  @apply text-blue-600;
+  @apply text-blue-800;
 }
 
 a:hover {
@@ -80,11 +86,11 @@ a:hover {
 }
 
 .dropdown-link {
-  @apply flex p-2 relative z-20 bg-white;
+  @apply flex p-2 text-xl rounded-lg relative z-20 text-blue-800 bg-white;
 }
 
 .dropdown-link:hover {
-  @apply bg-blue-900 text-white;
+  @apply text-white bg-blue-800;
 }
 
 button {
@@ -92,7 +98,7 @@ button {
 }
 
 .primary-button {
-  @apply rounded bg-sky-100 py-2 text-blue-900 m-2 px-8 shadow outline-none;
+  @apply rounded py-2 text-blue-800 m-2 px-4 shadow outline-none;
 }
 
 .default-button {
@@ -101,7 +107,7 @@ button {
 
 button:hover,
 .primary-button:hover {
-  @apply bg-blue-900 text-white;
+  @apply bg-blue-800 text-white;
 }
 
 .default-button:hover {

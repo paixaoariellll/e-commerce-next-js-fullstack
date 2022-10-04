@@ -10,10 +10,10 @@ export default function Unauthorized() {
     return (
         <Layout title="Acesso Negado">
             <div className='card w-full p-5 bg-white'>
-                <h1 className="text-center text-red-500 text-3xl">Accesso Negado!</h1>
+                <h1 className="text-center text-red-500 text-5xl">Accesso Negado!</h1>
                 {
                     message &&
-                    <div className="mb-4 text-xl text-center text-red-500">
+                    <div className="mb-4 text-2xl text-center text-gray-900">
                         Você não pode acessar essa página antes de fazer login!
                     </div>
                 }
@@ -21,7 +21,7 @@ export default function Unauthorized() {
                     <button
                         onClick={() => router.push('/login')}
                         type="button"
-                        className="default-button bg-red-400"
+                        className=" bg-blue-700 text-xl text-white"
                     >
                         Fazer login
                     </button>

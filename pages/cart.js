@@ -22,20 +22,22 @@ function CartScreen() {
             return toast.error('Não possuimos mais desse produto em estoque');
         }
         dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
-        toast.success('Produto adicionado ao carrinho!');
+        toast.success('Produto atualizado com sucesso!');
     }
     return (
         <Layout title="Carrinho">
-            <h1 className="mb-5 text-3xl text-blue-900 text-center">Carrinho de compras</h1>
+            <h1 className="mb-5 text-4xl text-blue-800 text-center">Carrinho de compras</h1>
             {
                 cartItems.length === 0 ? (
-                    <div className='text-center mb-5'>
-                        <div className='mb-5 text-xl' >
-                            O carrinho está vazio.
+                    <div className='text-center card p-6 w-full mb-5'>
+                        <div className='flex items-center flex-col'>
+                            <div className='mb-5 text-2xl' >
+                                O carrinho de compras está vazio.
+                            </div>
+                            <Link href="/">
+                                <buton className="bg-blue-700 hover:bg-blue-900 text-xl px-5 rounded-lg py-1 text-white cursor-pointer">Voltar</buton>
+                            </Link>
                         </div>
-                        <Link href="/">
-                            <buton className="primary-button cursor-pointer">Voltar</buton>
-                        </Link>
                     </div>
                 ) : (
                     <div>

@@ -39,11 +39,11 @@ export default function PaymentScreen() {
             <CheckoutWizard activeStep={2} />
             <div className='card w-full'>
                 <form className="mx-auto max-w-screen-md " onSubmit={submitHandler}>
-                    <h1 className="mb-4 text-center text-blue-900 text-2xl">Método de Pagamento</h1>
+                    <h1 className="my-4 text-center text-blue-800 text-4xl">Método de Pagamento</h1>
                     <div className='flex items-center flex-col'>
                         {
                             ['PayPal', 'Stripe', 'Boleto', 'Pix', 'Dinheiro na Entrega'].map((payment) => (
-                                <div key={payment} className="mb-4 cursor-pointer text-xl p-2 w-1/3 card bg-white hover:text-white hover:bg-blue-900">
+                                <div key={payment} className="mb-4 cursor-pointer text-xl p-2 w-1/3 card bg-white hover:text-white hover:bg-blue-800">
                                     <input
                                         name="paymentMethod"
                                         className="p-2 cursor-pointer outline-non focus:ring-0"
@@ -59,7 +59,7 @@ export default function PaymentScreen() {
                             ))
                         }
                     </div>
-                    <div className="mb-4 flex justify-between">
+                    <div className="mb-4 text-xl flex justify-between">
                         <button
                             onClick={() => router.push('/shipping')}
                             type="button"
@@ -67,7 +67,7 @@ export default function PaymentScreen() {
                         >
                             Voltar
                         </button>
-                        <button className="primary-button">Avançar</button>
+                        <button className="bg-green-500 text-white hover:bg-green-800">Avançar</button>
                     </div>
                 </form>
             </div>

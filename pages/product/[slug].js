@@ -1,14 +1,14 @@
 import React, { useContext } from 'react'
 import Layout from '../../components/Layout'
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import Product from '../../models/Product';
-import db from '../../utils/db';
+import Product from '../../models/Product'
+import db from '../../utils/db'
 import { Store } from '../../utils/Store'
 import imgErro from '../../public/img/imgErro.svg'
-import axios from 'axios';
+import axios from 'axios'
 
 export default function ProductScreen(props) {
     const { product } = props
@@ -62,7 +62,9 @@ export default function ProductScreen(props) {
                         <button className='bg-white'>Voltar</button>
                     </Link>
                 </div>
-                <h1 className='container mt-4 px-4 py-5 text-center text-3xl'>{product.name}</h1>
+                <div className='w-full bg-transparent flex items-center flex-col'>
+                    <h1 className='container shadow-md mt-4 rounded-xl bg-white w-fit text-blue-800 px-6 py-0 text-center text-4xl uppercase'>{product.name}</h1>
+                </div>
             </div>
             <div className='grid md:grid-cols-4 md:gap-3'>
                 <div className='md:col-span-2 mb-5 shadow-gray-900 shadow-xl rounded border-8'>
@@ -77,17 +79,30 @@ export default function ProductScreen(props) {
                 </div>
                 <div className='text-xl'>
                     <ul>
-                        <li>
+                        <li className='text-center text-3xl shadow-md bg-white rounded-xl m-1 py-2 cursor-text text-green-700'>
                             {product.category}
                         </li>
-                        <li>
-                            Criador: {product.publisher}
+                        <li className='text-center m-1 cursor-text text-green-700'>
+                            Distribuidoras: {product.publisher}
                         </li>
-                        <li>
+                        <li className='text-center m-1 cursor-text text-green-700'>
                             {product.rating} de {product.numReviews} avalizações
                         </li>
-                        <li>
-                            Descrição: {product.description}
+                        <li className='text-center text-sm px-4 shadow-md bg-white rounded-xl m-1 cursor-text'>
+                            <thead className='flex text-xl justify-center text-center w-full'>Descrição:</thead>
+                            <span onClick={(e) => {
+                                toast(`${product.description}`, {
+                                    position: 'top-center',
+                                    autoClose: 5000,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                })
+                            }}>
+                                <span className='cursor-pointer hover:text-xl hover:text-blue-800'>Mais detalhes</span>
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -109,7 +124,7 @@ export default function ProductScreen(props) {
                                 }
                             </div>
                         </div>
-                        <div className='flex mt-7 text-center '>
+                        <div className='flex mt-7 text-xl text-center '>
                             <button onClick={addToCartHandler} className='w-full bg-sky-100 flex justify-between'>
                                 Comprar
                                 <i className="ri-shopping-cart-line"></i>
@@ -117,7 +132,7 @@ export default function ProductScreen(props) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         </Layout >
     )
 }

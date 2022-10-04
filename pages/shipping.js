@@ -68,9 +68,9 @@ export default function ShippingScreen() {
                 >
                     <h1 className="mb-4 text-2xl text-center text-indigo-600">Formulário para Entrega do Produto</h1>
                     <div className="mb-4 grid col-span-1">
-                        <label className='text-xl text-indigo-700' htmlFor="name">Nome completo</label>
+                        <label className='text-xl text-blue-800' htmlFor="name">Nome completo</label>
                         <input
-                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                             id="name"
                             label="Nome completo"
                             autoFocus
@@ -85,9 +85,9 @@ export default function ShippingScreen() {
                     </div>
                     <div className='flex gap-10 justify-between'>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl text-indigo-700' htmlFor="postalCode">CEP</label>
+                            <label className='text-xl text-blue-800' htmlFor="postalCode">CEP</label>
                             <input
-                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                                 id="postalCode"
                                 onBlurCapture={checkCEP}
                                 {...register('postalCode', {
@@ -101,9 +101,9 @@ export default function ShippingScreen() {
                             )}
                         </div>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl text-indigo-700' htmlFor="number">Número</label>
+                            <label className='text-xl text-blue-800' htmlFor="number">Número</label>
                             <input
-                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                                 id="number"
                                 {...register('number', {
                                     required: 'Por favor, digite o número de seu endereço',
@@ -117,9 +117,9 @@ export default function ShippingScreen() {
                     </div>
                     <div className='flex gap-10  justify-between'>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl text-indigo-700' htmlFor="address">Rua</label>
+                            <label className='text-xl text-blue-800' htmlFor="address">Rua</label>
                             <input
-                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                                 id="address"
                                 {...register('address', {
                                     required: 'Por favor, digite o nome de sua rua',
@@ -133,9 +133,9 @@ export default function ShippingScreen() {
                             )}
                         </div>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl text-indigo-700' htmlFor="neighborhood">Bairro</label>
+                            <label className='text-xl text-blue-800' htmlFor="neighborhood">Bairro</label>
                             <input
-                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                                 id="neighborhood"
                                 {...register('neighborhood', {
                                     required: 'Por favor, digite seu bairro',
@@ -148,9 +148,9 @@ export default function ShippingScreen() {
                     </div>
                     <div className='flex gap-10 justify-between'>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl text-indigo-700' htmlFor="city">Cidade</label>
+                            <label className='text-xl text-blue-800' htmlFor="city">Cidade</label>
                             <input
-                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                                 id="city"
                                 {...register('city', {
                                     required: 'Por favor, digite sua cidade',
@@ -161,9 +161,9 @@ export default function ShippingScreen() {
                             )}
                         </div>
                         <div className="mb-4 grid col-span-1">
-                            <label className='text-xl text-indigo-700' htmlFor="state">UF do Estado</label>
+                            <label className='text-xl text-blue-800' htmlFor="state">UF do Estado</label>
                             <input
-                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                                 id="state"
                                 {...register('state', {
                                     required: 'Por favor, digite seu Estado',
