@@ -76,7 +76,7 @@ export default function ShippingScreen() {
                             autoFocus
                             {...register('name', {
                                 required: 'Por favor, digite seu nome completo',
-                                minLength: { value: 10, message: 'Por favor, digite também seu sobrenome' },
+                                minLength: { value: 4, message: 'Por favor, digite também seu sobrenome' },
                             })}
                         />
                         {errors.name && (

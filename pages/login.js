@@ -57,7 +57,7 @@ export default function LoginScreen() {
                         <div className="bg-sky-100 p-5 rounded-lg shadow-xl xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-5">
                             <form onSubmit={handleSubmit(submitHandler)}>
                                 <div className="flex flex-row items-center justify-center lg:justify-start">
-                                    <p className="text-lg mb-0 mr-4">Conecte-se com: </p>
+                                    <p className="text-xl mb-0 mr-4">Conecte-se com: </p>
                                     <button
                                         type="button"
                                         data-mdb-ripple="true"
@@ -150,7 +150,7 @@ export default function LoginScreen() {
                                         (
                                             <div className='text-sm flex justify-between text-red-500'>{errors.password.message}
                                                 <span onClick={(e) => {
-                                                    toast('Sobre a ISO/IEC 27000: 3 letras minúsculas. \n 2 letras maiúsculas. \n 2 números. \n 2 caracteres especiais. \n 8 caracteres ou mais', { position: "top-center" })
+                                                    toast('Sobre a ISO/IEC 27000: 3 letras minúsculas. \n 2 letras maiúsculas. \n 2 números. \n 1 caracter especial. \n 8 caracteres ou mais', { position: "top-center" })
                                                 }}>
                                                     < i className='cursor-pointer text-xl  ri-alert-line' ></i>
                                                 </span>
@@ -167,10 +167,10 @@ export default function LoginScreen() {
                                         />
                                         <label className="form-check-label inline-block text-gray-800" htmlFor="checkbox">Lembrar-me</label>
                                     </div>
-                                    <p className="text-md font-semibold mt-2 pt-1 mb-0">
-                                        Não possui uma conta?
+                                    <p className="text-md flex font-semibold mt-2 pt-1 mb-0">
+                                        Não possui uma conta?&nbsp;
                                         <Link href={`/register?redirect=${redirect || '/'}`}>
-                                            <div className="hover:text-blue-700 text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
+                                            <div className="hover:text-blue-700 hover:underline text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
                                                 Registre-se
                                             </div>
                                         </Link>

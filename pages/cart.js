@@ -83,10 +83,10 @@ function CartScreen() {
                                                             ))}
                                                     </select>
                                                 </td>
-                                                <td className="p-5 pointer-events-none text-blue-800 text-center">$&nbsp;{item.price}</td>
+                                                <td className="p-5 pointer-events-none  text-blue-800 text-center">$&nbsp;{item.price}</td>
                                                 <td className="p-5 text-center">
                                                     <button onClick={() => removeItemHandler(item)}
-                                                        className="bg-white shadow-lg">
+                                                        className="bg-white text-blue-800 shadow-lg">
                                                         <div className='bg-none'>
                                                             <i className="ri-delete-bin-line"></i>
                                                         </div>

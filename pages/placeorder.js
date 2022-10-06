@@ -19,10 +19,10 @@ export default function PlaceOrderScreen() {
     const itemsPrice = round2(
         cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
     ) // 123.4567 => 123.46
-    const shippingPrice = itemsPrice > 200 ? 0 : 15
+    const shippingPrice = itemsPrice > 500 ? 0 : 15
     const taxPrice = round2(itemsPrice * 0.15)
     const totalPrice = round2(itemsPrice + shippingPrice + taxPrice)
-    const descount = totalPrice * 0.9
+    const descount = round2(totalPrice * 0.90)
 
     const router = useRouter()
     useEffect(() => {
@@ -55,7 +55,7 @@ export default function PlaceOrderScreen() {
                     cartItems: [],
                 })
             )
-            router.push(`/order/R${data._id}`)
+            router.push(`/order/${data._id}`)
         } catch (err) {
             setLoading(false)
             toast.error(getError(err))
@@ -102,7 +102,7 @@ export default function PlaceOrderScreen() {
                                     {cartItems.map((item) => (
                                         <tr key={item._id} className="border-y divide-indigo-600 border-indigo-600">
                                             <td>
-                                                <Link href={`/product/R${item.slug}`}>
+                                                <Link href={`/product/${item.slug}`}>
                                                     <Image
                                                         src={item.image}
                                                         alt={item.name}
@@ -113,9 +113,9 @@ export default function PlaceOrderScreen() {
                                                 </Link>
                                             </td>
                                             <td className="p-5 only:text-center">{item.quantity}</td>
-                                            <td className="p-5 text-center">R${item.price}</td>
+                                            <td className="p-5 text-center">R$ {item.price}</td>
                                             <td className="p-5 text-center">
-                                                R${item.quantity * item.price}
+                                                R$ {item.quantity * item.price}
                                             </td>
                                         </tr>
                                     ))}

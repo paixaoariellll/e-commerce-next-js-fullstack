@@ -125,7 +125,7 @@ const data = {
             countInStock: 0,
             publisher: 'Eletronic Arts'
         },
-    ]
+    ],
 }
 
 export default data

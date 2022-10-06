@@ -7,8 +7,8 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'remixicon/fonts/remixicon.css'
 import { signOut, useSession } from 'next-auth/react'
 import DropdownLink from './DropdownLink'
-import { Menu } from '@headlessui/react';
-import Cookies from 'js-cookie';
+import { Menu } from '@headlessui/react'
+import Cookies from 'js-cookie'
 import Image from 'next/image'
 import M from '../public/img/M.svg'
 
@@ -16,7 +16,7 @@ export default function Layout({ title, children }) {
     const { status, data: session } = useSession()
     const year = new Date().getFullYear()
     const [cartItemsCount, setCartItemsCount] = useState(0)
-    const { state, dispatch } = useContext(Store);
+    const { state, dispatch } = useContext(Store)
     const { cart } = state
     useEffect(() => {
         setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
@@ -30,8 +30,13 @@ export default function Layout({ title, children }) {
         <>
             <Head>
                 <title>{title ? title + ' GameOn' : ' GameOn'} </title>
+                <meta charset="UTF-8" />
                 <meta name="Projeto Integrador" content="GameOn shop created by create next app" />
-                <link rel="icon" href="/favicon.ico" />
+                <meta name="description" content="Encontre jogos eletrônicos com preços acessíveis e muita variedade!" />
+                <meta name="keywords" content="Comércio eletrônico, Loja de jogos, Loja de Games, Loja eletrônica, Games, Jogos, mídia física" />
+                <meta name="author" content="Ariel Paixão, Carlos Junior e João Machado" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <link rel="icon" href="img/logo-icon.svg" />
             </Head>
             <ToastContainer position='bottom-center' limit={3} />
             <div className='flex flex-col justify-between'>
@@ -113,8 +118,8 @@ export default function Layout({ title, children }) {
                 <main>
                     <div className='container min-h-screen m-auto mt-8 px-0'>{children}</div>
                 </main>
-                <footer className="flex bg-white justify-center items-center h-10 shadow-inner">
-                    <p>Copyright © {year}, GameON </p>
+                <footer className="flex bg-white justify-center items-center h-10 shadow-md">
+                    <p>Copyright &copy; {year}, Game<span className='bg-blue-800 rounded-t-sm text-white'>On</span>.</p>
                 </footer>
             </div >
         </>

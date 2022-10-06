@@ -39,8 +39,7 @@ export default function ProductItem({ product, addToCartHandler }) {
                         </button>
                     </div>
                 </div>
-
             </div>
         </div>
-    );
+    )
 }

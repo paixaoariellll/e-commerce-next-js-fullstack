@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useReducer } from 'react';
 import Layout from '../../components/Layout';
@@ -49,24 +50,25 @@ function OrderScreen() {
         taxPrice,
         shippingPrice,
         totalPrice,
+        descount,
         isPaid,
         paidAt,
         isDelivered,
         deliveredAt,
     } = order;
-    const descount = itemsPrice * 0.9
+
     return (
-        <Layout title={`Pedido ${orderId}`}>
-            <h1 className="mb-4 text-2xl text-center text-indigo-700">{`Id do Pedido:  ${orderId}`}</h1>
+        <Layout title={`Order ${orderId}`}>
+            <h1 className="mb-4 text-xl">{`Order ${orderId}`}</h1>
             {loading ? (
-                <div>Carregando...</div>
+                <div>Loading...</div>
             ) : error ? (
                 <div className="alert-error">{error}</div>
             ) : (
                 <div className="grid md:grid-cols-4 md:gap-5">
                     <div className="overflow-x-auto md:col-span-3">
                         <div className="card bg-white text-center overflow-x-auto p-5">
-                            <h2 className="mb-2 text-indigo-600 text-2xl">Lista dos Produtos</h2>
+                            <h2 className="mb-2 text-indigo-600 text-3xl">Lista dos Produtos</h2>
                             <table className="min-w-full">
                                 <thead className="border-b">
                                     <tr className='text-indigo-700 text-xl'>
@@ -80,18 +82,20 @@ function OrderScreen() {
                                     {orderItems.map((item) => (
                                         <tr key={item._id} className="border-y divide-indigo-600 border-indigo-600">
                                             <td>
-                                                <Image
-                                                    src={item.image}
-                                                    alt={item.name}
-                                                    width={50}
-                                                    height={50}
-                                                    className="cursor-pointer"
-                                                ></Image>
+                                                <Link href={`/product/${item.slug}`}>
+                                                    <Image
+                                                        src={item.image}
+                                                        alt={item.name}
+                                                        width={50}
+                                                        height={50}
+                                                        className="cursor-pointer"
+                                                    ></Image>
+                                                </Link>
                                             </td>
                                             <td className="p-5 only:text-center">{item.quantity}</td>
-                                            <td className="p-5 text-center">${item.price}</td>
+                                            <td className="p-5 text-center">R$ {item.price}</td>
                                             <td className="p-5 text-center">
-                                                ${item.quantity * item.price}
+                                                R$ {item.quantity * item.price}
                                             </td>
                                         </tr>
                                     ))}
@@ -100,7 +104,7 @@ function OrderScreen() {
                         </div>
                         <div className='flex justify-between gap-x-5'>
                             <div className="card bg-white w-1/2 p-5">
-                                <h2 className="mb-2 text-indigo-600 text-center text-2xl">Endereço para entrega</h2>
+                                <h2 className="mb-2 text-indigo-600 text-center text-3xl">Endereço para entrega</h2>
                                 <div className='flex items-left flex-col justify-between gap-2 mb-2'>
                                     <span className='text-indigo-700'>Nome:&nbsp;
                                         <span className='text-black'>{shippingAddress.name}</span>
@@ -134,11 +138,11 @@ function OrderScreen() {
                             </div>
                             <div className="card bg-white w-1/2 p-5">
                                 <div className='flex flex-col justify-between h-full'>
-                                    <h2 className="mb-2 text-indigo-600 text-center text-2xl">Método de pagamento</h2>
+                                    <h2 className="mb-2 text-indigo-600 text-center text-3xl">Método de pagamento</h2>
                                     <div className='mb-2 text-xl text-center'>{paymentMethod}</div>
                                     <div className='flex items-center flex-col'>
                                         {isPaid ? (
-                                            <div className="alert-success">Pago {paidAt}</div>
+                                            <div className="alert-success">Pago com {paidAt}</div>
                                         ) : (
                                             <div className="alert-error">Ainda não confirmado</div>
                                         )}
@@ -148,34 +152,34 @@ function OrderScreen() {
                         </div>
                     </div>
                     <div>
-                        <div className="card bg-white p-5">
-                            <h2 className="mb-2 text-indigo-600 text-center text-2xl">Resumo do Pedido</h2>
+                        <div className="bg-blue-100 shadow-md rounded-lg p-5 border border-green-700">
+                            <h2 className="mb-2 text-indigo-600 text-center text-3xl">Resumo do Pedido</h2>
                             <ul>
                                 <li>
-                                    <div className="mb-2 gap-5 flex justify-between">
+                                    <div className="mb-2 gap-5 text-xl flex justify-between">
                                         <div>Itens</div>
-                                        <div>$&nbsp;{itemsPrice}</div>
+                                        <div>R$&nbsp;{itemsPrice}</div>
                                     </div>
                                 </li>
                                 <li>
-                                    <div className="mb-2 flex justify-between">
+                                    <div className="mb-2 flex text-xl justify-between">
                                         <div>Taxa</div>
-                                        <div>$&nbsp;{taxPrice}</div>
+                                        <div>R$&nbsp;{taxPrice}</div>
                                     </div>
                                 </li>
                                 <li>
-                                    <div className="mb-2 flex justify-between">
+                                    <div className="mb-2 flex text-xl justify-between">
                                         <div>Entrega</div>
-                                        <div>$&nbsp;{shippingPrice}</div>
+                                        <div>R$&nbsp;{shippingPrice}</div>
                                     </div>
                                 </li>
                                 <li>
-                                    <div className="mb-2 flex justify-between">
+                                    <div className="mb-2 flex text-xl justify-between">
                                         <div>Total</div>
                                         <div className='flex flex-col align-middle items-end'>
-                                            <span className='text-sm text-red-500 line-through'>de: $&nbsp;
+                                            <span className='text-md text-red-500 line-through'>de: R$&nbsp;
                                                 {totalPrice}</span>
-                                            <span className='text-lg text-green-600'>por: $&nbsp;
+                                            <span className='text-xl text-green-600'>por: R$&nbsp;
                                                 {descount}</span>
                                         </div>
                                     </div>

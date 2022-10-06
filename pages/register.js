@@ -44,6 +44,16 @@ export default function RegisterScreen() {
             toast.error(getError(err))
         }
     }
+    function validatePassword(password) {
+        return (
+            <ul className="text-black mt-5">
+                <li>{validate(password.length < 8)} A senha deve ter no mínimo 8 caracteres.</li>
+                <li>{validate(password.search(/[0-9]/i) < 0)} A senha deve ter ao menos um número.</li>
+                <li>{validate(password.search(/[^a-zA-Z0-9]/i) < 0)} A senha deve ter ao menos um caractere especial.</li>
+                <li>{validate(password.includes(' '))} A senha não pode conter espaços em branco.</li>
+            </ul>
+        );
+    }
 
     return (
         <Layout title="Criar conta">
@@ -170,6 +180,7 @@ export default function RegisterScreen() {
                                         className='text-blue-700 text-2xl'
                                     >Senha</label>
                                     <input
+                                        onChange={validatePassword}
                                         type="password"
                                         {...register('password', {
                                             required: 'Por favor, digite sua senha',
@@ -232,26 +243,19 @@ export default function RegisterScreen() {
                                         />
                                         <label className="form-check-label inline-block text-gray-800" htmlFor="checkbox">Lembrar-me</label>
                                     </div>
-                                    <p className="text-md font-semibold mt-2 pt-1 mb-0">
-                                        Já possui uma conta?
-                                        <Link href={`register?redirect=${redirect || '/'}`}>
-                                            <div className="hover:text-blue-700 text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
-                                                Login
+                                    <p className="text-md  flex font-semibold mt-2 pt-1 mb-0">
+                                        Já possui uma conta?&nbsp;
+                                        <Link href='/login'>
+                                            <div className="hover:text-blue-700 hover:underline text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
+                                                Entrar
                                             </div>
                                         </Link>
                                     </p>
                                 </div>
-                                <div className="flex justify-between">
-                                    <button
-                                        onClick={() => router.push('/login')}
-                                        type="button"
-                                        className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-md leading-snug rounded shadow-md hover:bg-blue-800 hover:shadow-lg focus:bg-blue-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    >
-                                        Login
-                                    </button>
+                                <div className="flex justify-end">
                                     <button
                                         className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-md leading-snug rounded shadow-md hover:bg-blue-800 hover:shadow-lg focus:bg-blue-800 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    >Entrar
+                                    >Cadastrar-se
                                     </button>
                                 </div>
                             </form>
