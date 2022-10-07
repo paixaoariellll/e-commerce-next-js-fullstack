@@ -14,25 +14,20 @@ export default function PlaceOrderScreen() {
     const { state, dispatch } = useContext(Store)
     const { cart } = state
     const { cartItems, shippingAddress, paymentMethod } = cart
-
     const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100
-    const itemsPrice = round2(
-        cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
-    ) // 123.4567 => 123.46
+    const itemsPrice = round2(cartItems.reduce((a, c) => a + c.quantity * c.price, 0)) // 123.4567 => 123.46
     const shippingPrice = itemsPrice > 500 ? 0 : 15
     const taxPrice = round2(itemsPrice * 0.15)
     const totalPrice = round2(itemsPrice + shippingPrice + taxPrice)
     const descount = round2(totalPrice * 0.90)
-
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
+
     useEffect(() => {
         if (!paymentMethod) {
             router.push('/payment')
         }
     }, [paymentMethod, router])
-
-    const [loading, setLoading] = useState(false)
-
     const placeOrderHandler = async () => {
         try {
             setLoading(true);
