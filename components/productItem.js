@@ -3,7 +3,7 @@ import Link from 'next/link'
 import 'remixicon/fonts/remixicon.css'
 import Image from "next/image"
 
-export default function ProductItem({ product, addToCartHandler }) {
+export default function productItem({ product, addToCartHandler }) {
     return (
         <div className="card">
             <Link href={`/product/${product.slug}`}>
