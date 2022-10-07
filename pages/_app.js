@@ -3,6 +3,7 @@ import { SessionProvider, useSession } from 'next-auth/react'
 import { StoreProvider } from '../utils/Store'
 import { Router, useRouter } from 'next/router'
 import ProgressBar from "@badrap/bar-of-progress"
+import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 
 const progress = new ProgressBar({
   size: 4,
@@ -19,13 +20,15 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
       <StoreProvider>
-        {Component.auth ? (
-          <Auth>
+        <PayPalScriptProvider deferLoading={true}>
+          {Component.auth ? (
+            <Auth>
+              <Component {...pageProps} />
+            </Auth>
+          ) : (
             <Component {...pageProps} />
-          </Auth>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </PayPalScriptProvider>
       </StoreProvider>
     </SessionProvider>
   )

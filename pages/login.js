@@ -149,10 +149,10 @@ export default function LoginScreen() {
                                     />{errors.password &&
                                         (
                                             <div className='text-sm flex justify-between text-red-500'>{errors.password.message}
-                                                <span onClick={(e) => {
+                                                <span onClick={() => {
                                                     toast('Sobre a ISO/IEC 27000: 3 letras minúsculas. \n 2 letras maiúsculas. \n 2 números. \n 1 caracter especial. \n 8 caracteres ou mais', { position: "top-center" })
                                                 }}>
-                                                    < i className='cursor-pointer text-xl  ri-alert-line' ></i>
+                                                    < i className='cursor-pointer text-xl ri-alert-line' ></i>
                                                 </span>
                                             </div>
                                         )

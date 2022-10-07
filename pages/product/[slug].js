@@ -90,7 +90,7 @@ export default function ProductScreen(props) {
                         </li>
                         <li className='text-center text-sm px-4 shadow-md bg-white rounded-xl m-1 cursor-text'>
                             <thead className='flex text-xl justify-center text-center w-full'>Descrição:</thead>
-                            <span onClick={(e) => {
+                            <span onClick={() => {
                                 toast(`${product.description}`, {
                                     position: 'top-center',
                                     autoClose: 5000,

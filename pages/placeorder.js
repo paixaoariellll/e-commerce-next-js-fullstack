@@ -65,7 +65,7 @@ export default function PlaceOrderScreen() {
     return (
         <Layout title="Revisão do Pedido">
             <CheckoutWizard activeStep={3} />
-            <h1 className="mb-4 text-center text-indigo-800 text-4xl">Revisão do Pedido</h1>
+            <h1 className="mb-4 text-center text-blue-800 text-4xl">Revisão do Pedido</h1>
             {cartItems.length === 0 ? (
                 <div className='card w-full p-5 bg-white'>
                     <h1 className="text-center text-red-500 text-3xl">Parece que você se perdeu né?</h1>
@@ -88,10 +88,10 @@ export default function PlaceOrderScreen() {
                 <div className="grid md:grid-cols-4 md:gap-5">
                     <div className="overflow-x-auto md:col-span-3">
                         <div className="card bg-white text-center overflow-x-auto p-5">
-                            <h2 className="mb-2 text-indigo-600 text-3xl">Lista dos Produtos</h2>
+                            <h2 className="mb-2 text-blue-600 text-3xl">Lista dos Produtos</h2>
                             <table className="min-w-full">
                                 <thead className="border-b">
-                                    <tr className='text-indigo-700 text-xl'>
+                                    <tr className='text-blue-700 text-xl'>
                                         <th className="px-5 text-center">Item</th>
                                         <th className="p-5 text-center">Quantidade</th>
                                         <th className="p-5 text-center">Preço</th>
@@ -100,7 +100,7 @@ export default function PlaceOrderScreen() {
                                 </thead>
                                 <tbody>
                                     {cartItems.map((item) => (
-                                        <tr key={item._id} className="border-y divide-indigo-600 border-indigo-600">
+                                        <tr key={item._id} className="border-y divide-blue-600 border-blue-600">
                                             <td>
                                                 <Link href={`/product/${item.slug}`}>
                                                     <Image
@@ -112,9 +112,9 @@ export default function PlaceOrderScreen() {
                                                     ></Image>
                                                 </Link>
                                             </td>
-                                            <td className="p-5 only:text-center">{item.quantity}</td>
-                                            <td className="p-5 text-center">R$ {item.price}</td>
-                                            <td className="p-5 text-center">
+                                            <td className="p-5 text-xl only:text-center">{item.quantity}</td>
+                                            <td className="p-5 text-xl text-center">R$ {item.price}</td>
+                                            <td className="p-5 text-xl text-center">
                                                 R$ {item.quantity * item.price}
                                             </td>
                                         </tr>
@@ -124,33 +124,37 @@ export default function PlaceOrderScreen() {
                         </div>
                         <div className='flex justify-between gap-x-5'>
                             <div className="card bg-white w-1/2 p-5">
-                                <h2 className="mb-2 text-indigo-600 text-center text-3xl">Endereço para entrega</h2>
-                                <div className='flex items-left flex-col justify-between gap-2 mb-2'>
-                                    <span className='text-indigo-700'>Nome:&nbsp;
-                                        <span className='text-black'>{shippingAddress.name}</span>
-                                    </span>
-                                    <span className='text-indigo-700'>Endereço:&nbsp;
-                                        <span className='text-black'>{shippingAddress.address}</span>
-                                    </span>
-                                    <span className='text-indigo-700'>Bairro:&nbsp;
-                                        <span className='text-black'>{shippingAddress.neighborhood}</span>
-                                    </span>
-                                    <span className='text-indigo-700'>Cidade:&nbsp;
-                                        <span className='text-black'>{shippingAddress.city}</span>
-                                    </span>
-                                    <span className='text-indigo-700'>CEP:&nbsp;
-                                        <span className='text-black'>{shippingAddress.postalCode}</span>
-                                    </span>
-                                    <span className='text-indigo-700'>Número:&nbsp;
-                                        <span className='text-black'>{shippingAddress.number}</span>
-                                    </span>
-                                    <span className='text-indigo-700'>Estado:&nbsp;
-                                        <span className='text-black'>{shippingAddress.state}</span>
-                                    </span>
+                                <h2 className="mb-2 text-blue-600 text-center text-3xl">Endereço para entrega</h2>
+                                <div className='flex text-xl justify-between gap-2 mb-2'>
+                                    <div className='flex justify-between items-start flex-col'>
+                                        <span className='text-blue-700'>Nome:&nbsp;
+                                            <span className='text-black'>{shippingAddress.name}</span>
+                                        </span>
+                                        <span className='text-blue-700'>Endereço:&nbsp;
+                                            <span className='text-black'>{shippingAddress.address}</span>
+                                        </span>
+                                        <span className='text-blue-700'>Bairro:&nbsp;
+                                            <span className='text-black'>{shippingAddress.neighborhood}</span>
+                                        </span>
+                                        <span className='text-blue-700'>Cidade:&nbsp;
+                                            <span className='text-black'>{shippingAddress.city}</span>
+                                        </span>
+                                    </div>
+                                    <div className='flex justify-between items-start flex-col'>
+                                        <span className='text-blue-700'>CEP:&nbsp;
+                                            <span className='text-black'>{shippingAddress.postalCode}</span>
+                                        </span>
+                                        <span className='text-blue-700'>Número:&nbsp;
+                                            <span className='text-black'>{shippingAddress.number}</span>
+                                        </span>
+                                        <span className='text-blue-700'>Estado:&nbsp;
+                                            <span className='text-black'>{shippingAddress.state}</span>
+                                        </span>
+                                    </div>
                                 </div>
                                 <div className='flex items-center flex-col'>
                                     <Link href="/shipping">
-                                        <div className='cursor-pointer bg-sky-100 w-fit hover:bg-indigo-700 hover:text-white text-indigo-700 text-center rounded shadow-md py-2 px-2'>
+                                        <div className='cursor-pointer bg-sky-100 w-fit hover:bg-blue-700 hover:text-white text-blue-700 text-center rounded shadow-md py-2 px-2'>
                                             Editar
                                         </div>
                                     </Link>
@@ -158,11 +162,11 @@ export default function PlaceOrderScreen() {
                             </div>
                             <div className="card bg-white w-1/2 p-5">
                                 <div className='flex flex-col justify-between h-full'>
-                                    <h2 className="mb-2 text-indigo-600 text-center text-3xl">Método de pagamento</h2>
+                                    <h2 className="mb-2 text-blue-600 text-center text-3xl">Método de pagamento</h2>
                                     <div className='mb-2 text-xl text-center'>{paymentMethod}</div>
                                     <div className='flex items-center flex-col'>
                                         <Link href="/payment">
-                                            <div className='cursor-pointer bg-sky-100 w-fit hover:bg-indigo-700 hover:text-white text-indigo-700 text-center rounded shadow-md py-2 px-2'>
+                                            <div className='cursor-pointer bg-sky-100 w-fit hover:bg-blue-700 hover:text-white text-blue-700 text-center rounded shadow-md py-2 px-2'>
                                                 Editar
                                             </div>
                                         </Link>
@@ -173,7 +177,7 @@ export default function PlaceOrderScreen() {
                     </div>
                     <div>
                         <div className="bg-blue-100 shadow-md rounded-lg p-5 border border-green-700">
-                            <h2 className="mb-2 text-indigo-600 text-center text-3xl">Resumo do Pedido</h2>
+                            <h2 className="mb-2 text-blue-600 text-center text-3xl">Resumo do Pedido</h2>
                             <ul>
                                 <li>
                                     <div className="mb-2 gap-5 text-xl flex justify-between">
@@ -219,7 +223,7 @@ export default function PlaceOrderScreen() {
                 </div>
             )}
         </Layout>
-    );
+    )
 }
 
-PlaceOrderScreen.auth = true;
+PlaceOrderScreen.auth = true

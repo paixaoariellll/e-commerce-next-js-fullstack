@@ -38,7 +38,7 @@ export default function Layout({ title, children }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" href="img/logo-icon.svg" />
             </Head>
-            <ToastContainer position='bottom-center' limit={3} />
+            <ToastContainer position='bottom-center' limit={1} />
             <div className='flex flex-col justify-between'>
                 <header>
                     <nav className="relative w-full flex flex-wrap items-center justify-between py-1 bg-white text-gray-500 shadow-lg">
@@ -47,7 +47,7 @@ export default function Layout({ title, children }) {
                                 <Link href="/">
                                     <div className='text-blue-800 cursor-pointer text-5xl'>
                                         <span>Ga</span>
-                                        <Image src={M} width={50} height={30}></Image>
+                                        <Image src={M} alt="logo de um controle-Remoto" width={50} height={30}></Image>
                                         <span>e</span>
                                         <span className='bg-blue-800 rounded-lg text-white text-5xl'>On</span>
                                     </div>

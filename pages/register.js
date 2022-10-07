@@ -44,16 +44,16 @@ export default function RegisterScreen() {
             toast.error(getError(err))
         }
     }
-    function validatePassword(password) {
-        return (
-            <ul className="text-black mt-5">
-                <li>{validate(password.length < 8)} A senha deve ter no mínimo 8 caracteres.</li>
-                <li>{validate(password.search(/[0-9]/i) < 0)} A senha deve ter ao menos um número.</li>
-                <li>{validate(password.search(/[^a-zA-Z0-9]/i) < 0)} A senha deve ter ao menos um caractere especial.</li>
-                <li>{validate(password.includes(' '))} A senha não pode conter espaços em branco.</li>
-            </ul>
-        );
-    }
+    /*     function validatePassword(password) {
+            return (
+                <ul className="text-black mt-5">
+                    <li>{validate(password.length < 8)} A senha deve ter no mínimo 8 caracteres.</li>
+                    <li>{validate(password.search(/[0-9]/i) < 0)} A senha deve ter ao menos um número.</li>
+                    <li>{validate(password.search(/[^a-zA-Z0-9]/i) < 0)} A senha deve ter ao menos um caractere especial.</li>
+                    <li>{validate(password.includes(' '))} A senha não pode conter espaços em branco.</li>
+                </ul>
+            );
+        } */
 
     return (
         <Layout title="Criar conta">
@@ -180,7 +180,7 @@ export default function RegisterScreen() {
                                         className='text-blue-700 text-2xl'
                                     >Senha</label>
                                     <input
-                                        onChange={validatePassword}
+                                        /* onChange={validatePassword} */
                                         type="password"
                                         {...register('password', {
                                             required: 'Por favor, digite sua senha',
@@ -195,7 +195,7 @@ export default function RegisterScreen() {
                                     />{errors.password &&
                                         (
                                             <div className='text-sm flex justify-between text-red-500'>{errors.password.message}
-                                                <span onClick={(e) => {
+                                                <span onClick={() => {
                                                     toast('Sobre a ISO/IEC 27000, mínimo:     3 letras minúsculas.                        2 letras maiúsculas.                         2 números.                                         2 caracteres especiais.                     8 caracteres ou mais.', { position: "top-center" })
                                                 }}>
                                                     < i className='cursor-pointer text-xl  ri-alert-line'></i>
