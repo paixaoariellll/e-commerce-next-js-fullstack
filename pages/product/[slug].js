@@ -59,7 +59,7 @@ export default function ProductScreen(props) {
                 <div className='py-2'>
                     <Link
                         href="/">
-                        <button className='bg-white'>Voltar</button>
+                        <button className='bg-white border border-solid border-gray-300'>Voltar</button>
                     </Link>
                 </div>
                 <div className='w-full bg-transparent flex items-center flex-col'>
@@ -125,7 +125,7 @@ export default function ProductScreen(props) {
                             </div>
                         </div>
                         <div className='flex mt-7 text-xl text-center '>
-                            <button onClick={addToCartHandler} className='w-full bg-sky-100 flex justify-between'>
+                            <button onClick={addToCartHandler} className='w-full bg-white flex justify-between border border-solid border-gray-300'>
                                 Comprar
                                 <i className="ri-shopping-cart-line"></i>
                             </button>

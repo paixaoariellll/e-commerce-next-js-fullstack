@@ -2,6 +2,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react';
 import { useEffect, useReducer } from 'react'
 import Layout from '../../components/Layout'
 import { getError } from '../../utils/error'
@@ -24,6 +25,18 @@ function reducer(state, action) {
             return { ...state, loadingPay: false, errorPay: action.payload }
         case 'PAY_RESET':
             return { ...state, loadingPay: false, successPay: false, errorPay: '' }
+        case 'DELIVER_REQUEST':
+            return { ...state, loadingDeliver: true };
+        case 'DELIVER_SUCCESS':
+            return { ...state, loadingDeliver: false, successDeliver: true };
+        case 'DELIVER_FAIL':
+            return { ...state, loadingDeliver: false };
+        case 'DELIVER_RESET':
+            return {
+                ...state,
+                loadingDeliver: false,
+                successDeliver: false,
+            };
         default:
             state
     }
@@ -33,26 +46,40 @@ function OrderScreen() {
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
     const { query } = useRouter()
     const orderId = query.id
-    const [{ loading, error, order, successPay, loadingPay }, dispatch] =
-        useReducer(reducer, {
-            loading: true,
-            order: {},
-            error: '',
-        })
+    const { data: session } = useSession()
+    const [
+        {
+            loading,
+            error,
+            order,
+            successPay,
+            loadingPay,
+            loadingDeliver,
+            successDeliver,
+        },
+        dispatch,
+    ] = useReducer(reducer, {
+        loading: true,
+        order: {},
+        error: '',
+    })
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                dispatch({ type: 'FETCH_REQUEST' });
-                const { data } = await axios.get(`/api/orders/${orderId}`);
-                dispatch({ type: 'FETCH_SUCCESS', payload: data });
+                dispatch({ type: 'FETCH_REQUEST' })
+                const { data } = await axios.get(`/api/orders/${orderId}`)
+                dispatch({ type: 'FETCH_SUCCESS', payload: data })
             } catch (err) {
-                dispatch({ type: 'FETCH_FAIL', payload: getError(err) });
+                dispatch({ type: 'FETCH_FAIL', payload: getError(err) })
             }
         }
-        if (!order._id || successPay || (order._id && order._id !== orderId)) {
+        if (!order._id || successPay || successDeliver || (order._id && order._id !== orderId)) {
             fetchOrder()
             if (successPay) {
                 dispatch({ type: 'PAY_RESET' })
+            }
+            if (successDeliver) {
+                dispatch({ type: 'DELIVER_RESET' });
             }
         } else {
             const loadPaypalScript = async () => {
@@ -68,7 +95,7 @@ function OrderScreen() {
             }
             loadPaypalScript()
         }
-    }, [order, orderId, paypalDispatch, successPay])
+    }, [order, orderId, paypalDispatch, successDeliver, successPay]);
     function createOrder(data, actions) {
         return actions.order
             .create({
@@ -81,6 +108,20 @@ function OrderScreen() {
             .then((orderID) => {
                 return orderID
             })
+    }
+    async function deliverOrderHandler() {
+        try {
+            dispatch({ type: 'DELIVER_REQUEST' });
+            const { data } = await axios.put(
+                `/api/admin/orders/${order._id}/deliver`,
+                {}
+            );
+            dispatch({ type: 'DELIVER_SUCCESS', payload: data });
+            toast.success('Order is delivered');
+        } catch (err) {
+            dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
+            toast.error(getError(err));
+        }
     }
 
     function onApprove(data, actions) {
@@ -116,9 +157,10 @@ function OrderScreen() {
         isDelivered,
         deliveredAt,
     } = order
+
     return (
         <Layout title={`Pedido ${orderId}`}>
-            <h1 className="mb-4 text-center text-blue-800 text-4xl bg-white rounded-xl">{`Id: ${orderId}`}</h1>
+            <h1 className="mb-4 text-center text-blue-700 text-3xl card">{`ID: ${orderId}`}</h1>
             {loading ? (
                 <div>Carregando...</div>
             ) : error ? (
@@ -257,6 +299,17 @@ function OrderScreen() {
                                             </div>
                                         )}
                                         {loadingPay && <div>Carregando...</div>}
+                                    </li>
+                                )}
+                                {session.user.isAdmin && order.isPaid && !order.isDelivered && (
+                                    <li>
+                                        {loadingDeliver && <div>Carregando...</div>}
+                                        <button
+                                            className="primary-button bg-white w-full"
+                                            onClick={deliverOrderHandler}
+                                        >
+                                            Confirmar entrega
+                                        </button>
                                     </li>
                                 )}
                             </ul>

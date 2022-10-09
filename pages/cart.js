@@ -26,7 +26,7 @@ function CartScreen() {
     }
     return (
         <Layout title="Carrinho">
-            <h1 className="mb-5 text-4xl text-blue-800 text-center">Carrinho de compras</h1>
+            <h1 className="mb-5 text-4xl text-blue-700 text-center card">Carrinho de compras</h1>
             {
                 cartItems.length === 0 ? (
                     <div className='text-center card p-6 w-full mb-5'>
@@ -35,17 +35,17 @@ function CartScreen() {
                                 O carrinho de compras está vazio.
                             </div>
                             <Link href="/">
-                                <buton className="bg-blue-700 hover:bg-blue-900 text-xl px-5 rounded-lg py-1 text-white cursor-pointer">Voltar</buton>
+                                <button className="primary-button bg-white text-xl border border-solid border-gray-300">Voltar</button>
                             </Link>
                         </div>
                     </div>
                 ) : (
                     <div>
                         <div className="grid md:grid-cols-4 text-xl md:gap-5">
-                            <div className="overflow-x-auto md:col-span-3">
+                            <div className="overflow-x-auto md:col-span-3 card">
                                 <table className="min-w-full">
-                                    <thead className="border-b">
-                                        <tr>
+                                    <thead className="border-b-8 border-b-blue-800">
+                                        <tr className='text-center text-2xl text-blue-700'>
                                             <th className="p-5 text-center">Item</th>
                                             <th className="p-5 text-center">Quantidade</th>
                                             <th className="p-5 text-center">Preço</th>
@@ -54,7 +54,7 @@ function CartScreen() {
                                     </thead>
                                     <tbody>
                                         {cartItems.map((item) => (
-                                            <tr key={item.slug} className="border-b">
+                                            <tr key={item.slug} className="border-t border-t-blue-800">
                                                 <td>
                                                     <Link href={`/product/${item.slug}`}>
                                                         <div className="flex cursor-pointer justify-center text-center">
@@ -86,7 +86,7 @@ function CartScreen() {
                                                 <td className="p-5 pointer-events-none  text-blue-800 text-center">$&nbsp;{item.price}</td>
                                                 <td className="p-5 text-center">
                                                     <button onClick={() => removeItemHandler(item)}
-                                                        className="bg-white text-blue-800 shadow-lg">
+                                                        className="bg-white text-blue-800 shadow-lg border border-solid border-gray-300">
                                                         <div className='bg-none'>
                                                             <i className="ri-delete-bin-line"></i>
                                                         </div>
@@ -108,7 +108,7 @@ function CartScreen() {
                                     <li>
                                         <button
                                             onClick={() => router.push('login?redirect=shipping')}
-                                            className="primary-button w-full"
+                                            className="primary-button w-full border border-solid border-gray-300"
                                         >
                                             Confirmar
                                         </button>

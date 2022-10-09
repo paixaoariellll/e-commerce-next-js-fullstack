@@ -57,9 +57,10 @@
 :root {
   --primary-color: #fff;
   --secondary-color: #fff;
-  --body-bg: rgb(211, 226, 239);
+  --body-bg: #f5f7fa;
   --text-color: #fff;
-  --gray: #828282;
+  --gray: #1A202c;
+  --gray-light: #cbd5e0;
 }
 
 html,
@@ -86,7 +87,7 @@ a:hover {
 }
 
 .dropdown-link {
-  @apply flex p-2 text-xl rounded-lg relative z-20 text-blue-800 bg-white;
+  @apply flex p-2 text-xl relative z-20 text-blue-800 bg-white;
 }
 
 .dropdown-link:hover {
@@ -124,11 +125,11 @@ button:hover,
 }
 
 .alert-error {
-  @apply my-3 rounded-lg bg-red-100 p-3 text-red-700;
+  @apply my-3 rounded-lg bg-red-100 p-3 text-red-700 text-xl;
 }
 
 .alert-success {
-  @apply my-3 rounded-lg bg-green-100 p-3 text-green-700;
+  @apply my-3 rounded-lg bg-green-100 p-3 text-green-700 text-xl;
 }
 
 

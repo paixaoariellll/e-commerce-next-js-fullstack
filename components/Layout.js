@@ -29,7 +29,7 @@ export default function Layout({ title, children }) {
     return (
         <>
             <Head>
-                <title>{title ? title + ' GameOn' : ' GameOn'} </title>
+                <title>{title ? title + ' - GameOn' : ' - GameOn'} </title>
                 <meta charset="UTF-8" />
                 <meta name="Projeto Integrador" content="GameOn shop created by create next app" />
                 <meta name="description" content="Encontre jogos eletrônicos com preços acessíveis e muita variedade!" />
@@ -39,6 +39,9 @@ export default function Layout({ title, children }) {
                 <link rel="icon" href="img/logo-icon.svg" />
             </Head>
             <ToastContainer position='bottom-center' limit={1} />
+            <div className=" p-1 text-md text-center text-red-600 bg-red-100" role="alert">
+                <span className="text-xl">Aviso!</span> Site em desenvolvimento.
+            </div>
             <div className='flex flex-col justify-between'>
                 <header>
                     <nav className="relative w-full flex flex-wrap items-center justify-between py-1 bg-white text-gray-500 shadow-lg">
@@ -57,7 +60,7 @@ export default function Layout({ title, children }) {
                             </div>
                             <div className='flex'>
                                 <Link href="/cart">
-                                    <div className='p-2 py-2 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl'>
+                                    <div className='px-2 py-3 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl'>
                                         {cartItemsCount > 0 && (
                                             <span
                                                 style={{ color: 'white', background: 'red' }}
@@ -73,26 +76,38 @@ export default function Layout({ title, children }) {
                                     session?.user ?
                                         (
                                             <Menu as="div" className="relative inline-block">
-                                                <Menu.Button className="text-blue-800 text-xl">
+                                                <Menu.Button className="text-blue-800 text-xl border border-solid border-gray-300">
                                                     {session.user.name}
                                                 </Menu.Button>
-                                                <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg ">
-                                                    <Menu.Item>
-                                                        <DropdownLink className="dropdown-link" href="/profile">
-                                                            Perfil
-                                                        </DropdownLink>
-                                                    </Menu.Item>
+                                                <Menu.Items className="absolute z-20 right-0 w-56 origin-top-right bg-white shadow-lg ">
+                                                    {!session.user.isAdmin && (
+                                                        <Menu.Item>
+                                                            <DropdownLink className="dropdown-link m-2 rounded-md" href="/profile">
+                                                                Perfil
+                                                            </DropdownLink>
+                                                        </Menu.Item>
+                                                    )}
                                                     <Menu.Item>
                                                         <DropdownLink
-                                                            className="dropdown-link"
-                                                            href="/order-history"
+                                                            className="dropdown-link m-2 rounded-md"
+                                                            href="/orderHistory"
                                                         >
                                                             Histórico de pedidos
                                                         </DropdownLink>
                                                     </Menu.Item>
+                                                    {session.user.isAdmin && (
+                                                        <Menu.Item>
+                                                            <DropdownLink
+                                                                className="dropdown-link m-2 rounded-md"
+                                                                href="/admin/dashboard"
+                                                            >
+                                                                Dashboard
+                                                            </DropdownLink>
+                                                        </Menu.Item>
+                                                    )}
                                                     <Menu.Item>
                                                         <a
-                                                            className="dropdown-link"
+                                                            className="dropdown-link m-2 rounded-md"
                                                             href="#"
                                                             onClick={logoutClickHandler}
                                                         >

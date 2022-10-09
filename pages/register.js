@@ -25,15 +25,17 @@ export default function RegisterScreen() {
         getValues,
         formState: { errors },
     } = useForm();
-    const submitHandler = async ({ name, email, password }) => {
+    const submitHandler = async ({ name, lastName, email, password }) => {
         try {
             await axios.post('/api/auth/signup', {
                 name,
+                lastName,
                 email,
                 password,
             })
             const result = await signIn('credentials', {
                 redirect: false,
+                lastName,
                 email,
                 password,
             })
@@ -44,19 +46,9 @@ export default function RegisterScreen() {
             toast.error(getError(err))
         }
     }
-    /*     function validatePassword(password) {
-            return (
-                <ul className="text-black mt-5">
-                    <li>{validate(password.length < 8)} A senha deve ter no mínimo 8 caracteres.</li>
-                    <li>{validate(password.search(/[0-9]/i) < 0)} A senha deve ter ao menos um número.</li>
-                    <li>{validate(password.search(/[^a-zA-Z0-9]/i) < 0)} A senha deve ter ao menos um caractere especial.</li>
-                    <li>{validate(password.includes(' '))} A senha não pode conter espaços em branco.</li>
-                </ul>
-            );
-        } */
 
     return (
-        <Layout title="Criar conta">
+        <Layout title="Registro">
             <section className="h-full">
                 <div className="px-6 h-full text-gray-800">
                     <div
@@ -140,19 +132,19 @@ export default function RegisterScreen() {
                                     </div>
                                     <div className="mb-6">
                                         <label
-                                            htmlFor='lastname'
+                                            htmlFor='lastName'
                                             className='text-blue-700 text-2xl'
                                         >Sobrenome</label>
                                         <input
-                                            {...register('lastname', {
+                                            {...register('lastName', {
                                                 required: 'Por favor, digite seu último nome',
                                                 minLength: { value: 3, message: 'Por favor, digite um sobrenome válido' }
                                             })}
-                                            type="lastname"
+                                            type="lastName"
                                             className={`form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none`}
-                                            id="lastname"
+                                            id="lastName"
                                             autoFocus
-                                        /> {errors.lastname && (<div className='text-sm text-red-500'>{errors.lastname.message}</div>)}
+                                        /> {errors.lastName && (<div className='text-sm text-red-500'>{errors.lastName.message}</div>)}
                                     </div>
                                 </div>
                                 <div className="mb-6">
@@ -180,7 +172,6 @@ export default function RegisterScreen() {
                                         className='text-blue-700 text-2xl'
                                     >Senha</label>
                                     <input
-                                        /* onChange={validatePassword} */
                                         type="password"
                                         {...register('password', {
                                             required: 'Por favor, digite sua senha',
@@ -218,7 +209,6 @@ export default function RegisterScreen() {
                                                 value: /^(?=(.*[a-z]){3,})(?=(.*[A-Z]){2,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/,
                                                 message: 'As senhas deve ser iguais!',
                                             },
-
                                         })}
                                         className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                         id="passwordIsValid"

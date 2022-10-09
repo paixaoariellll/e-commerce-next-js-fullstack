@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React, { useEffect, useReducer } from 'react'
 import Layout from '../components/Layout'
 import { getError } from '../utils/error'
+import 'remixicon/fonts/remixicon.css'
 
 function reducer(state, action) {
     switch (action.type) {
