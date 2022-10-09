@@ -79,7 +79,7 @@ export default function Layout({ title, children }) {
                                                 <Menu.Button className="text-blue-800 text-xl border border-solid border-gray-300">
                                                     {session.user.name}
                                                 </Menu.Button>
-                                                <Menu.Items className="absolute z-20 right-0 w-56 origin-top-right bg-white shadow-lg ">
+                                                <Menu.Items className="absolute z-20 right-0 m-2 w-56 origin-top-right bg-white shadow-lg ">
                                                     {!session.user.isAdmin && (
                                                         <Menu.Item>
                                                             <DropdownLink className="dropdown-link m-2 rounded-md" href="/profile">
