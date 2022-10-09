@@ -24,7 +24,7 @@ export default function RegisterScreen() {
         register,
         getValues,
         formState: { errors },
-    } = useForm();
+    } = useForm()
     const submitHandler = async ({ name, lastName, email, password }) => {
         try {
             await axios.post('/api/auth/signup', {
@@ -235,7 +235,7 @@ export default function RegisterScreen() {
                                     </div>
                                     <p className="text-md  flex font-semibold mt-2 pt-1 mb-0">
                                         Já possui uma conta?&nbsp;
-                                        <Link href='/login'>
+                                        <Link href={`/login?redirect=${redirect || '/'}`}>
                                             <div className="hover:text-blue-700 hover:underline text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
                                                 Entrar
                                             </div>

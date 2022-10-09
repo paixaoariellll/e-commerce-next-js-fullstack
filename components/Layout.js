@@ -118,7 +118,7 @@ export default function Layout({ title, children }) {
                                             </Menu>
                                         ) : (
                                             <Link href='/login'>
-                                                <div className='p-2 px-2 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl'>
+                                                <div className='p-2 px-2 py-3 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl'>
                                                     <div className='cursor-pointer'>
                                                         <i className="ri-login-box-line"></i>
                                                     </div>
