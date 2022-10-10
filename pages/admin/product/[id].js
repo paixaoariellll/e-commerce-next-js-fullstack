@@ -16,34 +16,35 @@ function reducer(state, action) {
         case 'FETCH_FAIL':
             return { ...state, loading: false, error: action.payload }
         case 'UPDATE_REQUEST':
-            return { ...state, loadingUpdate: true, errorUpdate: '' }
-        case 'UPDATE_SUCCESS':
-            return { ...state, loadingUpdate: false, errorUpdate: '' }
-        case 'UPDATE_FAIL':
-            return { ...state, loadingUpdate: false, errorUpdate: action.payload }
-        case 'UPLOAD_REQUEST':
-            return { ...state, loadingUpload: true, errorUpload: '' }
-        case 'UPLOAD_SUCCESS':
-            return {
-                ...state,
-                loadingUpload: false,
-                errorUpload: '',
-            }
-        case 'UPLOAD_FAIL':
-            return { ...state, loadingUpload: false, errorUpload: action.payload }
+        /*  return { ...state, loadingUpdate: true, errorUpdate: '' }
+                case 'UPDATE_SUCCESS':
+                    return { ...state, loadingUpdate: false, errorUpdate: '' }
+                case 'UPDATE_FAIL':
+                    return { ...state, loadingUpdate: false, errorUpdate: action.payload }
+                case 'UPLOAD_REQUEST':
+                    return { ...state, loadingUpload: true, errorUpload: '' }
+                case 'UPLOAD_SUCCESS':
+                    return {
+                        ...state,
+                        loadingUpload: false,
+                        errorUpload: '',
+                    }
+                case 'UPLOAD_FAIL':
+                    return { ...state, loadingUpload: false, errorUpload: action.payload } */
         default:
             return state
     }
 }
+
 export default function AdminProductEditScreen() {
     const { query } = useRouter()
     const productId = query.id
-    const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] = useReducer(reducer, {
+    const [{ loading, error, loadingUpdate, /* loadingUpload */ }, dispatch] = useReducer(reducer, {
         loading: true,
         error: '',
     })
-    const uploadHandler = async (e, imageField = 'img') => {
-        const url = `https://api.cloudinary.com/v1_1/${process.env.dins1fpk3}/upload`
+    /* const uploadHandler = async (e, imageField = 'image') => {
+        const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`
         try {
             dispatch({ type: 'UPLOAD_REQUEST' })
             const {
@@ -54,7 +55,7 @@ export default function AdminProductEditScreen() {
             formData.append('file', file)
             formData.append('signature', signature)
             formData.append('timestamp', timestamp)
-            formData.append('api_key', `process.env.${368193629939789}`)
+            formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY)
             const { data } = await axios.post(url, formData)
             dispatch({ type: 'UPLOAD_SUCCESS' })
             setValue(imageField, data.secure_url)
@@ -63,7 +64,7 @@ export default function AdminProductEditScreen() {
             dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) })
             toast.error(getError(err));
         }
-    }
+    } */
     const {
         register,
         handleSubmit,
@@ -185,6 +186,10 @@ export default function AdminProductEditScreen() {
                                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                                     id="slug"
                                     {...register('slug', {
+                                        pattern: {
+                                            value: /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
+                                            message: 'É permitido apenas letras, números e dashes.',
+                                        },
                                         required: 'Os slugs representam o ID nominal. Por favor, escreva-os sem espaços e sem letras maiúsculas!',
                                     })}
                                 />
@@ -208,7 +213,7 @@ export default function AdminProductEditScreen() {
                                         <div className="text-red-500">{errors.image.message}</div>
                                     )}
                                 </div>
-                                <div className="mb-4">
+                                {/* <div className="mb-4">
                                     <label htmlFor="imageFile"
                                         className='text-2xl text-blue-700'>Carregar imagem</label>
                                     <input
@@ -218,7 +223,7 @@ export default function AdminProductEditScreen() {
                                         onChange={uploadHandler}
                                     />
                                     {loadingUpload && <div>Enviando....</div>}
-                                </div>
+                                </div> */}
                             </div>
                             <div className='flex justify-between'>
                                 <div className="mb-4">

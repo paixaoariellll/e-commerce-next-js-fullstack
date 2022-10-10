@@ -115,7 +115,7 @@ export default function ProdcutsScreen() {
                 </div>
                 <div className="overflow-x-auto md:col-span-3">
                     <div className='grid'>
-                        <h1 className="mb-4 grid-cols-1 text-center card text-blue-700 text-4xl py-2">Produtos Cadastrados</h1>
+                        <h1 className="mb-4 text-center card text-blue-700 text-4xl">Produtos Cadastrados</h1>
                         {loadingDelete && <div>Deletando item...</div>}
                         <button
                             disabled={loadingCreate}
@@ -145,7 +145,7 @@ export default function ProdcutsScreen() {
                                 </thead>
                                 <tbody>
                                     {products.map((product) => (
-                                        <tr key={product._id} className="border-t text-center  border-t-blue-800">
+                                        <tr key={product._id} className="border-t text-center border-t-blue-800">
                                             <td className=" p-5 ">{product._id.substring(20, 24)}</td>
                                             <td className=" p-5 ">{product.name}</td>
                                             <td className=" p-5 ">R$ {product.price}</td>

@@ -5,9 +5,9 @@ import db from '../../../../utils/db'
 const handler = async (req, res) => {
     const session = await getSession({ req })
     if (!session || !session.user.isAdmin) {
-        return res.status(401).send('É necessário que você esteja acessado em sua conta!')
+        return res.status(401).send('É necessário estar cadastrado para efetuar essa ação.')
     }
-    // const { user } = session;
+    const { user } = session
     if (req.method === 'GET') {
         return getHandler(req, res)
     } else if (req.method === 'POST') {
@@ -16,7 +16,7 @@ const handler = async (req, res) => {
         return res.status(400).send({ message: 'Método não permitido' })
     }
 }
-// creating a new product
+// Creating a new product
 const postHandler = async (req, res) => {
     await db.connect()
     const newProduct = new Product({

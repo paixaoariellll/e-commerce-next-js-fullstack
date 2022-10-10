@@ -91,7 +91,7 @@ export default function AdminOrderScreen() {
                                         <tr key={order._id} className="border-t-2 text-xl border-t-blue-800">
                                             <td className="p-5">{order._id.substring(20, 24)}</td>
                                             <td className="p-5">
-                                                {order.user ? order.user.name : 'DELETED USER'}
+                                                {order.user ? order.user.name : 'Usuário deletado'}
                                             </td>
                                             <td className="p-5">
                                                 {order.createdAt.substring(0, 10)}
