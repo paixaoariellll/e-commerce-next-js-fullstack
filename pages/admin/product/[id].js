@@ -42,28 +42,28 @@ export default function AdminProductEditScreen() {
         loading: true,
         error: '',
     })
-    const uploadHandler = async (e, imageField = 'image') => {
-        const url = `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`;
+    const uploadHandler = async (e, imageField = 'img') => {
+        const url = `https://api.cloudinary.com/v1_1/${process.env.dins1fpk3}/upload`
         try {
-            dispatch({ type: 'UPLOAD_REQUEST' });
+            dispatch({ type: 'UPLOAD_REQUEST' })
             const {
                 data: { signature, timestamp },
-            } = await axios('/api/admin/cloudinarySignIn');
-            const file = e.target.files[0];
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('signature', signature);
-            formData.append('timestamp', timestamp);
-            formData.append('api_key', process.env.NEXT_PUBLIC_CLOUDINARY_API_KEY);
-            const { data } = await axios.post(url, formData);
-            dispatch({ type: 'UPLOAD_SUCCESS' });
-            setValue(imageField, data.secure_url);
-            toast.success('Arquivo carregado com sucesso!');
+            } = await axios('/api/admin/cloudinarySignIn')
+            const file = e.target.files[0]
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('signature', signature)
+            formData.append('timestamp', timestamp)
+            formData.append('api_key', `process.env.${368193629939789}`)
+            const { data } = await axios.post(url, formData)
+            dispatch({ type: 'UPLOAD_SUCCESS' })
+            setValue(imageField, data.secure_url)
+            toast.success('Arquivo carregado com sucesso!')
         } catch (err) {
-            dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) });
+            dispatch({ type: 'UPLOAD_FAIL', payload: getError(err) })
             toast.error(getError(err));
         }
-    };
+    }
     const {
         register,
         handleSubmit,

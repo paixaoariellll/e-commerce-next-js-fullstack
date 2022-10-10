@@ -1,6 +1,8 @@
 import axios from 'axios'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import React, { useEffect, useReducer } from 'react'
+import { toast } from 'react-toastify'
 import Layout from '../../components/Layout'
 import { getError } from '../../utils/error'
 
@@ -12,12 +14,28 @@ function reducer(state, action) {
             return { ...state, loading: false, products: action.payload, error: '' }
         case 'FETCH_FAIL':
             return { ...state, loading: false, error: action.payload }
+        case 'CREATE_REQUEST':
+            return { ...state, loadingCreate: true }
+        case 'CREATE_SUCCESS':
+            return { ...state, loadingCreate: false }
+        case 'CREATE_FAIL':
+            return { ...state, loadingCreate: false }
+        case 'DELETE_REQUEST':
+            return { ...state, loadingDelete: true }
+        case 'DELETE_SUCCESS':
+            return { ...state, loadingDelete: false, successDelete: true }
+        case 'DELETE_FAIL':
+            return { ...state, loadingDelete: false }
+        case 'DELETE_RESET':
+            return { ...state, loadingDelete: false, successDelete: false }
         default:
             state;
     }
 }
+
 export default function ProdcutsScreen() {
-    const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+    const router = useRouter()
+    const [{ loading, error, products, loadingCreate, successDelete, loadingDelete }, dispatch] = useReducer(reducer, {
         loading: true,
         products: [],
         error: '',
@@ -32,9 +50,42 @@ export default function ProdcutsScreen() {
                 dispatch({ type: 'FETCH_FAIL', payload: getError(err) })
             }
         }
+        if (successDelete) {
+            dispatch({ type: 'DELETE_RESET' })
+        } else {
+            fetchData()
+        }
+    }, [successDelete])
+    const deleteHandler = async (productId) => {
+        if (!window.confirm('Você tem certeza?')) {
+            return
+        }
+        try {
+            dispatch({ type: 'DELETE_REQUEST' })
+            await axios.delete(`/api/admin/products/${productId}`)
+            dispatch({ type: 'DELETE_SUCCESS' })
+            toast.success('Produto deletado com sucesso')
+        } catch (err) {
+            dispatch({ type: 'DELETE_FAIL' })
+            toast.error(getError(err))
+        }
+    }
+    const createHandler = async () => {
+        if (!window.confirm('Você tem certeza?')) {
+            return
+        }
+        try {
+            dispatch({ type: 'CREATE_REQUEST' })
+            const { data } = await axios.post(`/api/admin/products`)
+            dispatch({ type: 'CREATE_SUCCESS' })
+            toast.success('Produto criado com sucesso!')
+            router.push(`/admin/product/${data.product._id}`)
+        } catch (err) {
+            dispatch({ type: 'CREATE_FAIL' })
+            toast.error(getError(err))
+        }
+    }
 
-        fetchData()
-    }, [])
     return (
         <Layout title="Admin Products">
             <div className="grid md:grid-cols-4 md:gap-5">
@@ -63,7 +114,17 @@ export default function ProdcutsScreen() {
                     </ul>
                 </div>
                 <div className="overflow-x-auto md:col-span-3">
-                    <h1 className="mb-4 text-center card text-blue-700 text-4xl">Produtos</h1>
+                    <div className='grid'>
+                        <h1 className="mb-4 grid-cols-1 text-center card text-blue-700 text-4xl py-2">Produtos Cadastrados</h1>
+                        {loadingDelete && <div>Deletando item...</div>}
+                        <button
+                            disabled={loadingCreate}
+                            onClick={createHandler}
+                            className="mb-4  grid-cols-1 text-center card py-2 text-blue-700 text-2xl"
+                        >
+                            {loadingCreate ? 'Carregando' : 'Adicionar produto'}
+                        </button>
+                    </div>
                     {loading ? (
                         <div>Carregando...</div>
                     ) : error ? (
@@ -92,9 +153,17 @@ export default function ProdcutsScreen() {
                                             <td className=" p-5 ">{product.countInStock}</td>
                                             <td className=" p-5 ">{product.rating}</td>
                                             <td className=" p-5 ">
-                                                <Link href={`/admin/product/${product._id}`}><button>Editar</button></Link>
+                                                <Link href={`/admin/product/${product._id}`}>
+                                                    <button className=" bg-green-200 border border-solid border-gray-300">
+                                                        Editar
+                                                    </button>
+                                                </Link>
                                                 &nbsp;
-                                                <button>Deletar</button>
+                                                <button onClick={() => deleteHandler(product._id)}
+                                                    type="button"
+                                                    className='bg-red-200 border border-solid border-gray-300'>
+                                                    Deletar
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}
