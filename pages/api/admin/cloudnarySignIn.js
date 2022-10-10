@@ -1,4 +1,4 @@
-const cloudinary = require('cloudinary').v2
+/* const cloudinary = require('cloudinary').v2
 
 export default function signature(req, res) {
     const timestamp = Math.round(new Date().getTime() / 1000)
@@ -11,4 +11,4 @@ export default function signature(req, res) {
 
     res.statusCode = 200;
     res.json({ signature, timestamp })
-}
+} */
