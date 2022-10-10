@@ -7,7 +7,7 @@ const handler = async (req, res) => {
     if (!session || !session.user.isAdmin) {
         return res.status(401).send('É necessário estar cadastrado para efetuar essa ação.')
     }
-    const { user } = session
+    /* const { user } = session */
     if (req.method === 'GET') {
         return getHandler(req, res)
     } else if (req.method === 'POST') {

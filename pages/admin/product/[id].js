@@ -15,8 +15,8 @@ function reducer(state, action) {
             return { ...state, loading: false, error: '' }
         case 'FETCH_FAIL':
             return { ...state, loading: false, error: action.payload }
-        case 'UPDATE_REQUEST':
-        /*  return { ...state, loadingUpdate: true, errorUpdate: '' }
+        /*case 'UPDATE_REQUEST':
+          return { ...state, loadingUpdate: true, errorUpdate: '' }
                 case 'UPDATE_SUCCESS':
                     return { ...state, loadingUpdate: false, errorUpdate: '' }
                 case 'UPDATE_FAIL':
