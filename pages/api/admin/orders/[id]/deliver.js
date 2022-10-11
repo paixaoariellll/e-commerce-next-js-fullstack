@@ -5,7 +5,7 @@ import db from '../../../../../utils/db';
 const handler = async (req, res) => {
     const session = await getSession({ req });
     if (!session || (session && !session.user.isAdmin)) {
-        return res.status(401).send('Erro: Cadastro necessário.');
+        return res.status(401).send('Erro: É necessário estar acessado em sua conta para realizar essa função!');
     }
     await db.connect();
     const order = await Order.findById(req.query.id);

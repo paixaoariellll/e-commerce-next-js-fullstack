@@ -5,6 +5,7 @@ const handler = async (req, res) => {
     if (!session) {
         return res.status(401).send('É necessário estar acessado em sua conta para realizar essa função!')
     }
-    res.send(process.env.PAYPAL_CLIENT_ID || 'sb')
+    res.send(process.env.PAYPAL_CLIENT_ID || 'USD')
 }
+
 export default handler

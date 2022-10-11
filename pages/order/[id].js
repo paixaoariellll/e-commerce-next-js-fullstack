@@ -2,7 +2,7 @@ import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react'
 import { useEffect, useReducer } from 'react'
 import Layout from '../../components/Layout'
 import { getError } from '../../utils/error'
@@ -26,17 +26,17 @@ function reducer(state, action) {
         case 'PAY_RESET':
             return { ...state, loadingPay: false, successPay: false, errorPay: '' }
         case 'DELIVER_REQUEST':
-            return { ...state, loadingDeliver: true };
+            return { ...state, loadingDeliver: true }
         case 'DELIVER_SUCCESS':
-            return { ...state, loadingDeliver: false, successDeliver: true };
+            return { ...state, loadingDeliver: false, successDeliver: true }
         case 'DELIVER_FAIL':
-            return { ...state, loadingDeliver: false };
+            return { ...state, loadingDeliver: false }
         case 'DELIVER_RESET':
             return {
                 ...state,
                 loadingDeliver: false,
                 successDeliver: false,
-            };
+            }
         default:
             state
     }
@@ -111,16 +111,16 @@ function OrderScreen() {
     }
     async function deliverOrderHandler() {
         try {
-            dispatch({ type: 'DELIVER_REQUEST' });
+            dispatch({ type: 'DELIVER_REQUEST' })
             const { data } = await axios.put(
                 `/api/admin/orders/${order._id}/deliver`,
                 {}
-            );
-            dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-            toast.success('Order is delivered');
+            )
+            dispatch({ type: 'DELIVER_SUCCESS', payload: data })
+            toast.success('O pedido foi entregue')
         } catch (err) {
-            dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
-            toast.error(getError(err));
+            dispatch({ type: 'DELIVER_FAIL', payload: getError(err) })
+            toast.error(getError(err))
         }
     }
 
@@ -133,7 +133,7 @@ function OrderScreen() {
                     details
                 )
                 dispatch({ type: 'PAY_SUCCESS', payload: data })
-                toast.success('Pagamento do pedido foi realizado com sucesso!')
+                toast.success('Pagamento efetuado com sucesso!')
             } catch (err) {
                 dispatch({ type: 'PAY_FAIL', payload: getError(err) })
                 toast.error(getError(err))
@@ -243,7 +243,7 @@ function OrderScreen() {
                                     <div className='mb-2 text-xl text-center'>{paymentMethod}</div>
                                     <div className='flex items-center flex-col'>
                                         {isPaid ? (
-                                            <div className="alert-success">Pago às {paidAt.substring(11, 19)} do dia {paidAt.substring(0, 10)} </div>
+                                            <div className="alert-success">Pago às {paidAt.substring(11, 19)} do dia {paidAt.substring(8, 10)}/{paidAt.substring(5, 7)}/{paidAt.substring(0, 4)}. </div>
                                         ) : (
                                             <div className="alert-error">Ainda não confirmado</div>
                                         )}
@@ -305,7 +305,7 @@ function OrderScreen() {
                                     <li>
                                         {loadingDeliver && <div>Carregando...</div>}
                                         <button
-                                            className="primary-button bg-white w-full"
+                                            className="primary-button text-xl bg-white w-full"
                                             onClick={deliverOrderHandler}
                                         >
                                             Confirmar entrega
@@ -318,8 +318,8 @@ function OrderScreen() {
                 </div>
             )}
         </Layout>
-    );
+    )
 }
 
-OrderScreen.auth = true;
-export default OrderScreen;
+OrderScreen.auth = true
+export default OrderScreen

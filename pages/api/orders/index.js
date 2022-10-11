@@ -5,7 +5,7 @@ import db from '../../../utils/db'
 const handler = async (req, res) => {
     const session = await getSession({ req })
     if (!session) {
-        return res.status(401).send('Por favor, faça seu cadastro!')
+        return res.status(401).send('Erro: É necessário estar acessado em sua conta para realizar essa função!')
     }
 
     const { user } = session

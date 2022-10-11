@@ -13,7 +13,6 @@ function reducer(state, action) {
             return { ...state, loading: false, users: action.payload, error: '' };
         case 'FETCH_FAIL':
             return { ...state, loading: false, error: action.payload };
-
         case 'DELETE_REQUEST':
             return { ...state, loadingDelete: true };
         case 'DELETE_SUCCESS':
@@ -102,7 +101,7 @@ function AdminUsersScreen() {
                     ) : error ? (
                         <div className="alert-error">{error}</div>
                     ) : (
-                        <div className="overflow-x-auto card container">
+                        <div className="overflow-x-auto card ">
                             <table className="min-w-full text-center bg-white rounded-xl p-5 shadow-xl">
                                 <thead className="border-b-8 border-b-blue-800">
                                     <tr className='text-2xl text-center text-blue-800'>

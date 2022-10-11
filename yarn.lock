@@ -1323,9 +1323,9 @@
   "version" "2.0.0"
 
 "jose@^4.1.4", "jose@^4.9.3":
-  "integrity" "sha512-f8E/z+T3Q0kA9txzH2DKvH/ds2uggcw0m3vVPSB9HrSkrQ7mojjifvS7aR8cw+lQl2Fcmx9npwaHpM/M3GD8UQ=="
-  "resolved" "https://registry.npmjs.org/jose/-/jose-4.9.3.tgz"
-  "version" "4.9.3"
+  "integrity" "sha512-KEhB/eLGLomWGPTb+/RNbYsTjIyx03JmbqAyIyiXBuNSa7CmNrJd5ysFhblayzs/e/vbOPMUaLnjHUMhGp4yLw=="
+  "resolved" "https://registry.npmjs.org/jose/-/jose-4.10.0.tgz"
+  "version" "4.10.0"
 
 "js-cookie@^3.0.1":
   "integrity" "sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw=="
@@ -1547,10 +1547,10 @@
   "resolved" "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   "version" "1.4.0"
 
-"next-auth@^4.12.0":
-  "integrity" "sha512-TqNJBsVavN60ZkZmoe/YZ13qODuMeXxGgVkpbf8ukB8S7KPKxm+zZPPY76vtTppbPFl6PqFIxzEhNodB2nDStg=="
-  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.12.0.tgz"
-  "version" "4.12.0"
+"next-auth@^4.13.0":
+  "integrity" "sha512-FtkPpeb9Bax6yKDaxcaGIvZZjvr10JaU2AsBYv1yv4N6rP86Xa7/4Ro1Aq94YGwsYzk+YKS52CRjD2DqCcSmVA=="
+  "resolved" "https://registry.npmjs.org/next-auth/-/next-auth-4.13.0.tgz"
+  "version" "4.13.0"
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
@@ -1562,7 +1562,7 @@
     "preact-render-to-string" "^5.1.19"
     "uuid" "^8.3.2"
 
-"next@^12.2.5", "next@12.2.5":
+"next@^12.2.5":
   "integrity" "sha512-tBdjqX5XC/oFs/6gxrZhjmiq90YWizUYU6qOWAfat7zJwrwapJ+BYgX2PmiacunXMaRpeVT4vz5MSPSLgNkrpA=="
   "resolved" "https://registry.npmjs.org/next/-/next-12.2.5.tgz"
   "version" "12.2.5"
@@ -1691,9 +1691,9 @@
     "wrappy" "1"
 
 "openid-client@^5.1.0":
-  "integrity" "sha512-o/11Xos2fRPpK1zQrPfSIhIusFrAkqGSPwkD0UlUB+CCuRzd7zrrBJwIjgnVv3VUSif9ZGXh2d3GSJNH2Koh5g=="
-  "resolved" "https://registry.npmjs.org/openid-client/-/openid-client-5.1.9.tgz"
-  "version" "5.1.9"
+  "integrity" "sha512-KYAtkxTuUwTvjAmH0QMFFP3i9l0+XhP2/blct6Q9kn+DUJ/lu8/g/bI8ghSgxz9dJLm/9cpB/1uLVGTcGGY0hw=="
+  "resolved" "https://registry.npmjs.org/openid-client/-/openid-client-5.1.10.tgz"
+  "version" "5.1.10"
   dependencies:
     "jose" "^4.1.4"
     "lru-cache" "^6.0.0"
@@ -1836,16 +1836,16 @@
     "source-map-js" "^1.0.2"
 
 "preact-render-to-string@^5.1.19":
-  "integrity" "sha512-iIPHb3BXUQ3Za6KNhkjN/waq11Oh+QWWtAgN3id3LrL+cszH3DYh8TxJPNQ6Aogsbu4JsqdJLBZltwPFpG6N6w=="
-  "resolved" "https://registry.npmjs.org/preact-render-to-string/-/preact-render-to-string-5.2.4.tgz"
-  "version" "5.2.4"
+  "integrity" "sha512-rEBn42C3Wh+AjPxXUbDkb6xw0cTJQgxdYlp6ytUR1uBZF647Wn6ykkopMeQlRl7ggX+qnYYjZ4Hs1abZENl7ww=="
+  "resolved" "https://registry.npmjs.org/preact-render-to-string/-/preact-render-to-string-5.2.5.tgz"
+  "version" "5.2.5"
   dependencies:
     "pretty-format" "^3.8.0"
 
 "preact@^10.6.3", "preact@>=10":
-  "integrity" "sha512-Fk6+vB2kb6mSJfDgODq0YDhMfl0HNtK5+Uc9QqECO4nlyPAQwCI+BKyWO//idA7ikV7o+0Fm6LQmNuQi1wXI1w=="
-  "resolved" "https://registry.npmjs.org/preact/-/preact-10.11.0.tgz"
-  "version" "10.11.0"
+  "integrity" "sha512-1Wz5PCRm6Fg+6BTXWJHhX4wRK9MZbZBHuwBqfZlOdVm2NqPe8/rjYpufvYCwJSGb9layyzB2jTTXfpCTynLqFQ=="
+  "resolved" "https://registry.npmjs.org/preact/-/preact-10.11.1.tgz"
+  "version" "10.11.1"
 
 "prelude-ls@^1.2.1":
   "integrity" "sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g=="

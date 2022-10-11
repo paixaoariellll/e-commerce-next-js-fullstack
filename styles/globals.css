@@ -50,7 +50,7 @@
 
 @font-face {
   font-family: Iceland;
-  src: url('../pages/font/Iceland-Regular.ttf');
+  src: url('../assets/font/Iceland-Regular.ttf');
   font-weight: 700;
 }
 
@@ -84,6 +84,11 @@ a:hover {
 
 * {
   box-sizing: border-box;
+  border-radius: 2%
+}
+
+.container {
+  @apply px-28
 }
 
 .dropdown-link {
@@ -131,7 +136,6 @@ button:hover,
 .alert-success {
   @apply my-3 rounded-lg bg-green-100 p-3 text-green-700 text-xl;
 }
-
 
 @media (prefers-color-scheme: dark) {
   html {

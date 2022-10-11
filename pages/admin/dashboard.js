@@ -75,7 +75,7 @@ function AdminDashboardScreen() {
     }
     return (
         <Layout title="Visão Geral ">
-            <div className="grid container md:grid-cols-4 md:gap-5">
+            <div className="grid md:grid-cols-4 md:gap-5">
                 <div className='card text-2xl p-5'>
                     <ul>
                         <li>

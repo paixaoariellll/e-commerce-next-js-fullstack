@@ -8,7 +8,7 @@ const handler = async (req, res) => {
     const session = await getSession({ req })
     console.log(session)
     if (!session || (session && !session.user.isAdmin)) {
-        return res.status(401).send('Cadastro requerido')
+        return res.status(401).send('Erro: É necessário estar acessado em sua conta para realizar essa função!')
     }
 
     await db.connect()
@@ -23,8 +23,7 @@ const handler = async (req, res) => {
             },
         },
     ])
-    const ordersPrice =
-        ordersPriceGroup.length > 0 ? ordersPriceGroup[0].sales : 0
+    const ordersPrice = ordersPriceGroup.length > 0 ? ordersPriceGroup[0].sales : 0
     const salesData = await Order.aggregate([
         {
             $group: {

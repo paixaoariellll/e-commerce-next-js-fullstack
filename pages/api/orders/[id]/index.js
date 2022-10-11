@@ -6,7 +6,7 @@ import db from '../../../../utils/db'
 const handler = async (req, res) => {
     const session = await getSession({ req })
     if (!session) {
-        return res.status(401).send('É necessário estar acessado em sua conta para realizar essa função!')
+        return res.status(401).send('Erro: É necessário estar acessado em sua conta para realizar essa função!')
     }
     await db.connect()
     const order = await Order.findById(req.query.id)

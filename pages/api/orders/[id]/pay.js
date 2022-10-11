@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { getSession } from 'next-auth/react'
 import Order from '../../../../models/Order'
 import db from '../../../../utils/db'
@@ -15,7 +16,7 @@ const handler = async (req, res) => {
             return res.status(400).send({ message: 'Erro: O pedido já foi pago!' })
         }
         order.isPaid = true
-        order.paidAt = Date.now()
+        order.paidAt = moment().format()
         order.paymentResult = {
             id: req.body.id,
             status: req.body.status,

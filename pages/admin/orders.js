@@ -73,7 +73,7 @@ export default function AdminOrderScreen() {
                     ) : error ? (
                         <div className="alert-error">{error}</div>
                     ) : (
-                        <div className="overflow-x-auto card container">
+                        <div className="overflow-x-auto card">
                             <table className="min-w-full text-center bg-white rounded-xl p-5 shadow-xl">
                                 <thead className="border-b-8 border-b-blue-800">
                                     <tr className='text-2xl text-blue-800'>
