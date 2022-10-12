@@ -41,7 +41,7 @@ export default function AdminOrderScreen() {
 
     return (
         <Layout title="Pedidos ">
-            <div className="grid md:grid-cols-4 md:gap-5">
+            <div className="grid md:grid-cols-6 md:gap-5">
                 <div className='card text-2xl p-5'>
                     <ul>
                         <li>
@@ -66,7 +66,7 @@ export default function AdminOrderScreen() {
                         </li>
                     </ul>
                 </div>
-                <div className="overflow-x-auto md:col-span-3">
+                <div className="overflow-x-auto md:col-span-5">
                     <h1 className="mb-4 text-center card text-blue-700 text-4xl">Pedidos</h1>
                     {loading ? (
                         <div>Loading...</div>
@@ -100,7 +100,7 @@ export default function AdminOrderScreen() {
                                             <td className="p-5">
                                                 {
                                                     order.isPaid
-                                                        ? <span className='bg-green-200 p-2 rounded-xl'>{order.paidAt.substring(0, 10)}</span>
+                                                        ? <span className='bg-green-200 p-2 rounded-xl'>{order.paidAt.substring(11, 19)}</span>
                                                         : <span className='bg-red-200 p-2 rounded-xl'>Não Pago</span>
                                                 }
                                             </td>

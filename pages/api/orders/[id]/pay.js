@@ -16,7 +16,7 @@ const handler = async (req, res) => {
             return res.status(400).send({ message: 'Erro: O pedido já foi pago!' })
         }
         order.isPaid = true
-        order.paidAt = moment().format()
+        order.paidAt = moment().subtract(3, 'hour')
         order.paymentResult = {
             id: req.body.id,
             status: req.body.status,

@@ -88,7 +88,7 @@ export default function ProdcutsScreen() {
 
     return (
         <Layout title="Admin Products">
-            <div className="grid md:grid-cols-4 md:gap-5">
+            <div className="grid md:grid-cols-6 md:gap-5">
                 <div className='card text-2xl p-5'>
                     <ul>
                         <li>
@@ -113,7 +113,7 @@ export default function ProdcutsScreen() {
                         </li>
                     </ul>
                 </div>
-                <div className="overflow-x-auto md:col-span-3">
+                <div className="overflow-x-auto md:col-span-5">
                     <div className='grid'>
                         <h1 className="mb-4 text-center card text-blue-700 text-4xl">Produtos Cadastrados</h1>
                         {loadingDelete && <div>Deletando item...</div>}

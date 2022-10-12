@@ -75,8 +75,8 @@ function AdminDashboardScreen() {
     }
     return (
         <Layout title="Visão Geral ">
-            <div className="grid md:grid-cols-4 md:gap-5">
-                <div className='card text-2xl p-5'>
+            <div className="grid md:grid-cols-6 md:gap-5">
+                <div className='card md:col-span-1 text-2xl p-5'>
                     <ul>
                         <li>
                             <Link href="/admin/dashboard">
@@ -100,7 +100,7 @@ function AdminDashboardScreen() {
                         </li>
                     </ul>
                 </div>
-                <div className="md:col-span-3">
+                <div className="md:col-span-5">
                     <h1 className="mb-4 text-center card text-blue-700 text-4xl">Visão Geral</h1>
                     {loading ? (
                         <div>Carregando...</div>
