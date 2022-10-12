@@ -109,7 +109,7 @@ export default function AdminOrderScreen() {
                                                     order.isDelivered
                                                         ? <span className='bg-green-200 p-2 rounded-xl'>{order.deliveredAt.substring(0, 10)}</span>
                                                         : <div className='flex flex-col items-center'>
-                                                            <span className='text-sm'>Previsão: {moment().add(7, 'day').calendar().substring(0, 5)}</span>
+                                                            <span className='text-sm'>Previsão: {moment().add(7, 'days').fromNow()}</span>
                                                             <span className='bg-red-200 p-2 rounded-xl'>Não Entregue</span>
                                                         </div>
                                                 }

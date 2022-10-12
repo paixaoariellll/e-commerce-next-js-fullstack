@@ -42,6 +42,7 @@ function reducer(state, action) {
             state
     }
 }
+
 function OrderScreen() {
     // order/:id
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer()
@@ -64,6 +65,7 @@ function OrderScreen() {
         order: {},
         error: '',
     })
+
     useEffect(() => {
         const fetchOrder = async () => {
             try {
@@ -96,7 +98,8 @@ function OrderScreen() {
             }
             loadPaypalScript()
         }
-    }, [order, orderId, paypalDispatch, successDeliver, successPay]);
+    }, [order, orderId, paypalDispatch, successDeliver, successPay])
+
     function createOrder(data, actions) {
         return actions.order
             .create({
@@ -110,6 +113,7 @@ function OrderScreen() {
                 return orderID
             })
     }
+
     async function deliverOrderHandler() {
         try {
             dispatch({ type: 'DELIVER_REQUEST' })
@@ -141,9 +145,11 @@ function OrderScreen() {
             }
         })
     }
+
     function onError(err) {
         toast.error(getError(err))
     }
+
     const {
         shippingAddress,
         paymentMethod,
@@ -156,8 +162,10 @@ function OrderScreen() {
         isPaid,
         paidAt,
         isDelivered,
+        previsionDelivery,
         deliveredAt,
     } = order
+
     return (
         <Layout title={`Pedido ${orderId}`}>
             <h1 className="mb-4 text-center text-blue-700 text-3xl card">{`ID: ${orderId}`}</h1>
@@ -242,11 +250,17 @@ function OrderScreen() {
                                     <h2 className="mb-2 text-blue-600 text-center text-3xl">Método de pagamento</h2>
                                     <div className='mb-2 text-xl text-center'>{paymentMethod}</div>
                                     <div className='flex items-center flex-col'>
-                                        {isPaid ? (
-                                            <div className="alert-success">Pago às {paidAt.substring(11, 19)} do dia {paidAt.substring(8, 10)}/{paidAt.substring(5, 7)}/{paidAt.substring(0, 4)}. </div>
-                                        ) : (
-                                            <div className="alert-error">Ainda não confirmado</div>
-                                        )}
+                                        {
+                                            isPaid ? (
+                                                <div className="alert-success">
+                                                    Pago às {paidAt.substring(11, 19)} do dia {paidAt.substring(8, 10)}/{paidAt.substring(5, 7)}/{paidAt.substring(0, 4)}.
+                                                </div>
+                                            ) : (
+                                                <div className="alert-error">
+                                                    Ainda não confirmado
+                                                </div>
+                                            )
+                                        }
                                     </div>
                                 </div>
                             </div>

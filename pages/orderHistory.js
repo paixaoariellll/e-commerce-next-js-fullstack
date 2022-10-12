@@ -18,6 +18,7 @@ function reducer(state, action) {
             return state
     }
 }
+
 function OrderHistoryScreen() {
     const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
         loading: true,
@@ -36,6 +37,7 @@ function OrderHistoryScreen() {
         }
         fetchOrders()
     }, [])
+
     return (
         <Layout title="Histórico" >
             <h1 className="mb-4 text-center text-blue-800 text-4xl bg-white shadow-md  shadow-gray-400 rounded-xl">Histórico de Compras</h1>
@@ -45,8 +47,8 @@ function OrderHistoryScreen() {
                 ) : error ? (
                     <div className="alert-error">{error}</div>
                 ) : (
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white rounded-xl p-5 shadow-xl">
+                    <div className="overflow-x-auto card">
+                        <table className="min-w-full p-5">
                             <thead className="border-b-8 border-b-blue-800">
                                 <tr className='text-2xl text-blue-800'>
                                     <th className="px-5 text-center">ID</th>
@@ -61,12 +63,12 @@ function OrderHistoryScreen() {
                                 {orders.map((order) => (
                                     <tr key={order._id} className="border-t-2 text-xl border-t-blue-800">
                                         <td className="p-5 text-center">{order._id.substring(20, 24)}</td>
-                                        <td className="p-5 text-center">{order.createdAt.substring(0, 10)}</td>
-                                        <td className="p-5 text-center">R$ {order.totalPrice}</td>
+                                        <td className="p-5 text-center">{order.createdAt.substring(8, 10)}/{order.createdAt.substring(5, 7)}/{order.createdAt.substring(0, 4)}</td>
+                                        <td className="p-5 text-center">R$ {order.descount}</td>
                                         <td className="p-5 text-center">
                                             {
                                                 order.isPaid
-                                                    ? <span className='bg-green-200 p-2 rounded-xl'>{order.paidAt.substring(0, 10)}</span>
+                                                    ? <span className='bg-green-200 p-2 rounded-xl'>{order.paidAt.substring(8, 10)}/{order.paidAt.substring(5, 7)}/{order.paidAt.substring(0, 4)}</span>
                                                     : <span className='bg-red-200 p-2 rounded-xl'>Não Pago</span>
                                             }
                                         </td>
@@ -75,15 +77,15 @@ function OrderHistoryScreen() {
                                                 order.isDelivered
                                                     ? <span className='bg-green-200 p-2 rounded-xl'>{order.deliveredAt.substring(0, 10)}</span>
                                                     : <div className='flex flex-col items-center'>
-                                                        <span className='text-sm'>Previsão: {moment().add(7, 'day').calendar().substring(0, 5)}</span>
+                                                        <span className='text-sm'>Previsão: {moment().add(7, 'days').fromNow()}</span>
                                                         <span className='bg-red-200 p-2 rounded-xl'>Não Entregue</span>
                                                     </div>
                                             }
                                         </td>
                                         <td className="p-5 text-center">
                                             <Link href={`/order/${order._id}`} passHref>
-                                                <span>
-                                                    <i className='ri-file-history-line'></i>
+                                                <span className='cursor-pointer'>
+                                                    <i className='ri-file-list-3-line'></i>
                                                 </span>
                                             </Link>
                                         </td>

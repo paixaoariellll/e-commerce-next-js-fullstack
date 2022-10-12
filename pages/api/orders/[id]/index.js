@@ -8,6 +8,7 @@ const handler = async (req, res) => {
     if (!session) {
         return res.status(401).send('Erro: É necessário estar acessado em sua conta para realizar essa função!')
     }
+
     await db.connect()
     const order = await Order.findById(req.query.id)
     await db.disconnect()
