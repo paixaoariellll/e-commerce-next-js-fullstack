@@ -6,7 +6,7 @@ async function handler(req, res) {
     if (req.method !== 'POST') {
         return
     }
-    const { name, lastName, email, password } = req.body
+    const { name, image, lastName, email, password } = req.body
     if (
         !name ||
         !lastName ||
