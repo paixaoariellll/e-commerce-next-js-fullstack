@@ -66,7 +66,7 @@ export default function ProductScreen(props) {
                     <h1 className='container shadow-md mt-4 rounded-xl bg-white w-fit text-blue-800 px-6 py-0 text-center text-4xl uppercase'>{product.name}</h1>
                 </div>
             </div>
-            <div className='grid md:grid-cols-4 md:gap-3'>
+            <div className='grid md:grid-cols-5 md:gap-4'>
                 <div className='md:col-span-2 mb-5 shadow-gray-900 shadow-xl rounded border-8'>
                     <Image
                         src={product.image}
@@ -77,59 +77,61 @@ export default function ProductScreen(props) {
                     >
                     </Image>
                 </div>
-                <div className='text-xl'>
-                    <ul>
-                        <li className='text-center text-3xl shadow-md bg-white rounded-xl m-1 py-2 cursor-text text-green-700'>
-                            {product.category}
-                        </li>
-                        <li className='text-center m-1 cursor-text text-green-700'>
-                            Distribuidoras: {product.publisher}
-                        </li>
-                        <li className='text-center m-1 cursor-text text-green-700'>
-                            {product.rating} de {product.numReviews} avalizações
-                        </li>
-                        <li className='text-center text-sm px-4 shadow-md bg-white rounded-xl m-1 cursor-text'>
-                            <thead className='flex text-xl justify-center text-center w-full'>Descrição:</thead>
-                            <span onClick={() => {
-                                toast(`${product.description}`, {
-                                    position: 'top-center',
-                                    autoClose: 5000,
-                                    hideProgressBar: false,
-                                    closeOnClick: true,
-                                    pauseOnHover: true,
-                                    draggable: true,
-                                    progress: undefined,
-                                })
-                            }}>
-                                <span className='cursor-pointer hover:text-xl hover:text-blue-800'>Mais detalhes</span>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <div className='p-6 card bg-white'>
-                        <div className='mb-2 flex justify-between'>
-                            <div className='text-2xl' >Preço</div>
-                            <div className='text-2xl text-red-600'>
-                                {product.countInStock > 0 ? `R$ ${product.price}` : "Vendido"}
+                <div className='col-span-3'>
+                    <div className='col-span-3 flex justify-between'>
+                        <div className='text-xl w-3/5'>
+                            <ul>
+                                <li className='text-center text-3xl shadow-md bg-white rounded-xl m-1 py-2 cursor-text text-green-700'>
+                                    {product.category}
+                                </li>
+                                <li className='text-center m-1 cursor-text text-green-700'>
+                                    Distribuidoras: {product.publisher}
+                                </li>
+                                <li className='text-center m-1 cursor-text text-green-700'>
+                                    {product.rating} de {product.numReviews} avalizações
+                                </li>
+                                <li>
+                                    {product.title}
+                                </li>
+                                <li>
+                                    {product.gender}
+                                </li>
+                            </ul>
+                        </div>
+                        <div className='w-2/5'>
+                            <div className='p-6 card bg-white'>
+                                <div className='mb-2 flex justify-between'>
+                                    <div className='text-2xl' >Preço</div>
+                                    <div className='text-2xl text-red-600'>
+                                        {product.countInStock > 0 ? `R$ ${product.price}` : "Vendido"}
+                                    </div>
+                                </div>
+                                <div className='mb-2 flex justify-between'>
+                                    <div className='text-md'>Status</div>
+                                    <div>
+                                        {
+                                            product.countInStock ?
+                                                `restantes ${product.countInStock}` :
+                                                <span className='text-red-600'> Indisponível</span>
+                                        }
+                                    </div>
+                                </div>
+                                <div className='flex mt-7 text-xl text-center '>
+                                    <button onClick={addToCartHandler} className='w-full bg-white flex justify-between border border-solid border-gray-300'>
+                                        Comprar
+                                        <i className="ri-shopping-cart-line"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div className='mb-2 flex justify-between'>
-                            <div className='text-md'>Status</div>
-                            <div>
-                                {
-                                    product.countInStock ?
-                                        `restantes ${product.countInStock}` :
-                                        <span className='text-red-600'> Indisponível</span>
-                                }
-                            </div>
-                        </div>
-                        <div className='flex mt-7 text-xl text-center '>
-                            <button onClick={addToCartHandler} className='w-full bg-white flex justify-between border border-solid border-gray-300'>
-                                Comprar
-                                <i className="ri-shopping-cart-line"></i>
-                            </button>
-                        </div>
+                    </div>
+                    <div className='col-span-3'>
+                        <ul>
+                            <li className='text-center text-sm px-4 shadow-md bg-white rounded-xl m-1 cursor-text'>
+                                <thead className='flex text-xl justify-center text-center w-full'>Descrição:</thead>
+                                <span className='px-5 text-lg'>{product.description}</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div >

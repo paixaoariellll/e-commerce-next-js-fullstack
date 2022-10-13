@@ -12,7 +12,7 @@ async function handler(req, res) {
         return res.status(401).send({ message: 'Erro: É necessário estar acessado em sua conta para realizar essa função!' })
     }
     const { user } = session
-    const { name, lastName, email, password } = req.body
+    const { name, image, lastName, email, password } = req.body
     if (
         !name ||
         !lastName ||
@@ -28,6 +28,7 @@ async function handler(req, res) {
     await db.connect()
     const toUpdateUser = await User.findById(user._id)
     toUpdateUser.name = name
+    toUpdateUser.image = image
     toUpdateUser.lastName = lastName
     toUpdateUser.email = email
     if (password) {

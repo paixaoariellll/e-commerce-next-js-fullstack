@@ -13,7 +13,7 @@ async function handler(req, res) {
         !email ||
         !email.includes('@') ||
         !password ||
-        password.trim().length < 5
+        password.trim().length < 7
     ) {
         res.status(422).json({
             message: 'Erro de validação!',
@@ -32,6 +32,7 @@ async function handler(req, res) {
 
     const newUser = new User({
         name,
+        image,
         lastName,
         email,
         password: bcryptjs.hashSync(password),
@@ -44,6 +45,7 @@ async function handler(req, res) {
         message: 'Usuário criado com sucesso!',
         _id: user._id,
         name: user.name,
+        image: 'f',
         lastName: user.lastName,
         email: user.email,
         isAdmin: user.isAdmin,
