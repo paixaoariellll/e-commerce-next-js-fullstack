@@ -90,11 +90,11 @@ export default function ProductScreen(props) {
                                 <li className='text-center m-1 cursor-text text-green-700'>
                                     {product.rating} de {product.numReviews} avalizações
                                 </li>
-                                <li>
-                                    {product.title}
+                                <li className='text-center m-1 cursor-text text-green-700'>
+                                    Título: {product.title}
                                 </li>
-                                <li>
-                                    {product.gender}
+                                <li className='text-center m-1 cursor-text text-green-700'>
+                                    Gênero: {product.gender}
                                 </li>
                             </ul>
                         </div>

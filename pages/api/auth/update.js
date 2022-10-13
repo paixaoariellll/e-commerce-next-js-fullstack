@@ -28,7 +28,7 @@ async function handler(req, res) {
     await db.connect()
     const toUpdateUser = await User.findById(user._id)
     toUpdateUser.name = name
-    toUpdateUser.image = image
+    toUpdateUser.image = `/imgUser/${session.user.name}.jpg`
     toUpdateUser.lastName = lastName
     toUpdateUser.email = email
     if (password) {

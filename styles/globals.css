@@ -137,6 +137,18 @@ button:hover,
   @apply my-3 rounded-lg bg-green-100 p-3 text-green-700 text-xl;
 }
 
+.home_shrink {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+.nav_shrink {
+  background-color: white !important;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: var(dark);

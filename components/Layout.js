@@ -11,6 +11,7 @@ import { Menu } from '@headlessui/react'
 import Cookies from 'js-cookie'
 import Image from 'next/image'
 import M from '../public/img/M.svg'
+import { useRef } from 'react'
 
 export default function Layout({ title, children }) {
     const { status, data: session } = useSession()
@@ -26,6 +27,23 @@ export default function Layout({ title, children }) {
         dispatch({ type: 'CART_RESET' })
         signOut({ callbackUrl: '/login' })
     }
+    const homeRef = useRef(null)
+    const navRef = useRef(null)
+    const homeFunc = () => {
+        if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+            homeRef.current.classList.add('home_shrink')
+            navRef.current.classList.add('nav_shrink')
+        } else {
+            homeRef.current.classList.remove('home_shrink')
+            navRef.current.classList.remove('nav_shrink')
+        }
+    }
+    useEffect(() => {
+        window.addEventListener('scroll', homeFunc)
+
+        return () => window.removeEventListener('scroll', homeFunc)
+
+    }, [])
     return (
         <>
             <Head>
@@ -38,13 +56,10 @@ export default function Layout({ title, children }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link rel="icon" href="img/logo-icon.svg" />
             </Head>
-            <ToastContainer position='bottom-center' limit={1} />
-            <div className=" p-1 text-md text-center text-red-600 bg-red-100" role="alert">
-                <span className="text-xl">Aviso!</span> Site em desenvolvimento.
-            </div>
+            <ToastContainer position='bottom-center' limit={2} />
             <div className='flex flex-col justify-between'>
-                <header>
-                    <nav className="relative w-full flex flex-wrap items-center justify-between py-1 bg-white text-gray-500 shadow-lg">
+                <header ref={homeRef}>
+                    <nav ref={navRef} className="relative w-full flex flex-wrap items-center justify-between py-1 bg-white text-gray-500 shadow-lg">
                         <div className="container-fluid w-full flex flex-wrap items-center justify-between px-6">
                             <div className="container-fluid">
                                 <Link href="/">
@@ -76,8 +91,16 @@ export default function Layout({ title, children }) {
                                     session?.user ?
                                         (
                                             <Menu as="div" className="relative inline-block">
-                                                <Menu.Button className="text-blue-800 text-xl border border-solid border-gray-300">
-                                                    {session.user.name}
+                                                <Menu.Button className="text-blue-800 flex flex-wrap text-xl border border-solid border-gray-300">
+                                                    <div className='container-fluid '>
+                                                        <span className='px-3 text-2xl'>{session.user.name}</span>
+                                                        <Image
+                                                            src={`/imgUser/${session.user.name}.jpg`}
+                                                            width={30} height={30}
+                                                            className='translate-y-2 rounded-xl'
+                                                        >
+                                                        </Image>
+                                                    </div>
                                                 </Menu.Button>
                                                 <Menu.Items className="absolute z-20 right-0 m-2 w-56 origin-top-right bg-white shadow-lg ">
                                                     {!session.user.isAdmin && (
@@ -137,6 +160,9 @@ export default function Layout({ title, children }) {
                     <p>Copyright &copy; {year}, Game<span className='bg-blue-800 rounded-t-sm text-white'>On</span>.</p>
                 </footer>
             </div >
+            <div className=" p-1 text-md text-center text-red-600 bg-red-100" role="alert">
+                <span className="text-xl">Aviso!</span> Site em desenvolvimento.
+            </div>
         </>
     )
 }

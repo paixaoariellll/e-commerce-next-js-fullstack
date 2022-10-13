@@ -9,7 +9,6 @@ async function handler(req, res) {
     const { name, image, lastName, email, password } = req.body
     if (
         !name ||
-        !lastName ||
         !email ||
         !email.includes('@') ||
         !password ||
@@ -45,7 +44,7 @@ async function handler(req, res) {
         message: 'Usuário criado com sucesso!',
         _id: user._id,
         name: user.name,
-        image: 'f',
+        image: 'imgUser/user (1).jpg',
         lastName: user.lastName,
         email: user.email,
         isAdmin: user.isAdmin,
