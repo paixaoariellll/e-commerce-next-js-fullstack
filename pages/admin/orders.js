@@ -42,7 +42,7 @@ export default function AdminOrderScreen() {
     return (
         <Layout title="Pedidos ">
             <div className="grid md:grid-cols-6 md:gap-5">
-                <div className='card text-2xl p-5'>
+                <div className='card text-2xl py-5 px-10'>
                     <ul>
                         <li>
                             <Link href="/admin/dashboard">
@@ -86,15 +86,15 @@ export default function AdminOrderScreen() {
                                         <th className="p-5 text-center">Detalhes</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className=''>
                                     {orders.map((order) => (
-                                        <tr key={order._id} className="border-t-2 text-xl border-t-blue-800">
+                                        <tr key={order._id} className="border-t border-x text-center border-x-blue-800  border-t-blue-800  text-xl hover:bg-blue-50">
                                             <td className="p-5">{order._id.substring(20, 24)}</td>
                                             <td className="p-5">
                                                 {order.user ? order.user.name : 'Usuário deletado'}
                                             </td>
                                             <td className="p-5">
-                                                {order.createdAt.substring(0, 10)}
+                                                {order.createdAt.substring(8, 10)}/{order.createdAt.substring(5, 7)}/{order.createdAt.substring(0, 4)}
                                             </td>
                                             <td className="p-5">R$ {order.totalPrice}</td>
                                             <td className="p-5">
@@ -107,17 +107,17 @@ export default function AdminOrderScreen() {
                                             <td className="p-5">
                                                 {
                                                     order.isDelivered
-                                                        ? <span className='bg-green-200 p-2 rounded-xl'>{order.deliveredAt.substring(0, 10)}</span>
+                                                        ? <span className='bg-green-200 p-2 rounded-xl'>{order.deliveredAt.substring(8, 10)}/{order.deliveredAt.substring(5, 7)}/{order.deliveredAt.substring(0, 4)}</span>
                                                         : <div className='flex flex-col items-center'>
-                                                            <span className='text-sm'>Previsão: {moment().add(7, 'days').fromNow()}</span>
+                                                            <span className='text-sm'>Previsão: {moment().add(7, 'days').fromNow().substring(3, 10)}</span>
                                                             <span className='bg-red-200 p-2 rounded-xl'>Não Entregue</span>
                                                         </div>
                                                 }
                                             </td>
                                             <td className="p-5">
                                                 <Link href={`/order/${order._id}`} passHref>
-                                                    <span>
-                                                        <i className='ri-file-history-line'></i>
+                                                    <span className='cursor-pointer'>
+                                                        <i className='ri-file-list-3-line'></i>
                                                     </span>
                                                 </Link>
                                             </td>

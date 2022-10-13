@@ -42,7 +42,7 @@ export default function productItem({ product, addToCartHandler }) {
                             </button>
                         ) : (
                             <button
-                                className="primary-button border border-solid  cursor-not-allowed border-gray-300"
+                                className="primary-button bg-gray-300 border border-solid cursor-not-allowed border-gray-300"
                                 type="button"
                                 onClick={() => toast.error('Produto indisponível')}
                             >

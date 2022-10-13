@@ -18,7 +18,7 @@ const deleteHandler = async (req, res) => {
     await db.connect();
     const user = await User.findById(req.query.id)
     if (user) {
-        if (user.email === 'admin@example.com') {
+        if (user.email === 'admin@example.com' || user.email === 'admin2@example.com') {
             return res.status(400).send({ message: 'Você não pode deletar o Administrador dessa página!' })
         }
         await user.remove()

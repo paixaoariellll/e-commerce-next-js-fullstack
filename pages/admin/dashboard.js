@@ -76,7 +76,7 @@ function AdminDashboardScreen() {
     return (
         <Layout title="Visão Geral ">
             <div className="grid md:grid-cols-6 md:gap-5">
-                <div className='card md:col-span-1 text-2xl p-5'>
+                <div className='card md:col-span-1 text-2xl py-5 px-10'>
                     <ul>
                         <li>
                             <Link href="/admin/dashboard">
@@ -110,35 +110,35 @@ function AdminDashboardScreen() {
                         <div>
                             <div className="grid grid-cols-1 md:grid-cols-4">
                                 <div className="card m-5 p-5">
-                                    <p className="text-3xl text-blue-800">R$ {summary.ordersPrice} </p>
+                                    <p className="text-3xl text-blue-700">R$ {summary.ordersPrice} </p>
                                     <p className='text-xl'>Vendas</p>
                                     <Link href="/admin/orders">
                                         <span className='hover:underline text-blue-700 cursor-pointer'>Visualizar Vendas</span>
                                     </Link>
                                 </div>
                                 <div className="card m-5 p-5">
-                                    <p className="text-3xl text-blue-800">{summary.ordersCount} </p>
+                                    <p className="text-3xl text-blue-700">{summary.ordersCount} </p>
                                     <p className='text-xl'>Pedidos</p>
                                     <Link href="/admin/orders">
                                         <span className='hover:underline text-blue-700 cursor-pointer'>Visualizar Pedidos</span>
                                     </Link>
                                 </div>
                                 <div className="card m-5 p-5">
-                                    <p className="text-3xl text-blue-800">{summary.productsCount} </p>
+                                    <p className="text-3xl text-blue-700">{summary.productsCount} </p>
                                     <p className='text-xl'>Produtos</p>
                                     <Link href="/admin/products">
                                         <span className='hover:underline text-blue-700 cursor-pointer'>Visualizar produtos</span>
                                     </Link>
                                 </div>
                                 <div className="card m-5 p-5">
-                                    <p className="text-3xl text-blue-800">{summary.usersCount} </p>
+                                    <p className="text-3xl text-blue-700">{summary.usersCount} </p>
                                     <p className='text-xl'>Usuários</p>
                                     <Link href="/admin/users">
                                         <span className='hover:underline text-blue-700 cursor-pointer'>Visualizar Usuários</span>
                                     </Link>
                                 </div>
                             </div>
-                            <h2 className="text-2xl text-blue-800 p-2">Relatório de Vendas</h2>
+                            <h2 className="text-2xl text-blue-700 p-2">Relatório de Vendas</h2>
                             <Bar className='card p-10'
                                 options={{
                                     legend: { display: true, position: 'right' },

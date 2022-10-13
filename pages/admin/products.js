@@ -89,7 +89,7 @@ export default function ProdcutsScreen() {
     return (
         <Layout title="Admin Products">
             <div className="grid md:grid-cols-6 md:gap-5">
-                <div className='card text-2xl p-5'>
+                <div className='card text-2xl py-5 px-10'>
                     <ul>
                         <li>
                             <Link href="/admin/dashboard">
@@ -145,7 +145,7 @@ export default function ProdcutsScreen() {
                                 </thead>
                                 <tbody>
                                     {products.map((product) => (
-                                        <tr key={product._id} className="border-t text-center border-t-blue-800">
+                                        <tr key={product._id} className="border-t border-x text-center border-x-blue-800  border-t-blue-800  text-xl hover:bg-blue-50">
                                             <td className=" p-5 ">{product._id.substring(20, 24)}</td>
                                             <td className=" p-5 ">{product.name}</td>
                                             <td className=" p-5 ">R$ {product.price}</td>

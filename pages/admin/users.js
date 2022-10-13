@@ -69,7 +69,7 @@ function AdminUsersScreen() {
     return (
         <Layout title="Users">
             <div className="grid md:grid-cols-6 md:gap-5">
-                <div className='card text-2xl p-5'>
+                <div className='card text-2xl py-5 px-10'>
                     <ul>
                         <li>
                             <Link href="/admin/dashboard">
@@ -115,7 +115,7 @@ function AdminUsersScreen() {
                                 </thead>
                                 <tbody>
                                     {users.map((user) => (
-                                        <tr key={user._id} className="border-t text-xl text-center border-t-blue-800">
+                                        <tr key={user._id} className="border-t border-x text-center border-x-blue-800  border-t-blue-800  text-xl hover:bg-blue-50">
                                             <td className=" p-5 ">{user._id.substring(20, 24)}</td>
                                             <td className=" p-5 ">{user.name}</td>
                                             <td className=" p-5 ">{user.lastName}</td>
