@@ -8,7 +8,6 @@ import Layout from '../../components/Layout'
 import { getError } from '../../utils/error'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
 import { toast } from 'react-toastify'
-import moment from 'moment'
 
 function reducer(state, action) {
     switch (action.type) {
@@ -162,7 +161,6 @@ function OrderScreen() {
         isPaid,
         paidAt,
         isDelivered,
-        previsionDelivery,
         deliveredAt,
     } = order
 
