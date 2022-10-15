@@ -34,7 +34,7 @@ export default NextAuth({
             name: user.name,
             lastName: user.lastName,
             email: user.email,
-            //image: `/imgUser/${session.user.name}.jpg`,
+            image: "f",
             isAdmin: user.isAdmin,
           };
         }

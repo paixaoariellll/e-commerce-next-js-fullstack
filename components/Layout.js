@@ -100,7 +100,7 @@ export default function Layout({ title, children }) {
               <div className="menu flex gap-5"></div>
               <div className="flex">
                 <Link href="/cart">
-                  <div className="px-2 py-3 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
+                  <div className="px-2 py-2 my-2 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
                     {cartItemsCount > 0 && (
                       <span
                         style={{ color: "white", background: "red" }}

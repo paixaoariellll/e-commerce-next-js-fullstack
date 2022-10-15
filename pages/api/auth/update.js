@@ -17,7 +17,7 @@ async function handler(req, res) {
   }
 
   const { user } = session;
-  const { name, image, lastName, email, password } = req.body;
+  const { name, lastName, email, password } = req.body;
 
   if (
     !name ||
@@ -34,7 +34,6 @@ async function handler(req, res) {
   await db.connect();
   const toUpdateUser = await User.findById(user._id);
   toUpdateUser.name = name;
-  toUpdateUser.image = `/imgUser/${session.user.name}.jpg`;
   toUpdateUser.lastName = lastName;
   toUpdateUser.email = email;
   if (password) {
