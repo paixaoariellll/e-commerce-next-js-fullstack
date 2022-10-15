@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: MediuN;
-  src: url('../assets/fonts/Mediu.otf');
+  src: url("../assets/fonts/Mediu.otf");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: MediuS;
-  src: url('../assets/fonts/Supreme-Medium.otf');
+  src: url("../assets/fonts/Supreme-Medium.otf");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: Regular;
-  src: url('../assets/fonts/Supreme-Regular.otf');
+  src: url("../assets/fonts/Supreme-Regular.otf");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: ExtraN;
-  src: url('../assets/fonts/ExtraboldItalic.otf');
+  src: url("../assets/fonts/ExtraboldItalic.otf");
   font-weight: 800;
   font-display: swap;
   font-style: italic;
@@ -36,7 +36,7 @@
 
 @font-face {
   font-family: ExtraS;
-  src: url('../assets/fonts/Supreme-ExtraboldItalic.otf');
+  src: url("../assets/fonts/Supreme-ExtraboldItalic.otf");
   font-weight: 800;
   font-display: swap;
   font-style: italic;
@@ -44,13 +44,13 @@
 
 @font-face {
   font-family: Big;
-  src: url('../assets/fonts/The\ Bigger\ The\ Better.ttf');
+  src: url("../assets/fonts/The\ Bigger\ The\ Better.ttf");
   font-weight: 600;
 }
 
 @font-face {
   font-family: Iceland;
-  src: url('../assets/font/Iceland-Regular.ttf');
+  src: url("../assets/font/Iceland-Regular.ttf");
   font-weight: 700;
 }
 
@@ -59,7 +59,7 @@
   --secondary-color: #fff;
   --body-bg: #f5f7fa;
   --text-color: #fff;
-  --gray: #1A202c;
+  --gray: #1a202c;
   --gray-light: #cbd5e0;
 }
 
@@ -67,7 +67,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Iceland';
+  font-family: "Iceland";
 }
 
 .menu {
@@ -84,11 +84,11 @@ a:hover {
 
 * {
   box-sizing: border-box;
-  border-radius: 2%
+  border-radius: 2%;
 }
 
 .container {
-  @apply px-20
+  @apply px-20;
 }
 
 .dropdown-link {
@@ -127,6 +127,10 @@ button:hover,
 
 .card img:hover {
   transform: scale(1.1);
+}
+
+.game-details {
+  @apply text-left m-1 cursor-text text-black;
 }
 
 .alert-error {

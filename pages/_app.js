@@ -1,20 +1,20 @@
-import '../styles/globals.css'
-import { SessionProvider, useSession } from 'next-auth/react'
-import { StoreProvider } from '../utils/Store'
-import { Router, useRouter } from 'next/router'
-import ProgressBar from "@badrap/bar-of-progress"
-import { PayPalScriptProvider } from '@paypal/react-paypal-js'
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import ProgressBar from "@badrap/bar-of-progress";
+import { Router, useRouter } from "next/router";
+import { SessionProvider, useSession } from "next-auth/react";
+import { StoreProvider } from "../utils/Store";
+import "../styles/globals.css";
 
 const progress = new ProgressBar({
   size: 4,
   color: "#1e40af",
   className: "z-50",
   delay: 100,
-})
+});
 
-Router.events.on("routeChangeStart", progress.start)
-Router.events.on("routeChangeComplete", progress.finish)
-Router.events.on("routeChangeError", progress.finish)
+Router.events.on("routeChangeStart", progress.start);
+Router.events.on("routeChangeComplete", progress.finish);
+Router.events.on("routeChangeError", progress.finish);
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -31,25 +31,25 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         </PayPalScriptProvider>
       </StoreProvider>
     </SessionProvider>
-  )
+  );
 }
 
 function Auth({ children, adminOnly }) {
-  const router = useRouter()
+  const router = useRouter();
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push('/unauthorized?message=Por favor, acesse sua conta')
+      router.push("/unauthorized?message=Por favor, acesse sua conta.");
     },
-  })
-  if (status === 'loading') {
-    return <div>Carregando...</div>
+  });
+  if (status === "loading") {
+    return <div>Carregando...</div>;
   }
   if (adminOnly && !session.user.isAdmin) {
-    router.push('/unauthorized?message=Por favor, acesse sua conta');
+    router.push("/unauthorized?message=Por favor, acesse sua conta.");
   }
 
   return children;
 }
 
-export default MyApp
+export default MyApp;
