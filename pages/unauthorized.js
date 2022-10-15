@@ -1,32 +1,32 @@
-import { useRouter } from 'next/router';
-import React from 'react';
-import Layout from '../components/Layout';
+import Layout from "../components/Layout";
+import { useRouter } from "next/router";
+import React from "react";
 
 export default function Unauthorized() {
+  const router = useRouter();
+  const { message } = router.query;
 
-    const router = useRouter();
-    const { message } = router.query;
-
-    return (
-        <Layout title="Acesso Negado">
-            <div className='card w-full p-5 bg-white'>
-                <h1 className="text-center text-red-500 text-5xl">Accesso Negado!</h1>
-                {
-                    message &&
-                    <div className="mb-4 text-2xl text-center text-gray-900">
-                        Você não pode acessar essa página antes de fazer login!
-                    </div>
-                }
-                <div className='text-center'>
-                    <button
-                        onClick={() => router.push('/login')}
-                        type="button"
-                        className=" bg-blue-700 text-xl text-white"
-                    >
-                        Fazer login
-                    </button>
-                </div>
-            </div>
-        </Layout>
-    );
+  return (
+    <Layout title="Acesso negado">
+      <div className="card w-full p-5 bg-white">
+        <h1 className="text-center text-red-600 text-5xl">
+          Accesso não autorizado 401!
+        </h1>
+        {message && (
+          <div className="mb-4 text-2xl text-center text-gray-900">
+            Você não pode acessar essa página antes de fazer login!
+          </div>
+        )}
+        <div className="text-center">
+          <button
+            onClick={() => router.push("/login")}
+            type="button"
+            className=" bg-blue-800 text-xl text-white"
+          >
+            Fazer login
+          </button>
+        </div>
+      </div>
+    </Layout>
+  );
 }

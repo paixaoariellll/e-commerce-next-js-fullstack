@@ -1,18 +1,18 @@
-// /api/orders/:id
-import { getSession } from 'next-auth/react'
-import Order from '../../../../models/Order'
-import db from '../../../../utils/db'
+import db from "../../../../utils/db";
+import { getSession } from "next-auth/react";
+import Order from "../../../../models/Order";
 
 const handler = async (req, res) => {
-    const session = await getSession({ req })
-    if (!session) {
-        return res.status(401).send('Erro: É necessário estar acessado em sua conta para realizar essa função!')
-    }
+  const session = await getSession({ req });
 
-    await db.connect()
-    const order = await Order.findById(req.query.id)
-    await db.disconnect()
-    res.send(order)
-}
+  if (!session) {
+    return res.status(401).send("Acesse sua conta!");
+  }
 
-export default handler
+  await db.connect();
+  const order = await Order.findById(req.query.id);
+  await db.disconnect();
+  res.send(order);
+};
+
+export default handler;

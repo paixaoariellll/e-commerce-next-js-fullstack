@@ -1,39 +1,40 @@
-import { getSession } from 'next-auth/react'
-import Order from '../../../models/Order'
-import Product from '../../../models/Product'
-import User from '../../../models/User'
-import db from '../../../utils/db'
+import db from "../../../utils/db";
+import { getSession } from "next-auth/react";
+import Order from "../../../models/Order";
+import Product from "../../../models/Product";
+import User from "../../../models/User";
 
 const handler = async (req, res) => {
-    const session = await getSession({ req })
-    console.log(session)
-    if (!session || (session && !session.user.isAdmin)) {
-        return res.status(401).send('Erro: É necessário estar acessado em sua conta para realizar essa função!')
-    }
+  const session = await getSession({ req });
 
-    await db.connect()
-    const ordersCount = await Order.countDocuments()
-    const productsCount = await Product.countDocuments()
-    const usersCount = await User.countDocuments()
-    const ordersPriceGroup = await Order.aggregate([
-        {
-            $group: {
-                _id: null,
-                sales: { $sum: '$totalPrice' },
-            },
-        },
-    ])
-    const ordersPrice = ordersPriceGroup.length > 0 ? ordersPriceGroup[0].sales : 0
-    const salesData = await Order.aggregate([
-        {
-            $group: {
-                _id: { $dateToString: { format: '%d/%m/%Y', date: '$createdAt' } }, //relatório por dia, mês e ano!
-                totalSales: { $sum: '$totalPrice' },
-            },
-        },
-    ])
-    await db.disconnect()
-    res.send({ ordersCount, productsCount, usersCount, ordersPrice, salesData })
-}
+  if (!session || (session && !session.user.isAdmin)) {
+    return res.status(401).send("Acesse sua conta!");
+  }
 
-export default handler
+  await db.connect();
+  const ordersCount = await Order.countDocuments();
+  const productsCount = await Product.countDocuments();
+  const usersCount = await User.countDocuments();
+  const ordersPriceGroup = await Order.aggregate([
+    {
+      $group: {
+        _id: null,
+        sales: { $sum: "$totalPrice" },
+      },
+    },
+  ]);
+  const ordersPrice =
+    ordersPriceGroup.length > 0 ? ordersPriceGroup[0].sales : 0;
+  const salesData = await Order.aggregate([
+    {
+      $group: {
+        _id: { $dateToString: { format: "%d/%m/%Y", date: "$createdAt" } }, // Relatório por dia, mês e ano.
+        totalSales: { $sum: "$totalPrice" },
+      },
+    },
+  ]);
+  await db.disconnect();
+  res.send({ ordersCount, productsCount, usersCount, ordersPrice, salesData });
+};
+
+export default handler;

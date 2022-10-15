@@ -1,11 +1,14 @@
-import { getSession } from 'next-auth/react'
+import { getSession } from "next-auth/react";
 
 const handler = async (req, res) => {
-    const session = await getSession({ req })
-    if (!session) {
-        return res.status(401).send('É necessário estar acessado em sua conta para realizar essa função!')
-    }
-    res.send(process.env.PAYPAL_CLIENT_ID || 'USD')
-}
+  const session = await getSession({ req });
 
-export default handler
+  if (!session) {
+    return res
+      .status(401)
+      .send("Acesse sua conta antes de prosseguir com o pagamento.");
+  }
+  res.send(process.env.PAYPAL_CLIENT_ID || "USD");
+};
+
+export default handler;
