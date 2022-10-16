@@ -31,7 +31,7 @@ export default function Layout({ title, children }) {
 
   const homeRef = useRef(null);
   const navRef = useRef(null);
-
+  const rocketRef = useRef(null);
   const homeFunc = () => {
     if (
       document.body.scrollTop > 80 ||
@@ -39,9 +39,11 @@ export default function Layout({ title, children }) {
     ) {
       homeRef.current.classList.add("home_shrink");
       navRef.current.classList.add("nav_shrink");
+      rocketRef.current.classList.add("open");
     } else {
       homeRef.current.classList.remove("home_shrink");
       navRef.current.classList.remove("nav_shrink");
+      rocketRef.current.classList.remove("open");
     }
   };
 
@@ -117,7 +119,7 @@ export default function Layout({ title, children }) {
                 ) : session?.user ? (
                   <Menu as="div" className="relative inline-block">
                     <Menu.Button className="text-blue-800 flex flex-wrap text-xl border border-solid border-gray-300">
-                      <div className="container-fluid ">
+                      <div className="container-fluid flex">
                         <span className="px-3 text-2xl">
                           {session.user.name}
                         </span>
@@ -125,7 +127,8 @@ export default function Layout({ title, children }) {
                           src={`/imgUser/${session.user.name}.jpg`}
                           width={30}
                           height={30}
-                          className="translate-y-2 rounded-xl"
+                          unoptimized
+                          className="rounded-full mt-2"
                           alt="Foto de perfil"
                         />
                       </div>
@@ -153,7 +156,7 @@ export default function Layout({ title, children }) {
                         <Menu.Item>
                           <DropdownLink
                             className="dropdown-link m-2 rounded-md"
-                            href="/admin/dashboard"
+                            href="/admin/dashBoard"
                           >
                             Dashboard
                           </DropdownLink>
@@ -201,6 +204,12 @@ export default function Layout({ title, children }) {
       >
         <span className="text-xl">Aviso!</span> Site em desenvolvimento.
       </div>
+      <button
+        ref={rocketRef}
+        onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}
+        className=" scroll-top scroll-to-target open">
+        <i className="ri-rocket-2-fill relative -top-2 -left-1"></i>
+      </button>
     </>
   );
 }

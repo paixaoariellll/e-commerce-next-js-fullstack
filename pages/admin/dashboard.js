@@ -45,7 +45,7 @@ function reducer(state, action) {
   }
 }
 
-function AdminDashboardScreen() {
+function DashboardScreen() {
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
     loading: true,
     summary: { salesData: [] },
@@ -78,12 +78,12 @@ function AdminDashboardScreen() {
   };
 
   return (
-    <Layout title="Dashboard">
+    <Layout title="Visão Geral">
       <div className="grid md:grid-cols-6 md:gap-5">
         <div className="card md:col-span-1 text-2xl py-5 px-10">
           <ul>
             <li>
-              <Link href="/admin/dashboard">
+              <Link href="/admin/dashBoard">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Visão geral
                 </span>
@@ -186,5 +186,5 @@ function AdminDashboardScreen() {
   );
 }
 
-AdminDashboardScreen.auth = { adminOnly: true };
-export default AdminDashboardScreen;
+DashboardScreen.auth = { adminOnly: true };
+export default DashboardScreen;

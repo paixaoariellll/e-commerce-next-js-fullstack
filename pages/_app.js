@@ -46,7 +46,7 @@ function Auth({ children, adminOnly }) {
     return <div>Carregando...</div>;
   }
   if (adminOnly && !session.user.isAdmin) {
-    router.push("/unauthorized?message=Por favor, acesse sua conta.");
+    router.push("/unauthorized?message=Administrador, por favor, acesse sua conta.");
   }
 
   return children;

@@ -72,7 +72,7 @@ function AdminUsersScreen() {
         <div className="card text-2xl py-5 px-10">
           <ul>
             <li>
-              <Link href="/admin/dashboard">
+              <Link href="/admin/dashBoard">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Visão geral
                 </span>
