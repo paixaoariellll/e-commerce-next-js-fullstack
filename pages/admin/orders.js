@@ -2,7 +2,6 @@ import axios from "axios";
 import { getError } from "../../utils/error";
 import Layout from "../../components/Layout";
 import Link from "next/link";
-import moment from "moment";
 import React, { useEffect, useReducer } from "react";
 import "remixicon/fonts/remixicon.css";
 
@@ -40,32 +39,33 @@ export default function AdminOrderScreen() {
   }, []);
 
   return (
-    <Layout title="Compras">
+    <Layout title="Pedidos">
       <div className="grid md:grid-cols-6 md:gap-5">
-        <div className="card text-2xl py-5 px-10">
-          <ul>
-            <li>
+        <div className="card md:col-span-1 text-2xl py-5 px-10">
+          <ul className="text-center">
+            <li className="text-center"><i class="ri-admin-fill text-4xl text-blue-700"></i></li>
+            <li className="card p-2 hover:bg-blue-100">
               <Link href="/admin/dashBoard">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Visão geral
                 </span>
               </Link>
             </li>
-            <li>
+            <li className="card !bg-blue-700 p-2">
               <Link href="/admin/orders">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Compras
+                <span className="cursor-pointer text-center text-white hover:underline">
+                  Pedidos
                 </span>
               </Link>
             </li>
-            <li>
+            <li className="card p-2 hover:bg-blue-100">
               <Link href="/admin/products">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Produtos
                 </span>
               </Link>
             </li>
-            <li>
+            <li className="card p-2 hover:bg-blue-100">
               <Link href="/admin/users">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Usuários
@@ -76,10 +76,10 @@ export default function AdminOrderScreen() {
         </div>
         <div className="overflow-x-auto md:col-span-5">
           <h1 className="mb-4 text-center card text-blue-700 text-4xl">
-            Compras
+            Pedidos
           </h1>
           {loading ? (
-            <div>Loading...</div>
+            <div>Carregando...</div>
           ) : error ? (
             <div className="alert-error">{error}</div>
           ) : (
@@ -96,7 +96,7 @@ export default function AdminOrderScreen() {
                     <th className="p-5 text-center">Detalhes</th>
                   </tr>
                 </thead>
-                <tbody className="">
+                <tbody>
                   {orders.map((order) => (
                     <tr
                       key={order._id}
@@ -104,7 +104,9 @@ export default function AdminOrderScreen() {
                     >
                       <td className="p-5">{order._id.substring(20, 24)}</td>
                       <td className="p-5">
-                        {order.user ? order.user.name : "Usuário deletado"}
+                        {order.user ? order.user.name :
+                          <span className="text-red-200">Usuário deletado</span>
+                        }
                       </td>
                       <td className="p-5">
                         {order.createdAt.substring(8, 10)}/
@@ -134,10 +136,9 @@ export default function AdminOrderScreen() {
                           <div className="flex flex-col items-center">
                             <span className="text-sm">
                               Previsão:{" "}
-                              {moment()
-                                .add(7, "days")
-                                .fromNow()
-                                .substring(3, 10)}
+                              {order.createdAt.substring(8, 10)}/
+                              {order.createdAt.substring(5, 7)}/
+                              {order.createdAt.substring(0, 4)}
                             </span>
                             <span className="bg-red-200 text-md p-2 rounded-xl">
                               Não Entregue

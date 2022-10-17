@@ -92,30 +92,33 @@ export default function ProdcutsScreen() {
   return (
     <Layout title="Produtos">
       <div className="grid md:grid-cols-6 md:gap-5">
-        <div className="card text-2xl py-5 px-10">
-          <ul>
-            <li>
+        <div className="card md:col-span-1 text-2xl py-5 px-10">
+          <ul className="text-center">
+            <li className="text-center">
+              <i class="ri-admin-fill text-4xl text-blue-700"></i>
+            </li>
+            <li className="card p-2 hover:bg-blue-100">
               <Link href="/admin/dashBoard">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Visão geral
                 </span>
               </Link>
             </li>
-            <li>
+            <li className="card p-2 hover:bg-blue-100">
               <Link href="/admin/orders">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Compras
+                  Pedidos
                 </span>
               </Link>
             </li>
-            <li>
+            <li className="card !bg-blue-700 p-2">
               <Link href="/admin/products">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
+                <span className="cursor-pointer text-center text-white hover:underline">
                   Produtos
                 </span>
               </Link>
             </li>
-            <li>
+            <li className="card p-2 hover:bg-blue-100">
               <Link href="/admin/users">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Usuários
@@ -135,7 +138,8 @@ export default function ProdcutsScreen() {
               onClick={createHandler}
               className="mb-4  grid-cols-1 text-center card py-2 text-blue-700 text-2xl"
             >
-              {loadingCreate ? "Carregando" : "Adicionar produto"}
+              {loadingCreate ? "Carregando" :
+                <span className="text-3xl">Adicionar produto</span>}
             </button>
           </div>
           {loading ? (
@@ -175,7 +179,7 @@ export default function ProdcutsScreen() {
                               Editar
                             </button>
                           </Link>
-                          &nbsp;
+                          {" "}
                           <button
                             onClick={() => deleteHandler(product._id)}
                             type="button"
