@@ -45,7 +45,7 @@ function reducer(state, action) {
   }
 }
 
-function DashboardScreen() {
+function DashBoardScreen() {
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
     loading: true,
     summary: { salesData: [] },
@@ -189,5 +189,5 @@ function DashboardScreen() {
   );
 }
 
-DashboardScreen.auth = { adminOnly: true };
-export default DashboardScreen;
+DashBoardScreen.auth = { adminOnly: true };
+export default DashBoardScreen;
