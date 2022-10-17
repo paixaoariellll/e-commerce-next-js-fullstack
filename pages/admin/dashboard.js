@@ -83,7 +83,7 @@ function DashBoardScreen() {
         <div className="card md:col-span-1 text-2xl py-5 px-10">
           <ul className="text-center">
             <li className="text-center">
-              <i class="ri-admin-fill text-4xl text-blue-700"></i>
+              <i className="ri-admin-fill text-4xl text-blue-700"></i>
             </li>
             <li className="card !bg-blue-700 p-2">
               <Link href="/admin/dashBoard">

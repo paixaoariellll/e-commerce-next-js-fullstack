@@ -71,7 +71,7 @@ function AdminUsersScreen() {
       <div className="grid md:grid-cols-6 md:gap-5">
         <div className="card md:col-span-1 text-2xl py-5 px-10">
           <ul className="text-center">
-            <li className="text-center"><i class="ri-admin-fill text-4xl text-blue-700"></i></li>
+            <li className="text-center"><i className="ri-admin-fill text-4xl text-blue-700"></i></li>
             <li className="card p-2 hover:bg-blue-100">
               <Link href="/admin/dashBoard">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
