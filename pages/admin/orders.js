@@ -45,7 +45,7 @@ export default function AdminOrderScreen() {
           <ul className="text-center">
             <li className="text-center"><i className="ri-admin-fill text-4xl text-blue-700"></i></li>
             <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/dashBoard">
+              <Link href="/admin/dashboard">
                 <span className="cursor-pointer text-center text-blue-700 hover:underline">
                   Visão geral
                 </span>
