@@ -158,7 +158,7 @@ button:hover,
 }
 
 .scroll-top.open {
-  bottom: 15%;
+  bottom: 10%;
 }
 
 .scroll-top {
@@ -174,9 +174,22 @@ button:hover,
   color: #ffffff;
   text-align: center;
   cursor: pointer;
-  background: #203793;
   transition: 300ms ease;
   border: none;
+  @apply bg-blue-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-blue-800;
+  border-radius: 30px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 @media (prefers-color-scheme: dark) {

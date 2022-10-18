@@ -86,7 +86,7 @@ function AdminUsersScreen() {
                     <th className=" px-5">ID</th>
                     <th className=" p-5">Nome</th>
                     <th className=" p-5">Sobrenome</th>
-                    <th className=" p-5">E-mailL</th>
+                    <th className=" p-5">E-mail</th>
                     <th className=" p-5">Status</th>
                     <th className=" p-5">Ações</th>
                   </tr>
