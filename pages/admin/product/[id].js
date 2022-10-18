@@ -1,7 +1,6 @@
 import axios from "axios";
 import { getError } from "../../../utils/error";
 import Layout from "../../../components/Layout";
-import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
