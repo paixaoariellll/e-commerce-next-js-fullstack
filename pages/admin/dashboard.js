@@ -4,9 +4,9 @@ import { getError } from "../../utils/error";
 import Layout from "../../components/Layout";
 import Link from "next/link";
 import {
-  Chart as ChartJS,
-  CategoryScale,
   BarElement,
+  CategoryScale,
+  Chart as ChartJS,
   Legend,
   LinearScale,
   Title,
@@ -80,42 +80,7 @@ function DashboardScreen() {
   return (
     <Layout title="Visão Geral">
       <div className="grid md:grid-cols-6 md:gap-5">
-        <div className="card md:col-span-1 text-2xl py-5 px-10">
-          <ul className="text-center">
-            <li className="text-center">
-              <i className="ri-admin-fill text-4xl text-blue-700"></i>
-            </li>
-            <li className="card !bg-blue-700 p-2">
-              <Link href="/admin/dashboard">
-                <span className="cursor-pointer text-center text-white hover:underline">
-                  Visão geral
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-100 ">
-              <Link href="/admin/orders">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Pedidos
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-200 hover:text-white">
-              <Link href="/admin/products">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Produtos
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-200 hover:text-white">
-              <Link href="/admin/users">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Usuários
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="md:col-span-5">
+        <div className="md:col-span-6">
           <h1 className="mb-4 text-center card text-blue-700 text-4xl">
             Visão geral
           </h1>

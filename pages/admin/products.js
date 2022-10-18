@@ -92,42 +92,7 @@ export default function ProdcutsScreen() {
   return (
     <Layout title="Produtos">
       <div className="grid md:grid-cols-6 md:gap-5">
-        <div className="card md:col-span-1 text-2xl py-5 px-10">
-          <ul className="text-center">
-            <li className="text-center">
-              <i className="ri-admin-fill text-4xl text-blue-700"></i>
-            </li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/dashboard">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Visão geral
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/orders">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Pedidos
-                </span>
-              </Link>
-            </li>
-            <li className="card !bg-blue-700 p-2">
-              <Link href="/admin/products">
-                <span className="cursor-pointer text-center text-white hover:underline">
-                  Produtos
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/users">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Usuários
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="overflow-x-auto md:col-span-5">
+        <div className="overflow-x-auto md:col-span-6">
           <div className="grid">
             <h1 className="mb-4 text-center card text-blue-700 text-4xl">
               Produtos cadastrados

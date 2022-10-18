@@ -41,40 +41,7 @@ export default function AdminOrderScreen() {
   return (
     <Layout title="Pedidos">
       <div className="grid md:grid-cols-6 md:gap-5">
-        <div className="card md:col-span-1 text-2xl py-5 px-10">
-          <ul className="text-center">
-            <li className="text-center"><i className="ri-admin-fill text-4xl text-blue-700"></i></li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/dashboard">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Visão geral
-                </span>
-              </Link>
-            </li>
-            <li className="card !bg-blue-700 p-2">
-              <Link href="/admin/orders">
-                <span className="cursor-pointer text-center text-white hover:underline">
-                  Pedidos
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/products">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Produtos
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/users">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Usuários
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="overflow-x-auto md:col-span-5">
+        <div className="overflow-x-auto md:col-span-6">
           <h1 className="mb-4 text-center card text-blue-700 text-4xl">
             Pedidos
           </h1>
@@ -116,8 +83,17 @@ export default function AdminOrderScreen() {
                       <td className="p-5">R$ {order.totalPrice}</td>
                       <td className="p-5">
                         {order.isPaid ? (
-                          <span className="bg-green-200 p-2 rounded-xl">
-                            {order.paidAt.substring(11, 19)}
+                          <span className="flex flex-col items-center w-full">
+                            <span className="flex flex-col p-2 w-fit bg-green-200 rounded-xl">
+                              <span>
+                                {order.paidAt.substring(11, 19)}
+                              </span>
+                              <span>
+                                {order.paidAt.substring(8, 10)}/
+                                {order.paidAt.substring(5, 7)}/
+                                {order.paidAt.substring(0, 4)}
+                              </span>
+                            </span>
                           </span>
                         ) : (
                           <span className="bg-red-200 text-md p-2 rounded-xl">

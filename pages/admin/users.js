@@ -69,40 +69,7 @@ function AdminUsersScreen() {
   return (
     <Layout title="Usuários">
       <div className="grid md:grid-cols-6 md:gap-5">
-        <div className="card md:col-span-1 text-2xl py-5 px-10">
-          <ul className="text-center">
-            <li className="text-center"><i className="ri-admin-fill text-4xl text-blue-700"></i></li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/dashboard">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Visão geral
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/orders">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Pedidos
-                </span>
-              </Link>
-            </li>
-            <li className="card p-2 hover:bg-blue-100">
-              <Link href="/admin/products">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Produtos
-                </span>
-              </Link>
-            </li>
-            <li className="card !bg-blue-700 p-2">
-              <Link href="/admin/users">
-                <span className="cursor-pointer text-center text-white hover:underline">
-                  Usuários
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="overflow-x-auto md:col-span-5">
+        <div className="overflow-x-auto md:col-span-6">
           <h1 className="mb-4 grid-cols-1 text-center card text-blue-700 text-3xl ">
             Usuários cadastrados
           </h1>
@@ -135,23 +102,21 @@ function AdminUsersScreen() {
                       <td className="p-5">{user.lastName}</td>
                       <td className="p-5">{user.email}</td>
                       <td className="p-5">{user.isAdmin ? "Adm" : "Comum"}</td>
-                      <div className="text-white text-center flex">
-                        <td className="p-5">
-                          <Link href={`/admin/user/${user._id}`} passHref>
-                            <button className="bg-blue-800 border border-solid border-gray-300 w-15">
-                              Editar
-                            </button>
-                          </Link>
-                          &nbsp;
-                          <button
-                            type="button"
-                            className="bg-blue-800 hover:bg-red-600 border border-solid border-gray-300 w-25"
-                            onClick={() => deleteHandler(user._id)}
-                          >
-                            Deletar
+                      <td className="p-5">
+                        <Link href={`/admin/user/${user._id}`} passHref>
+                          <button className="bg-blue-800 border hover:bg-green-600 text-white border-solid border-gray-300 w-15">
+                            Editar
                           </button>
-                        </td>
-                      </div>
+                        </Link>
+                        &nbsp;
+                        <button
+                          type="button"
+                          className="bg-blue-800 hover:bg-red-600 text-white border border-solid border-gray-300 w-25"
+                          onClick={() => deleteHandler(user._id)}
+                        >
+                          Deletar
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>

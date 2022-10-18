@@ -4,7 +4,6 @@ import Product from "../../../../../models/Product";
 
 const handler = async (req, res) => {
   const session = await getSession({ req });
-
   if (!session || (session && !session.user.isAdmin)) {
     return res.status(401).send("Acesse sua conta!");
   }

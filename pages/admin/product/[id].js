@@ -80,12 +80,14 @@ export default function AdminProductEditScreen() {
         dispatch({ type: "FETCH_SUCCESS" });
         setValue("name", data.name);
         setValue("slug", data.slug);
+        setValue("title", data.title);
         setValue("price", data.price);
         setValue("image", data.image);
         setValue("category", data.category);
         setValue("publisher", data.publisher);
         setValue("countInStock", data.countInStock);
         setValue("description", data.description);
+        setValue("gender", data.gender);
       } catch (err) {
         dispatch({ type: "FETCH_FAIL", payload: getError(err) });
       }
@@ -96,24 +98,28 @@ export default function AdminProductEditScreen() {
   const submitHandler = async ({
     name,
     slug,
+    title,
     price,
     category,
     image,
     publisher,
     countInStock,
     description,
+    gender,
   }) => {
     try {
       dispatch({ type: "UPDATE_REQUEST" });
       await axios.put(`/api/admin/products/${productId}`, {
         name,
         slug,
+        title,
         price,
         category,
         image,
         publisher,
         countInStock,
         description,
+        gender,
       });
       dispatch({ type: "UPDATE_SUCCESS" });
       toast.success("Produto atualizado com sucesso!");
@@ -170,26 +176,49 @@ export default function AdminProductEditScreen() {
               className="mx-auto text-xl p-10 w-full card "
               onSubmit={handleSubmit(submitHandler)}
             >
-              <div className="mb-4">
-                <label htmlFor="name" className="text-2xl text-blue-700">
-                  Nome
-                </label>
-                <input
-                  type="text"
-                  className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
-                  id="name"
-                  autoFocus
-                  {...register("name", {
-                    required: "Por favor, digite o nome do produto",
-                    minLength: {
-                      value: 3,
-                      message: "Por favor, digite um nome válido",
-                    },
-                  })}
-                />
-                {errors.name && (
-                  <div className="text-red-600">{errors.name.message}</div>
-                )}
+              <div className="flex justify-between gap-5">
+                <div className="mb-4 w-full">
+                  <label htmlFor="name" className="text-2xl text-blue-700">
+                    Nome
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
+                    id="name"
+                    autoFocus
+                    {...register("name", {
+                      required: "Por favor, digite o nome do produto",
+                      minLength: {
+                        value: 3,
+                        message: "Por favor, digite um nome válido",
+                      },
+                    })}
+                  />
+                  {errors.name && (
+                    <div className="text-red-600">{errors.name.message}</div>
+                  )}
+                </div>
+                <div className="mb-4 w-full">
+                  <label htmlFor="title" className="text-2xl text-blue-700">
+                    Título
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
+                    id="title"
+                    autoFocus
+                    {...register("title", {
+                      required: "Por favor, digite o título do produto",
+                      minLength: {
+                        value: 3,
+                        message: "Por favor, digite um título válido",
+                      },
+                    })}
+                  />
+                  {errors.title && (
+                    <div className="text-red-600">{errors.title.message}</div>
+                  )}
+                </div>
               </div>
               <div className="mb-4">
                 <label htmlFor="slug" className="text-2xl text-blue-700">
@@ -276,6 +305,32 @@ export default function AdminProductEditScreen() {
                   {errors.category && (
                     <div className="text-red-600">
                       {errors.category.message}
+                    </div>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="gender" className="text-2xl text-blue-700">
+                    Gênero
+                  </label>
+                  <select
+                    className="form-control block w-52 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
+                    id="gender"
+                    {...register("gender", {
+                      required: "Por favor, escolha pelo menos um gênero",
+                    })}
+                  >
+                    <option id="gender">FPS</option>
+                    <option id="gender">Battle Royale</option>
+                    <option id="gender">FPA</option>
+                    <option id="gender">PVP</option>
+                    <option id="gender">RTS</option>
+                    <option id="gender">MOBA</option>
+                    <option id="gender">RPG</option>
+                    <option id="gender">MMORPG</option>
+                  </select>
+                  {errors.gender && (
+                    <div className="text-red-600">
+                      {errors.gender.message}
                     </div>
                   )}
                 </div>

@@ -12,6 +12,7 @@ import { signOut, useSession } from "next-auth/react";
 import { Store } from "../utils/Store";
 import { ToastContainer } from "react-toastify";
 import { useRef } from "react";
+import DashboardLinks from "./DashboardLinks";
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -156,7 +157,7 @@ export default function Layout({ title, children }) {
                         <Menu.Item>
                           <DropdownLink
                             className="dropdown-link m-2 rounded-md"
-                            href="/admin/dashBoard"
+                            href="/admin/dashboard"
                           >
                             Dashboard
                           </DropdownLink>
@@ -186,6 +187,13 @@ export default function Layout({ title, children }) {
             </div>
           </nav>
         </header>
+        {session?.user.isAdmin ?
+          (
+            <session className="fixed top-1/3 z-50">
+              <DashboardLinks />
+            </session>
+          ) : ("")
+        }
         <main>
           <div className="container min-h-screen m-auto mt-8 px-0">
             {children}

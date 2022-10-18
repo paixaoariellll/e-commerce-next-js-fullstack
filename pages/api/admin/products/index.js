@@ -8,6 +8,7 @@ const handler = async (req, res) => {
   if (!session || !session.user.isAdmin) {
     return res.status(401).send("Acesse sua conta!");
   }
+
   // const { user } = session
   if (req.method === "GET") {
     return getHandler(req, res);
@@ -22,16 +23,18 @@ const handler = async (req, res) => {
 const postHandler = async (req, res) => {
   await db.connect();
   const newProduct = new Product({
-    name: "simples nome",
-    slug: "simples-nome-" + Number.parseInt(Math.random() * 100 + 1),
+    name: "Simples nome",
+    slug: "Simples-nome-" + Number.parseInt(Math.random() * 100 + 1),
+    title: "Simples título",
     image: "/img/game.jpg",
-    price: 0,
+    price: 50,
     category: "Xbox",
-    publisher: "simples distribuidora",
-    countInStock: 0,
-    description: "Produto gerado pela post handler feita por Ariel Paixão",
+    publisher: "Simples distribuidora",
+    countInStock: 1,
+    description: "Produto gerado pela 'POST-HANDLER' feita pelo grupo GameOn - 2022",
     rating: 0,
     numReviews: 0,
+    gender: "Ação",
   });
   const product = await newProduct.save();
   await db.disconnect();
