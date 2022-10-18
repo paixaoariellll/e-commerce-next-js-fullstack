@@ -138,21 +138,19 @@ export default function ProdcutsScreen() {
                       <td className=" p-5 ">{product.countInStock}</td>
                       <td className=" p-5 ">{product.rating}</td>
                       <td className=" p-5 ">
-                        <div className="text-white text-center flex">
-                          <Link href={`/admin/product/${product._id}`}>
-                            <button className="bg-blue-800 border border-solid border-gray-300 w-15">
-                              Editar
-                            </button>
-                          </Link>
-                          {" "}
-                          <button
-                            onClick={() => deleteHandler(product._id)}
-                            type="button"
-                            className="bg-blue-800 hover:bg-red-600 border border-solid border-gray-300 w-25"
-                          >
-                            Deletar
+                        <Link href={`/admin/product/${product._id}`}>
+                          <button className="bg-blue-800 hover:bg-green-600 border text-white border-solid border-gray-300 w-15">
+                            Editar
                           </button>
-                        </div>
+                        </Link>
+                        {" "}
+                        <button
+                          onClick={() => deleteHandler(product._id)}
+                          type="button"
+                          className="bg-blue-800 hover:bg-red-600 text-white border border-solid border-gray-300 w-25"
+                        >
+                          Deletar
+                        </button>
                       </td>
                     </tr>
                   ))}
