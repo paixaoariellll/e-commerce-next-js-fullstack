@@ -57,7 +57,8 @@ function CartScreen() {
                   <tr className="text-center text-2xl text-blue-700">
                     <th className="p-5 text-center">Item</th>
                     <th className="p-5 text-center">Quantidade</th>
-                    <th className="p-5 text-center">Preço</th>
+                    <th className="p-5 text-center">Preço Por Unidade</th>
+                    <th className="p-5 text-center">Preço Total</th>
                     <th className="p-5 text-center">Remover</th>
                   </tr>
                 </thead>
@@ -91,8 +92,11 @@ function CartScreen() {
                           ))}
                         </select>
                       </td>
-                      <td className="p-5 pointer-events-none  text-blue-800 text-center">
+                      <td className="p-5 pointer-events-none text-blue-800 text-center">
                         $&nbsp;{item.price}
+                      </td>
+                      <td className="p-5 pointer-events-none text-blue-800 text-center">
+                        $&nbsp;{item.price * item.quantity}
                       </td>
                       <td className="p-5 text-center">
                         <button
