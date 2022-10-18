@@ -216,7 +216,7 @@ export default function Layout({ title, children }) {
         ref={rocketRef}
         onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}
         className=" scroll-top scroll-to-target open">
-        <i className="ri-rocket-2-fill relative -top-2 -left-1"></i>
+        <i className="ri-arrow-up-line relative -top-2 -left-1"></i>
       </button>
     </>
   );

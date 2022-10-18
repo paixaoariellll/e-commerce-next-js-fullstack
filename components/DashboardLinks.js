@@ -13,7 +13,7 @@ export default function DashboardLinks() {
                         <span><i className="ri-dashboard-line text-blue-700"></i></span>
                     </Link>
                 </li>
-                <li className="card p-2 hover:bg-blue-10 cursor-pointer">
+                <li className="card p-2 hover:bg-blue-100 cursor-pointer">
                     <Link href="/admin/orders">
                         <span><i className="ri-file-list-3-line text-blue-700"></i></span>
                     </Link>

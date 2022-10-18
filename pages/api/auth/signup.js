@@ -7,7 +7,7 @@ async function handler(req, res) {
     return;
   }
 
-  const { name, lastName, email, password } = req.body;
+  const { name, image, lastName, email, password } = req.body;
 
   if (
     !name ||
@@ -34,6 +34,7 @@ async function handler(req, res) {
   const newUser = new User({
     name,
     lastName,
+    image,
     email,
     password: bcryptjs.hashSync(password),
     isAdmin: false,
@@ -45,6 +46,7 @@ async function handler(req, res) {
     message: "Usuário criado com sucesso!",
     _id: user._id,
     name: user.name,
+    image: user.image,
     lastName: user.lastName,
     email: user.email,
     isAdmin: user.isAdmin,
