@@ -133,39 +133,7 @@ export default function AdminProductEditScreen() {
   return (
     <Layout title={`Editar produto ${productId}`}>
       <div className="grid md:grid-cols-4 md:gap-5">
-        <div className="card text-2xl p-5">
-          <ul>
-            <li>
-              <Link href="/admin/dashBoard">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Visão Geral
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin/orders">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Pedidos
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin/products">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Produtos
-                </span>
-              </Link>
-            </li>
-            <li>
-              <Link href="/admin/users">
-                <span className="cursor-pointer text-center text-blue-700 hover:underline">
-                  Usuários
-                </span>
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="md:col-span-3">
+        <div className="md:col-span-4">
           <h1 className="mb-4 text-center py-2 card text-blue-700 text-2xl">{`Editar Produto: ${productId}`}</h1>
           {loading ? (
             <div>Carregando...</div>
@@ -289,6 +257,47 @@ export default function AdminProductEditScreen() {
                   )}
                 </div>
                 <div className="mb-4">
+                  <label htmlFor="publisher" className="text-2xl text-blue-700">
+                    Distribuidora
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
+                    id="publisher"
+                    {...register("publisher", {
+                      required: "Por favor, digite o nome da Distribuidora",
+                    })}
+                  />
+                  {errors.publisher && (
+                    <div className="text-red-600">
+                      {errors.publisher.message}
+                    </div>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label
+                    htmlFor="countInStock"
+                    className="text-2xl text-blue-700"
+                  >
+                    Quantidade
+                  </label>
+                  <input
+                    type="number"
+                    className="form-control block w-52 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
+                    id="countInStock"
+                    {...register("countInStock", {
+                      required: "Please enter countInStock",
+                    })}
+                  />
+                  {errors.countInStock && (
+                    <div className="text-red-600">
+                      {errors.countInStock.message}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="flex justify-between">
+                <div className="mb-4">
                   <label htmlFor="category" className="text-2xl text-blue-700">
                     Categoria
                   </label>
@@ -331,45 +340,6 @@ export default function AdminProductEditScreen() {
                   {errors.gender && (
                     <div className="text-red-600">
                       {errors.gender.message}
-                    </div>
-                  )}
-                </div>
-                <div className="mb-4">
-                  <label htmlFor="publisher" className="text-2xl text-blue-700">
-                    Distribuidora
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
-                    id="publisher"
-                    {...register("publisher", {
-                      required: "Por favor, digite o nome da Distribuidora",
-                    })}
-                  />
-                  {errors.publisher && (
-                    <div className="text-red-600">
-                      {errors.publisher.message}
-                    </div>
-                  )}
-                </div>
-                <div className="mb-4">
-                  <label
-                    htmlFor="countInStock"
-                    className="text-2xl text-blue-700"
-                  >
-                    Quantidade
-                  </label>
-                  <input
-                    type="number"
-                    className="form-control block w-52 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
-                    id="countInStock"
-                    {...register("countInStock", {
-                      required: "Please enter countInStock",
-                    })}
-                  />
-                  {errors.countInStock && (
-                    <div className="text-red-600">
-                      {errors.countInStock.message}
                     </div>
                   )}
                 </div>

@@ -33,12 +33,14 @@ const putHandler = async (req, res) => {
   if (product) {
     product.name = req.body.name;
     product.slug = req.body.slug;
+    product.title = req.body.title;
     product.price = req.body.price;
     product.category = req.body.category;
     product.image = req.body.image;
     product.publisher = req.body.publisher;
     product.countInStock = req.body.countInStock;
     product.description = req.body.description;
+    product.gender = req.body.gender;
     await product.save();
     await db.disconnect();
     res.send({ message: "Produto cadastrado com sucesso!" });

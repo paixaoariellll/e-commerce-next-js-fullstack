@@ -125,11 +125,12 @@ export default function ProductScreen(props) {
           </div>
           <div className="col-span-3">
             <ul>
-              <li className="text-center text-sm px-4 shadow-md bg-white rounded-xl m-1 cursor-text">
-                <thead className="flex text-xl justify-center text-center w-full">
+              <li className="text-2xl">{product.title}</li>
+              <li className="text-sm p-4 text-left shadow-md border border-solid border-gray-300 bg-white rounded-xl m-1 cursor-text">
+                <span className="flex text-2xl  py-4 justify-center text-center w-full">
                   Descrição
-                </thead>
-                <span className="px-5 text-lg">{product.description}</span>
+                </span>
+                <span className="text-lg">{product.description}</span>
               </li>
             </ul>
           </div>
