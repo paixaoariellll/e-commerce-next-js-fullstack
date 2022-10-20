@@ -200,6 +200,11 @@ export default function Layout({ title, children }) {
           </div>
         </main>
         <footer className="flex bg-white justify-center items-center h-10 shadow-md">
+          <div className="flex justify-between">
+            <Link href="/about">
+              <a>Sobre nós</a>
+            </Link>
+          </div>
           <p>
             Copyright &copy; {year}, Game
             <span className="bg-blue-800 rounded-t-sm text-white">On</span>.
