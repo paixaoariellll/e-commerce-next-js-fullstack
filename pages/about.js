@@ -6,7 +6,7 @@ import TeamSvg from '../public/img/Team.svg'
 export default function AboutScreen() {
     return (
         <Layout>
-            <section className="grid mb-14 grid-cols-1 md:grid-cols-1 bg_img lg:grid-cols-2 sm:grid-cols-1 gap-4">
+            <section className="grid mb-14 grid-cols-1 md:grid-cols-1 bg_img lg:grid-cols-2 sm:grid-cols-1 gap-4 container">
                 <div className="col-span-1 text-center">
                     <Image
                         src={TeamSvg}
@@ -22,8 +22,8 @@ export default function AboutScreen() {
                         <div className='mb-5'>
                             <span className='text-3xl p-5'>Nós somos</span>
                         </div>
-                        <h1 className="text-4xl lg:ml-10 lg:text-left md:text-center sm:text-center text-center  text-slate-600">
-                            Alunos da Faculdade de Tecnologia de Guaratinguetá
+                        <h1 className="flex flex-col text-4xl lg:ml-10 lg:text-left md:text-center sm:text-center text-center text-slate-600">
+                            <span> Alunos da Faculdade de Tecnologia de Guaratinguetá</span>
                             <span className="text-blue-800 text-5xl"> Análise e Desenvolvimento de Sistemas</span>
                         </h1>
                         <div className="text-3xl p-5">
