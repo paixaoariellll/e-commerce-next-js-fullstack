@@ -125,11 +125,11 @@ export default function ProfileScreen() {
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-800  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-700 focus:border-blue-600 focus:outline-none"
                     id="email"
                     {...register("email", {
-                      required: "Please enter email",
+                      required: "Por favor, digite seu e-mail",
                       pattern: {
                         value:
                           /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/i,
-                        message: "Please enter valid email",
+                        message: "Por favor, digite um e-mail válido",
                       },
                     })}
                   />

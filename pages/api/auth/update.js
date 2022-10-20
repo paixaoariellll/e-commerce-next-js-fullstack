@@ -7,9 +7,7 @@ async function handler(req, res) {
   if (req.method !== "PUT") {
     return res.status(400).send({ message: `${req.method} Não suportado.` });
   }
-
   const session = await getSession({ req });
-
   if (!session) {
     return res.status(401).send({
       message: "Acesse sua conta!",
@@ -22,8 +20,7 @@ async function handler(req, res) {
   if (
     !name ||
     !lastName ||
-    !email ||
-    !email.includes("@") ||
+    !email || !email.includes("@") ||
     (password && password.trim().length < 7)
   ) {
     res.status(422).json({

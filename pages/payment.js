@@ -43,7 +43,7 @@ export default function PaymentScreen() {
             Método de Pagamento
           </h1>
           <div className="flex items-center flex-col">
-            {["PayPal", "Stripe", "Boleto", "Pix", "Dinheiro na Entrega"].map(
+            {["PayPal", "Stripe", "Boleto", "Pix"].map(
               (payment) => (
                 <div
                   key={payment}
