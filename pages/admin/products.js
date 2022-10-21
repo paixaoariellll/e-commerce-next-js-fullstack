@@ -139,7 +139,7 @@ export default function ProdcutsScreen() {
                       <td className=" p-5 ">{product.rating}</td>
                       <td className=" p-5 ">
                         <Link href={`/admin/product/${product._id}`}>
-                          <button className="bg-blue-800 hover:bg-green-600 border text-white border-solid border-gray-300 w-15">
+                          <button className="bg-blue-800 border text-white border-solid border-gray-300 w-15">
                             Editar
                           </button>
                         </Link>
