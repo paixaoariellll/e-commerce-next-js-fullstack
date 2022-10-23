@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Image from "next/image";
+import noImage from "../../../public/img/M.svg"
 
 function reducer(state, action) {
   switch (action.type) {
@@ -63,7 +64,7 @@ export default function AdminProductEditScreen() {
       dispatch({ type: "UPLOAD_SUCCESS" });
       setValue(imageField, data.secure_url);
       setImageSrc(data.secure_url);
-      toast.success("Arquivo carregado com sucesso!");
+      toast.success("Carregamento realizado com sucesso!");
     } catch (err) {
       dispatch({ type: "UPLOAD_FAIL", payload: getError(err) });
       toast.error(getError(err));
@@ -119,6 +120,7 @@ export default function AdminProductEditScreen() {
         price,
         category,
         image,
+        images,
         publisher,
         countInStock,
         description,
@@ -132,7 +134,6 @@ export default function AdminProductEditScreen() {
       toast.error(getError(err));
     }
   };
-
   return (
     <Layout title={`Editar produto ${productId}`}>
       <div className="grid md:grid-cols-4 md:gap-5">
@@ -230,9 +231,9 @@ export default function AdminProductEditScreen() {
                     <div className="text-red-600">{errors.image.message}</div>
                   )}
                 </div>
-                <div>
+                <div className="card p-5">
                   <Image
-                    src={imageSrc === "" ? "Você ainda não carregou a " : imageSrc}
+                    src={imageSrc ? imageSrc : noImage}
                     alt="imagem"
                     width={300}
                     height={300}
@@ -245,6 +246,7 @@ export default function AdminProductEditScreen() {
                     className='text-2xl text-blue-700'>Carregar imagem</label>
                   <input
                     type="file"
+                    multiple
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="imageFile"
                     onChange={uploadHandler}
@@ -393,7 +395,7 @@ export default function AdminProductEditScreen() {
           )}
         </div>
       </div>
-    </Layout>
+    </Layout >
   );
 }
 
