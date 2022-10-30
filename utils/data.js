@@ -50,6 +50,7 @@ const data = {
       countInStock: 1,
       publisher: "343 e Microsoft",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 2",
@@ -64,6 +65,7 @@ const data = {
       countInStock: 5,
       publisher: "Nintendo",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 3",
@@ -78,6 +80,7 @@ const data = {
       countInStock: 7,
       publisher: "Eletronic Arts",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 4",
@@ -92,6 +95,7 @@ const data = {
       countInStock: 3,
       publisher: "Rockstar Games",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 5",
@@ -106,6 +110,7 @@ const data = {
       countInStock: 2,
       publisher: "Rockstar Games",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 6",
@@ -120,6 +125,7 @@ const data = {
       countInStock: 8,
       publisher: "Sony",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 7",
@@ -134,6 +140,7 @@ const data = {
       countInStock: 0,
       publisher: "Eletronic Arts",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 8",
@@ -148,6 +155,7 @@ const data = {
       countInStock: 0,
       publisher: "Eletronic Arts",
       gender: "Ação",
+      sellCount: 0,
     },
     {
       name: "Game 9",
@@ -162,6 +170,7 @@ const data = {
       countInStock: 1,
       publisher: "Eletronic Arts",
       gender: "Ação",
+      sellCount: 0,
     },
   ],
 };

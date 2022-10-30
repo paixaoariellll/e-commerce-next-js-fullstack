@@ -33,6 +33,7 @@ const postHandler = async (req, res) => {
     countInStock: 1,
     description: "Produto gerado pela 'POST-HANDLER' feita pelo grupo GameOn - 2022",
     rating: 0,
+    sellCount: 0,
     numReviews: 0,
     gender: "Ação",
   });

@@ -2,6 +2,7 @@
   "name": "e-commerce-nextjs-fullstack",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -27,6 +28,7 @@
     "react": "18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.36.0",
     "react-toastify": "^9.0.8",
     "remixicon": "^2.5.0"

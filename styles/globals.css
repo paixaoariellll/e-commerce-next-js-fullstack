@@ -59,8 +59,9 @@
   --secondary-color: #fff;
   --body-bg: #f5f7fa;
   --text-color: #fff;
-  --gray: #1a202c;
+  --gray: hwb(220 10% 83%);
   --gray-light: #cbd5e0;
+  --text-blue-800: rgb(30 64 175)
 }
 
 html,
@@ -181,6 +182,14 @@ button:hover,
 
 .vertical_img {
   animation: updown 3s linear infinite;
+}
+
+.selected-images {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  margin: 16px;
+  background-color: antiquewhite;
 }
 
 @keyframes updown {

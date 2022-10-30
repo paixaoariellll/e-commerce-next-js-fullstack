@@ -120,7 +120,7 @@ export default function AdminProductEditScreen() {
         price,
         category,
         image,
-        images,
+        sellCount,
         publisher,
         countInStock,
         description,
