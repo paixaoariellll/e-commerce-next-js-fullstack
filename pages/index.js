@@ -25,11 +25,11 @@ export default function Home({ products }) {
 
   return (
     <Layout title="Home">
-      <h1 className="text-5xl text-blue-700 my-5 card p-5 text-center w-full">
+      {/*       <h1 className="text-5xl text-blue-700 my-5 card p-5 text-center w-full">
         {" "}
         Jogos Em Destaque
       </h1>
-      <Hero />
+      <Hero /> */}
       <h1 className="text-5xl text-blue-700 my-5 card p-5 text-center w-full">
         {" "}
         Games disponíveis

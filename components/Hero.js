@@ -1,4 +1,4 @@
-import { Carousel } from '@mantine/carousel';
+/* import { Carousel } from '@mantine/carousel';
 import React from 'react';
 import { useRef } from 'react';
 import Autoplay from 'embla-carousel-autoplay';
@@ -62,5 +62,13 @@ export default function HeroScreen() {
                 </Carousel>
             </div>
         </div>
+    )
+}
+ */
+import React from 'react'
+
+export default function Hero() {
+    return (
+        <div>Hero</div>
     )
 }
