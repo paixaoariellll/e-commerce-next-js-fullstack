@@ -62,7 +62,7 @@ export default function PlaceOrderScreen() {
   return (
     <Layout title="Revisão do Pedido">
       <CheckoutWizard activeStep={3} />
-      <h1 className="mb-4 text-center text-blue-800 text-4xl">
+      <h1 className="mb-4 text-center text-blue-800 text-5xl">
         Revisão do Pedido
       </h1>
       {cartItems.length === 0 ? (

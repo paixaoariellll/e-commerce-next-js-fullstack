@@ -199,7 +199,7 @@ export default function Layout({ title, children }) {
             {children}
           </div>
         </main>
-        <footer className="flex bg-white justify-center items-center h-10 shadow-md">
+        <footer className="flex bg-white  gap-x-5 justify-center items-center h-10 shadow-md">
           <div className="flex justify-between">
             <Link href="/about">
               <a>Sobre nós</a>

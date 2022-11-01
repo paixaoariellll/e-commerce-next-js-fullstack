@@ -55,7 +55,7 @@ export default function ProfileScreen() {
           className="grid md:grid-cols-6 md:gap-5"
           onSubmit={handleSubmit(submitHandler)}
         >
-          <h1 className="col-span-6 card py-2 mb-4 text-center text-blue-800 text-4xl">
+          <h1 className="col-span-6 card py-2 mb-4 text-center text-blue-800 text-5xl">
             Atualizar Perfil
           </h1>
           <div className="col-span-3">

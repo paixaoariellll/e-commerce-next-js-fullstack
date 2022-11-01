@@ -39,7 +39,7 @@ export default function PaymentScreen() {
       <CheckoutWizard activeStep={2} />
       <div className="card w-full">
         <form className="mx-auto max-w-screen-md " onSubmit={submitHandler}>
-          <h1 className="my-4 text-center text-blue-800 text-4xl">
+          <h1 className="my-4 text-center text-blue-800 text-5xl">
             Método de Pagamento
           </h1>
           <div className="flex items-center flex-col">

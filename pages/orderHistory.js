@@ -40,7 +40,7 @@ function OrderHistoryScreen() {
 
   return (
     <Layout title="Histórico">
-      <h1 className="mb-4 text-center text-blue-800 text-4xl bg-white shadow-md  shadow-gray-400 rounded-xl">
+      <h1 className="mb-4 text-center text-blue-800 text-5xl bg-white shadow-md  shadow-gray-400 rounded-xl">
         Histórico de Compras
       </h1>
       {loading ? (

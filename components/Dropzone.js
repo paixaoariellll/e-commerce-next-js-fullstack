@@ -69,15 +69,15 @@ export default function Dropzone() {
                     {images.map((image, index) =>
                         <div key={index}
                             className="flex justify-between">
-
                             <Image
                                 src={image}
+                                alt="Imagem"
                                 width={100}
                                 height={100}
                                 className="rounded-lg"
                                 unoptimized
                             />
-
+                            <span>❌</span>
                         </div>
                     )}
                 </div>

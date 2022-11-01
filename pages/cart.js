@@ -32,7 +32,7 @@ function CartScreen() {
 
   return (
     <Layout title="Carrinho">
-      <h1 className="mb-5 text-4xl text-blue-700 text-center card">
+      <h1 className="mb-5 text-5xl text-blue-700 text-center card">
         Carrinho de compras
       </h1>
       {cartItems.length === 0 ? (

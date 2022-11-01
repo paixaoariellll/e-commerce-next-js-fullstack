@@ -30,7 +30,8 @@ app.post('/upload', async (req, res, next) => {
         cloudinary.uploader.upload(image,
           {
             folder: 'GameOn'
-          })
+          }
+        )
       )
     });
     const response = await Promise.all(promises)
@@ -57,7 +58,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 @ http://localhost:${PORT}`));
 
-const public_id = "GameOn/ziauyulqllz0r9o6rsjm"
+const public_id = "GameOn/dsbxvkdasvu78k1rgddh"
 
 cloudinary.uploader
   .destroy(public_id)

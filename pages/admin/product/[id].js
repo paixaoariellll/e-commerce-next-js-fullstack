@@ -87,6 +87,7 @@ export default function AdminProductEditScreen() {
         setValue("title", data.title);
         setValue("price", data.price);
         setValue("image", data.image);
+        setValue("sellCount", data.sellCount);
         setValue("category", data.category);
         setValue("publisher", data.publisher);
         setValue("countInStock", data.countInStock);
@@ -106,6 +107,7 @@ export default function AdminProductEditScreen() {
     price,
     category,
     image,
+    sellCount,
     publisher,
     countInStock,
     description,

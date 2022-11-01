@@ -18,21 +18,24 @@ export default function ProductScreen(props) {
   if (!product) {
     return (
       <Layout title="Produto não encontrado">
-        <div className="text-3xl flex items-center flex-col text-center">
-          <h1 className="text-blue-800">Parece que não há nada por aqui!</h1>
-          <div className="flex text-center">
-            <Image
-              src={imgErro}
-              alt="Um animal fantástico segura e morde o número zero do erro 404."
-              width={500}
-              height={500}
-            />
-            <Link href="/">
-              <button className="bg-zinc-800 text-white hover:bg-red-800">
-                {" "}
-                Voltar
-              </button>
-            </Link>
+        <div className="card flex items-center flex-col ">
+          <div className="text-5xl text-center">
+            <h1 className="text-blue-800">Parece que não há nada por aqui!</h1>
+            <div className="flex text-center">
+              <Image
+                src={imgErro}
+                alt="Um animal fantástico segura e morde o número zero do erro 404."
+                width={500}
+                height={500}
+                className="vertical_img"
+              />
+              <Link href="/">
+                <button className="bg-zinc-800 error_404 text-white hover:bg-red-800">
+                  {" "}
+                  Voltar
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </Layout>

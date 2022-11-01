@@ -42,7 +42,7 @@ export default function AdminOrderScreen() {
     <Layout title="Pedidos">
       <div className="grid md:grid-cols-6 md:gap-5">
         <div className="overflow-x-auto md:col-span-6">
-          <h1 className="mb-4 text-center card text-blue-700 text-4xl">
+          <h1 className="mb-4 text-center card text-blue-700 text-5xl">
             Pedidos
           </h1>
           {loading ? (

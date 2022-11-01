@@ -22,7 +22,7 @@ export default function AboutScreen() {
                         <div className='mb-5'>
                             <span className='text-3xl p-5'>Nós somos</span>
                         </div>
-                        <h1 className="flex flex-col text-4xl lg:ml-10 lg:text-left md:text-center sm:text-center text-center text-slate-600">
+                        <h1 className="flex flex-col text-5xl lg:ml-10 lg:text-left md:text-center sm:text-center text-center text-slate-600">
                             <span> Alunos da Faculdade de Tecnologia de Guaratinguetá</span>
                             <span className="text-blue-800 text-5xl"> Análise e Desenvolvimento de Sistemas</span>
                         </h1>
