@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 export default function productItem({ product, addToCartHandler }) {
   return (
     <div className="card p-5 hover:-translate-y-2">
+      <p className="mb-2 ml-3 text-black">
+        Distribuidora: <span>{product.publisher}</span>
+      </p>
       <Link href={`/product/${product.slug}`}>
         <div className="cursor-pointer">
           <Image
@@ -22,9 +25,6 @@ export default function productItem({ product, addToCartHandler }) {
         <Link href={`/product/${product.slug}`}>
           <h2 className="text-2xl text-center text-blue-800">{product.name}</h2>
         </Link>
-        <p className="mb-2 ml-3 text-black">
-          Distribuidora: <span>{product.publisher}</span>{" "}
-        </p>
         <div className="text-center text-black text-md">
           Restam: <span>{product.countInStock}</span>{" "}
         </div>
