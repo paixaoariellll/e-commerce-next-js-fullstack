@@ -32,8 +32,6 @@ export default function HeroScreen() {
                         indicator: {
                             width: 100,
                             height: 10,
-                            color: 'red',
-                            backgroundColor: 'red',
                             transition: 'width 250ms ease-in-out',
                             '&[data-active]': {
                                 width: 300,
