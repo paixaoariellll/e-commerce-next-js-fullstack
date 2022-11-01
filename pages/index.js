@@ -6,7 +6,7 @@ import ProductItem from "../components/productItem";
 import { Store } from "../utils/Store";
 import { toast } from "react-toastify";
 import { useContext } from "react";
-import Hero from "../components/Hero";
+/* import Hero from "../components/Hero"; */
 
 export default function Home({ products }) {
   const { state, dispatch } = useContext(Store);
