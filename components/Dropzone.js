@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import image from '../public/img/image.svg';
+import { IoIosClose } from 'react-icons/io'
 
 export default function Dropzone() {
     const [images, setImages] = useState([]);
@@ -43,6 +44,7 @@ export default function Dropzone() {
     const fileRemove = (file) => {
         const updatedList = [...images];
         updatedList.splice(images.indexOf(file), 1);
+        toast.error("Imagem removida")
         setImages(updatedList);
     }
 
@@ -90,7 +92,9 @@ export default function Dropzone() {
                                             className="rounded-lg"
                                             unoptimized
                                         />
-                                        <span className='flex relative z-10 cursor-pointer' onClick={fileRemove} >❌</span>
+                                        <span className='flex relative z-10 cursor-pointer' onClick={fileRemove}>
+                                            <IoIosClose />
+                                        </span>
                                     </div>
                                 )}
                             </div>
