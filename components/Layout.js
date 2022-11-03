@@ -13,6 +13,8 @@ import { Store } from "../utils/Store";
 import { ToastContainer } from "react-toastify";
 import { useRef } from "react";
 import DashboardLinks from "./DashboardLinks";
+import { BsArrowUpCircleFill } from "react-icons/bs"
+import { AiOutlineShoppingCart } from "react-icons/ai"
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -103,16 +105,15 @@ export default function Layout({ title, children }) {
               <div className="menu flex gap-5"></div>
               <div className="flex">
                 <Link href="/cart">
-                  <div className="px-3 py-2 my-2 cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
+                  <div className="shadow border outline-none border-gray-300 shadow-gray-300 px-3 py-2 tranform-y-0.5 my-2 cursor-pointer flex text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
                     {cartItemsCount > 0 && (
                       <span
-                        style={{ color: "white", background: "red" }}
-                        className=" ml-1 rounded-full px-2 py-1 text-sm font-bold"
+                        className=" bg-red-600 text-white px-2 py-0.5 rounded-full h-fit translate-y-3 text-sm"
                       >
                         {cartItemsCount}
                       </span>
                     )}
-                    <i className="ri-shopping-cart-line"></i>
+                    <AiOutlineShoppingCart className="pt-0.5" />
                   </div>
                 </Link>
                 {status === "loading" ? (
@@ -134,7 +135,7 @@ export default function Layout({ title, children }) {
                         />
                       </div>
                     </Menu.Button>
-                    <Menu.Items className="absolute z-20 right-0 m-2 w-56 origin-top-right bg-white shadow-lg ">
+                    <Menu.Items className="absolute z-20 right-0 m-2 w-56 origin-top-right bg-white shadow-xl">
                       {!session.user.isAdmin && (
                         <Menu.Item>
                           <DropdownLink
@@ -220,8 +221,8 @@ export default function Layout({ title, children }) {
       <button
         ref={rocketRef}
         onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}
-        className=" scroll-top scroll-to-target open">
-        <i className="ri-arrow-up-line relative -top-2 -left-1"></i>
+        className="scroll-top scroll-to-target open hover:bg-white hover:text-blue-700">
+        <BsArrowUpCircleFill className="relative -left-1" />
       </button>
     </>
   );

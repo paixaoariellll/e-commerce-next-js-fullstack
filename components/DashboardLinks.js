@@ -1,5 +1,9 @@
 import Link from "next/link";
-import React from "react"
+import React from "react";
+import { FaUsers } from 'react-icons/fa'
+import { FaClipboardList } from 'react-icons/fa'
+import { BsFillBagCheckFill } from 'react-icons/bs'
+import { MdDashboardCustomize } from 'react-icons/md'
 
 export default function DashboardLinks() {
     return (
@@ -10,23 +14,31 @@ export default function DashboardLinks() {
                 </li>
                 <hr className="mt-1 mb-4 w-full flex flex-1 border-t border border-t-blue-700 "></hr>
                 <Link href="/admin/dashboard">
-                    <li className="card px-2 py-0 cursor-pointer !rounded-full hover:bg-blue-700 text-blue-700 hover:text-white">
-                        <span className="relative top-0.5"><i className="ri-dashboard-line"></i></span>
+                    <li className="card px-2 py-2 cursor-pointer !rounded-sm hover:bg-blue-700 text-blue-700 hover:text-white">
+                        <span className="">
+                            <MdDashboardCustomize />
+                        </span>
                     </li>
                 </Link>
                 <Link href="/admin/orders">
-                    <li className="card px-2 py-0 cursor-pointer !rounded-full hover:bg-blue-700 text-blue-700 hover:text-white">
-                        <span className="relative top-0.5"><i className="ri-file-list-3-line"></i></span>
+                    <li className="card px-2 py-2 cursor-pointer !rounded-sm hover:bg-blue-700 text-blue-700 hover:text-white">
+                        <span className=" ">
+                            <FaClipboardList />
+                        </span>
                     </li>
                 </Link>
                 <Link href="/admin/products">
-                    <li className="card px-2 py-0 cursor-pointer !rounded-full hover:bg-blue-700 text-blue-700 hover:text-white">
-                        <span className="relative top-0.5"><i className="ri-list-unordered"></i></span>
+                    <li className="card px-2 py-2 cursor-pointer !rounded-sm hover:bg-blue-700 text-blue-700 hover:text-white">
+                        <span className="">
+                            <BsFillBagCheckFill />
+                        </span>
                     </li>
                 </Link>
                 <Link href="/admin/users">
-                    <li className="card px-2 py-0 cursor-pointer !rounded-full hover:bg-blue-700 text-blue-700 hover:text-white">
-                        <span className="relative top-0.5"><i className="ri-user-settings-line"></i></span>
+                    <li className="card px-2 py-2 cursor-pointer !rounded-sm hover:bg-blue-700 text-blue-700 hover:text-white">
+                        <span className=" ">
+                            <FaUsers />
+                        </span>
                     </li>
                 </Link>
             </ul>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import React from "react";
 import "remixicon/fonts/remixicon.css";
 import { toast } from "react-toastify";
+import { AiOutlineShoppingCart } from "react-icons/ai"
+
 
 export default function productItem({ product, addToCartHandler }) {
   return (
@@ -44,19 +46,19 @@ export default function productItem({ product, addToCartHandler }) {
           <div>
             {product.countInStock > 0 ? (
               <button
-                className="primary-button border border-solid border-gray-300"
+                className="primary-button !py-3 border border-solid border-gray-300"
                 type="button"
                 onClick={() => addToCartHandler(product)}
               >
-                <i className="ri-shopping-cart-line"></i>
+                < AiOutlineShoppingCart />
               </button>
             ) : (
               <button
-                className="primary-button bg-white hover:bg-current border border-solid cursor-not-allowed border-gray-300"
+                className="primary-button !py-3 bg-white hover:bg-current border border-solid cursor-not-allowed border-gray-300"
                 type="button"
                 onClick={() => toast.error("Produto indisponível")}
               >
-                <i className="ri-shopping-cart-line text-red-600"></i>
+                <AiOutlineShoppingCart className="text-red-600" />
               </button>
             )}
           </div>

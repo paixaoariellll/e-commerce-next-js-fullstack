@@ -7,6 +7,8 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import { toast } from "react-toastify";
+import { RiDeleteBin2Line } from "react-icons/ri"
+
 
 function CartScreen() {
   const router = useRouter();
@@ -101,10 +103,10 @@ function CartScreen() {
                       <td className="p-5 text-center">
                         <button
                           onClick={() => removeItemHandler(item)}
-                          className="bg-white text-blue-800 shadow-lg border border-solid border-gray-300"
+                          className="bg-white py-3 text-blue-800 shadow-lg border border-solid border-gray-300"
                         >
                           <div className="bg-none">
-                            <i className="ri-delete-bin-line"></i>
+                            <RiDeleteBin2Line />
                           </div>
                         </button>
                       </td>

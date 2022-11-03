@@ -77,14 +77,16 @@ export default function ProductScreen(props) {
         </div>
       </div>
       <div className="grid md:grid-cols-5 md:gap-4">
-        <div className="md:col-span-2 mb-5 shadow-gray-900 shadow-xl rounded border-8">
-          <Image
-            src={product.image}
-            alt="imagem do produto"
-            width={640}
-            height={640}
-            layout="responsive"
-          />
+        <div className="md:col-span-2">
+          <div className=" mb-5 shadow-gray-900 shadow-xl rounded border-8">
+            <Image
+              src={product.image}
+              alt="imagem do produto"
+              width={640}
+              height={640}
+              layout="responsive"
+            />
+          </div>
         </div>
         <div className="col-span-3">
           <div className="col-span-3 flex justify-between">
@@ -126,17 +128,19 @@ export default function ProductScreen(props) {
               </div>
             </div>
           </div>
-          <div className="col-span-3">
-            <ul>
-              <li className="text-2xl">{product.title}</li>
-              <li className="text-sm p-4 text-left shadow-md border border-solid border-gray-300 bg-white rounded-xl m-1 cursor-text">
-                <span className="flex text-2xl  py-4 justify-center text-center w-full">
-                  Descrição
-                </span>
-                <span className="text-lg">{product.description}</span>
-              </li>
-            </ul>
-          </div>
+        </div>
+        <div className="col-span-5">
+          <ul className="w-full bg-transparent flex items-center flex-col">
+            <h1 className="container shadow-md mt-4 rounded-xl bg-white w-fit text-blue-800 px-6 py-0 text-center text-4xl uppercase">
+              {product.title}
+            </h1>
+            <li className="text-sm p-4 text-left shadow-md border border-solid border-gray-300 bg-white rounded-xl m-1 cursor-text">
+              <span className="flex text-2xl  py-4 justify-center text-center w-full">
+                Descrição
+              </span>
+              <span className="text-lg">{product.description}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </Layout>

@@ -2,11 +2,11 @@ import axios from 'axios';
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import Suport from '../public/img/suport.svg';
+import { toast } from 'react-toastify';
+import image from '../public/img/image.svg';
 
 export default function Dropzone() {
     const [images, setImages] = useState([]);
-
     function handleUpload() {
         console.log("Enviando Arquivos...")
         axios.post('http://localhost:4000/upload', { images }).then(response => {
@@ -15,6 +15,9 @@ export default function Dropzone() {
             .catch(error => {
                 console.log(error.message)
             })
+        toast.success("Imagem enviada com sucesso!")
+        const reload = () => window.location.reload(false)
+        setTimeout(reload, 2000);
     }
 
     const onDrop = useCallback((acceptedFiles, rejectFiles) => {
@@ -37,6 +40,11 @@ export default function Dropzone() {
             'image/*': ['.jpeg', '.png', '.jpg', '.webp'],
         },
     });
+    const fileRemove = (file) => {
+        const updatedList = [...images];
+        updatedList.splice(images.indexOf(file), 1);
+        setImages(updatedList);
+    }
 
     return (
         <div className='card p-5 h-fit'>
@@ -46,47 +54,46 @@ export default function Dropzone() {
                 {isDragActive ? (
                     <span className='flex flex-col'>
                         <Image
-                            src={Suport}
-                            alt="Suporte"
-                            width={50}
-                            height={50}
-                            unoptimized></Image>
-                        <span> Solte os arquivos aqui!</span>
+                            src={image}
+                            width={100}
+                            heigth={100}
+                            unoptmized >
+                        </Image>
                     </span>
                 ) : (
                     <span className='flex flex-col'>
                         <Image
-                            src={Suport}
-                            alt="Suporte"
-                            width={50}
-                            height={50}
-                            unoptimized></Image>
+                            src={image}
+                            width={100}
+                            heigth={100}
+                            unoptmized >
+                        </Image>
                         <span> Clique aqui ou solte suas imagens aqui!</span>
                     </span>
                 )
                 }
-                <div className='flex gap-x-4'>
-                    {images.map((image, index) =>
-                        <div key={index}
-                            className="flex justify-between">
-                            <Image
-                                src={image}
-                                alt="Imagem"
-                                width={100}
-                                height={100}
-                                className="rounded-lg"
-                                unoptimized
-                            />
-                            <span>❌</span>
-                        </div>
-                    )}
-                </div>
             </div>
             {
                 images.length > 0 &&
                 <div className='mt-5 flex'>
                     {images.length > 0 &&
                         <div className='flex items-center'>
+                            <div className='flex gap-x-4'>
+                                {images.map((image, index) =>
+                                    <div key={index}
+                                        className="flex justify-between">
+                                        <Image
+                                            src={image}
+                                            alt="Imagem"
+                                            width={100}
+                                            height={100}
+                                            className="rounded-lg"
+                                            unoptimized
+                                        />
+                                        <span className='flex relative z-10 cursor-pointer' onClick={fileRemove} >❌</span>
+                                    </div>
+                                )}
+                            </div>
                             <button
                                 className='bg-blue-800 border text-white border-solid border-gray-300'
                                 onClick={handleUpload}>Enviar imagens
