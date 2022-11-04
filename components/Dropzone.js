@@ -10,15 +10,15 @@ export default function Dropzone() {
     const [images, setImages] = useState([]);
     function handleUpload() {
         console.log("Enviando Arquivos...")
-        axios.post('https://api.cloudinary.com/v1_1/dins1fpk3/upload', { images }).then(response => {
+        axios.post('https://gameon-e-commerce.vercel.app/testDropzone/GameOn/upload', { images }).then(response => {
             console.log(response.data)
         })
             .catch(error => {
                 console.log(error.message)
             })
         toast.success("Imagem enviada com sucesso!")
-        /* const reload = () => window.location.reload(false) */
-        /* setTimeout(reload, 2000); */
+        /*         const reload = () => window.location.reload(false)
+                setTimeout(reload, 2000); */
     }
 
     const onDrop = useCallback((acceptedFiles, rejectFiles) => {
