@@ -4,6 +4,7 @@ import React from "react";
 import "remixicon/fonts/remixicon.css";
 import { toast } from "react-toastify";
 import { AiOutlineShoppingCart } from "react-icons/ai"
+import { SiXbox, SiPlaystation } from "react-icons/si"
 
 
 export default function productItem({ product, addToCartHandler }) {
@@ -21,6 +22,12 @@ export default function productItem({ product, addToCartHandler }) {
             height={500}
             className="rounded card w-full"
           />
+          {
+            product.category == 'Xbox' ?
+              <SiXbox className="translate-y-8 absolute flex z-20 text-green-700" />
+              :
+              <SiPlaystation className="translate-y-8 absolute flex z-20 text-blue-700" />
+          }
         </div>
       </Link>
       <div className="mx-2">
@@ -46,7 +53,7 @@ export default function productItem({ product, addToCartHandler }) {
           <div>
             {product.countInStock > 0 ? (
               <button
-                className="primary-button !py-3 border border-solid border-gray-300"
+                className="primary-button border border-solid text-2xl border-gray-300 hover:bg-blue-700 hover:text-white"
                 type="button"
                 onClick={() => addToCartHandler(product)}
               >
@@ -54,11 +61,11 @@ export default function productItem({ product, addToCartHandler }) {
               </button>
             ) : (
               <button
-                className="primary-button !py-3 bg-white hover:bg-current border border-solid cursor-not-allowed border-gray-300"
+                className="primary-button bg-white hover:bg-current border border-solid cursor-not-allowed border-gray-300"
                 type="button"
                 onClick={() => toast.error("Produto indisponível")}
               >
-                <AiOutlineShoppingCart className="text-red-600" />
+                <AiOutlineShoppingCart className="text-red-600 text-2xl " />
               </button>
             )}
           </div>

@@ -4,13 +4,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import image from '../public/img/image.svg';
-import { IoIosClose } from 'react-icons/io'
+import { IoIosClose } from 'react-icons/io';
 
 export default function Dropzone() {
     const [images, setImages] = useState([]);
     function handleUpload() {
         console.log("Enviando Arquivos...")
-        axios.post('http://localhost:4000/upload', { images }).then(response => {
+        axios.post('https://gameon-e-commerce.vercel.app/testDropzone/upload', { images }).then(response => {
             console.log(response.data)
         })
             .catch(error => {

@@ -47,6 +47,7 @@ export default function PaymentScreen() {
               (payment) => (
                 <div
                   key={payment}
+                  onChange={() => setSelectedPaymentMethod(payment)}
                   className="mb-4 cursor-pointer text-xl p-2 w-1/3 card bg-white hover:text-white hover:bg-blue-800"
                 >
                   <input
@@ -55,7 +56,7 @@ export default function PaymentScreen() {
                     id={payment}
                     type="radio"
                     checked={selectedPaymentMethod === payment}
-                    onChange={() => setSelectedPaymentMethod(payment)}
+
                   />
                   <label className="p-2 cursor-pointer" htmlFor={payment}>
                     {payment}
@@ -68,13 +69,11 @@ export default function PaymentScreen() {
             <button
               onClick={() => router.push("/shipping")}
               type="button"
-              className="default-button"
+              className="primary-button"
             >
               Voltar
             </button>
-            <button className="bg-green-500 text-white hover:bg-green-800">
-              Avançar
-            </button>
+            <button className="primary-button">Avançar</button>
           </div>
         </form>
       </div>

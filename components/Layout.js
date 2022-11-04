@@ -13,8 +13,9 @@ import { Store } from "../utils/Store";
 import { ToastContainer } from "react-toastify";
 import { useRef } from "react";
 import DashboardLinks from "./DashboardLinks";
-import { BsArrowUpCircleFill } from "react-icons/bs"
-import { AiOutlineShoppingCart } from "react-icons/ai"
+import { BsArrowUpCircleFill } from "react-icons/bs";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { RiLoginBoxLine } from "react-icons/ri";
 
 export default function Layout({ title, children }) {
   const { status, data: session } = useSession();
@@ -102,18 +103,19 @@ export default function Layout({ title, children }) {
                   </div>
                 </Link>
               </div>
-              <div className="menu flex gap-5"></div>
-              <div className="flex">
+              <div className="flex gap-x-3">
                 <Link href="/cart">
-                  <div className="shadow border outline-none border-gray-300 shadow-gray-300 px-3 py-2 tranform-y-0.5 my-2 cursor-pointer flex text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
+                  <div className="shadow border outline-none border-gray-300 shadow-gray-300 px-3 py-2 my-2 cursor-pointer flex text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
                     {cartItemsCount > 0 && (
-                      <span
-                        className=" bg-red-600 text-white px-2 py-0.5 rounded-full h-fit translate-y-3 text-sm"
-                      >
-                        {cartItemsCount}
-                      </span>
+                      <ul className="flex items-center">
+                        <li
+                          className="bg-red-600 text-white px-2 py-1 rounded-full h-fit text-xs"
+                        >
+                          {cartItemsCount}
+                        </li>
+                      </ul>
                     )}
-                    <AiOutlineShoppingCart className="pt-0.5" />
+                    <AiOutlineShoppingCart />
                   </div>
                 </Link>
                 {status === "loading" ? (
@@ -177,10 +179,8 @@ export default function Layout({ title, children }) {
                   </Menu>
                 ) : (
                   <Link href="/login">
-                    <div className="px-3 py-2 my-2  cursor-pointer text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
-                      <div className="cursor-pointer">
-                        <i className="ri-login-box-line"></i>
-                      </div>
+                    <div className="shadow border outline-none border-gray-300 shadow-gray-300 px-3 py-2 tranform-y-0.5 my-2 cursor-pointer flex text-blue-800 bg-white rounded-lg hover:text-white hover:bg-blue-800 text-2xl">
+                      <RiLoginBoxLine />
                     </div>
                   </Link>
                 )}
@@ -222,7 +222,7 @@ export default function Layout({ title, children }) {
         ref={rocketRef}
         onClick={() => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }) }}
         className="scroll-top scroll-to-target open hover:bg-white hover:text-blue-700">
-        <BsArrowUpCircleFill className="relative -left-1" />
+        <BsArrowUpCircleFill className="relative -left-2 text-2xl" />
       </button>
     </>
   );

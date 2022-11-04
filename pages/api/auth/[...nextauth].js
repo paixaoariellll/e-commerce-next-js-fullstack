@@ -21,6 +21,9 @@ export default NextAuth({
     },
   },
   providers: [
+    /*     GithubProvider({
+    
+        }), */
     CredentialsProvider({
       async authorize(credentials) {
         await db.connect();
