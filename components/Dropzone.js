@@ -10,7 +10,7 @@ export default function Dropzone() {
     const [images, setImages] = useState([]);
     function handleUpload() {
         console.log("Enviando Arquivos...")
-        axios.post('https://gameon-e-commerce.vercel.app/upload', { images }).then(response => {
+        axios.post('https://api.cloudinary.com/v1_1/dins1fpk3/upload', { images }).then(response => {
             console.log(response.data)
         })
             .catch(error => {
