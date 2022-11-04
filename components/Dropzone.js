@@ -17,7 +17,7 @@ export default function Dropzone() {
                 console.log(error.message)
             })
         toast.success("Imagem enviada com sucesso!")
-        const reload = () => window.location.reload(false)
+        /* const reload = () => window.location.reload(false) */
         /* setTimeout(reload, 2000); */
     }
 
