@@ -10,7 +10,7 @@ export default function Dropzone() {
     const [images, setImages] = useState([]);
     function handleUpload() {
         console.log("Enviando Arquivos...")
-        axios.post('https://gameon-e-commerce.vercel.app/testDropzone/GameOn/upload', { images }).then(response => {
+        axios.post('https://gameon-e-commerce.vercel.app/GameOn/upload', { images }).then(response => {
             console.log(response.data)
         })
             .catch(error => {
