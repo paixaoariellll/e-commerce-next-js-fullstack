@@ -81,7 +81,7 @@ export default function ShippingScreen() {
           className="mx-auto p-3 justify-center max-w-screen-md container"
           onSubmit={handleSubmit(submitHandler)}
         >
-          <h1 className="mb-4 text-5xl text-center text-indigo-600">
+          <h1 className="mb-4 text-5xl text-center text-blue-800">
             Endereço
           </h1>
           <div className="mb-4 grid col-span-1">
@@ -232,7 +232,7 @@ export default function ShippingScreen() {
             </div>
           </div>
           <div className="mb-4 text-end">
-            <button className="primary-button">Avançar</button>
+            <button className="primary-button border border-solid border-gray-300">Avançar</button>
           </div>
         </form>
       </div>
