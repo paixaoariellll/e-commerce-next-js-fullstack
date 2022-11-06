@@ -1259,6 +1259,11 @@
     "merge2" "^1.4.1"
     "slash" "^3.0.0"
 
+"google-one-tap@^1.0.6":
+  "integrity" "sha512-sgusL6AmYCsTW/WVpJK0zxsjelPqJt/+3yNj4yHZTJOrHEDO251SR9xbTNB4wYK7nCM86/RaQdsD+8yUNQSQeQ=="
+  "resolved" "https://registry.npmjs.org/google-one-tap/-/google-one-tap-1.0.6.tgz"
+  "version" "1.0.6"
+
 "graceful-fs@^4.1.6", "graceful-fs@^4.2.0":
   "integrity" "sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA=="
   "resolved" "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.10.tgz"

@@ -8,8 +8,43 @@ import login from "../public/img/login.svg";
 import { getError } from "../utils/error";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-
+/* import googleOneTap from 'google-one-tap'; */
+/* import { useState } from "react"; */
+/* const options = {
+  client_id: process.env.CLIENT_ID,
+  auto_select: false,
+  cancel_on_tap_outside: false,
+  context: "signin",
+}; */
 export default function LoginScreen() {
+  /*   const [loginData, setLoginData] = useState(
+      localStorage.getItem("loginData")
+        ? JSON.parse(localStorage.getItem("loginData"))
+        : null
+    );
+    useEffect(() => {
+      if (!loginData) {
+        googleOneTap(options, async (response) => {
+          console.log(response);
+          const res = await fetch("/api/google-login", {
+            method: "POST",
+            body: JSON.stringify({
+              token: response.credential,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          const data = await res.json();
+          setLoginData(data);
+          localStorage.setItem("loginData", JSON.stringify(data));
+        });
+      }
+    }, [loginData]);
+    const handleLogout = () => {
+      localStorage.removeItem("loginData");
+      setLoginData(null);
+    }; */
   const { data: session } = useSession();
   const router = useRouter();
   const { redirect } = router.query;
@@ -92,13 +127,6 @@ export default function LoginScreen() {
                         value:
                           /^(?=(.*[a-z]){3,})(?=(.*[A-Z]){2,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/,
                         message: "Sua senha deve obedecer a ISO / 27000",
-                        /*  About ISO / IEC 27000:
-                                                    (?= (.* [a - z]){ 3, })    lowercase letters. {3,} indicates that you want 3 of this group
-                                                    (?=(.*[A-Z]){2,}) uppercase letters. {2,} indicates that you want 2 of this group
-                                                    (?=(.*[0-9]){2,})   numbers. {2,} indicates that you want 2 of this group
-                                                    (?=(.*[!@#$%^&*()\-__+.]){1,})  all the special characters in the [] fields
-                                                    {8,}  indicates that you want 8 or more
-                                                 */
                       },
                     })}
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"

@@ -4,6 +4,7 @@ import { FaShippingFast } from 'react-icons/fa';
 import { RiLoginBoxLine } from 'react-icons/ri';
 import { MdPayment } from 'react-icons/md';
 import { HiOutlineDocumentSearch } from 'react-icons/hi';
+import { AiOutlineLoading } from 'react-icons/ai';
 
 const iconSteps = [
   {
@@ -45,7 +46,10 @@ export default function CheckoutWizard({ activeStep = 0 }) {
           >
             <span onClick={() => router.push(`/${step.path}`)} className="cursor-pointer card py-3 !flex !flex-col !items-center">{step.display}
               <step>
-                <step.icon />
+                {index == activeStep
+                  ? < AiOutlineLoading className="rotate" />
+                  : <step.icon />
+                }
               </step>
             </span>
           </div>

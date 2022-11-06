@@ -23,15 +23,6 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
-    },
-  },
-};
-
 function reducer(state, action) {
   switch (action.type) {
     case "FETCH_REQUEST":
@@ -45,12 +36,41 @@ function reducer(state, action) {
   }
 }
 
+export const options = {
+  type: 'line',
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top",
+    },
+  },
+};
+
 function DashboardScreen() {
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
     loading: true,
-    summary: { salesData: [] },
+    summary: { salesDataPrice: [], salesDataDescount: [] },
     error: "",
   });
+
+  const data = {
+    type: 'line',
+    labels: summary.salesDataPrice.map((x) => x._id), // 2022/01 2022/03
+    labels: summary.salesDataDescount.map((x) => x._id), // 2022/01 2022/03
+    datasets: [
+      {
+        label: "Valor Total",
+        backgroundColor: "blue",
+        data: summary.salesDataPrice.map((x) => x.totalSales),
+      },
+      {
+        label: "Valor com Desconto",
+        backgroundColor: "#670999",
+        data: summary.salesDataDescount.map((x) => x.totalSales),
+      },
+    ],
+
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,16 +86,7 @@ function DashboardScreen() {
     fetchData();
   }, []);
 
-  const data = {
-    labels: summary.salesData.map((x) => x._id), // 2022/01 2022/03
-    datasets: [
-      {
-        label: "Vendas",
-        backgroundColor: "rgb(29 78 216)",
-        data: summary.salesData.map((x) => x.totalSales),
-      },
-    ],
-  };
+
 
   return (
     <Layout title="Visão Geral">

@@ -196,6 +196,20 @@ button:hover,
   background-color: antiquewhite;
 }
 
+.rotate {
+  animation: rotate infinite 1s linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes updown {
   0% {
     transform: translateY(-5px);
