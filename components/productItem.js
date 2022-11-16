@@ -39,15 +39,22 @@ export default function productItem({ product, addToCartHandler }) {
         </div>
         <div className="flex justify-between w-full">
           <div className="flex items-center flex-col ml-2">
-            <span className="text-sm text-red-600">
-              <span className="text-black">de:</span>{" "}
-              <span className="line-through">
-                R$ &nbsp;{product.price.toFixed(2)}
+            <span className="flex">
+              <span className=" flex-col items-center flex">
+                <span className="flex">
+                  <span className="text-black text-sm">de:</span>{" "}
+                  <span className="line-through text-sm text-red-600">
+                    R$ &nbsp;{product.price.toFixed(2)}
+                  </span>
+                </span>
+                <span className="text-xs">
+                  {product.descount} % de desconto!
+                </span>
               </span>
             </span>
             <span className="text-xl text-green-600">
               <span className="text-black">por:</span>{" "}
-              <span>R$&nbsp;{(product.price * 0.9).toFixed(2)}</span>
+              <span>R$&nbsp;{(product.price - (product.price * product.descount / 100)).toFixed(2)}</span>
             </span>
           </div>
           <div>

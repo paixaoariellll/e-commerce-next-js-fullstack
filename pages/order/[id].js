@@ -8,6 +8,9 @@ import { toast } from "react-toastify";
 import { useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
+import { BsPaypal } from "react-icons/bs";
+import { FaBarcode, FaStripe } from "react-icons/fa";
+import { GiReceiveMoney } from "react-icons/gi";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -47,7 +50,6 @@ function OrderScreen() {
   const { query } = useRouter();
   const orderId = query.id;
   const { data: session } = useSession();
-
   const [
     {
       loading,
@@ -64,7 +66,6 @@ function OrderScreen() {
     order: {},
     error: "",
   });
-
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -103,7 +104,6 @@ function OrderScreen() {
       loadPaypalScript();
     }
   }, [order, orderId, paypalDispatch, successDeliver, successPay]);
-
   function createOrder(data, actions) {
     return actions.order
       .create({
@@ -117,7 +117,6 @@ function OrderScreen() {
         return orderID;
       });
   }
-
   async function deliverOrderHandler() {
     try {
       dispatch({ type: "DELIVER_REQUEST" });
@@ -132,7 +131,6 @@ function OrderScreen() {
       toast.error(getError(err));
     }
   }
-
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
@@ -168,200 +166,237 @@ function OrderScreen() {
     isDelivered,
     deliveredAt,
   } = order;
+  const totalDescount = (totalPrice * 0.95);
 
   return (
     <Layout title={`Pedido ${orderId}`}>
-      <h1 className="mb-4 text-center text-blue-700 text-3xl card">{`ID: ${orderId}`}</h1>
-      {loading ? (
-        <div>Carregando...</div>
-      ) : error ? (
-        <div className="alert-error">{error}</div>
-      ) : (
-        <div className="grid md:grid-cols-4 md:gap-5">
-          <div className="overflow-x-auto md:col-span-3">
-            <div className="card bg-white text-center overflow-x-auto p-5">
-              <h2 className="mb-2 text-blue-600 text-3xl">
-                Lista dos Produtos
-              </h2>
-              <table className="min-w-full">
-                <thead className="border-b">
-                  <tr className="text-blue-700 text-2xl">
-                    <th className="px-5 text-center">Item</th>
-                    <th className="p-5 text-center">Quantidade</th>
-                    <th className="p-5 text-center">Preço</th>
-                    <th className="p-5 text-center">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {orderItems.map((item) => (
-                    <tr
-                      key={item._id}
-                      className="border-y divide-blue-600 border-blue-600"
-                    >
-                      <td>
-                        <Link href={`/product/${item.slug}`}>
-                          <Image
-                            src={item.image}
-                            alt={item.name}
-                            width={50}
-                            height={50}
-                            className="cursor-pointer"
-                          />
-                        </Link>
-                      </td>
-                      <td className="p-5 only:text-center">{item.quantity}</td>
-                      <td className="p-5 text-center">R$ {item.price}</td>
-                      <td className="p-5 text-center">
-                        R$ {item.quantity * item.price}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="flex justify-between gap-x-5">
-              <div className="card bg-white w-1/2 p-5">
-                <h2 className="mb-2 text-blue-800 text-center text-3xl">
-                  Endereço de entrega
+      <div className="card border border-gray-300 p-5">
+        <h1 className="mb-4 text-center text-blue-700 text-3xl card">{`ID: ${orderId}`}</h1>
+        {loading ? (
+          <div>Carregando...</div>
+        ) : error ? (
+          <div className="alert-error">{error}</div>
+        ) : (
+          <div className="grid md:grid-cols-8 md:gap-6">
+            <div className="overflow-x-auto md:col-span-5">
+              <div className="text-center border border-gray-300 mb-5 overflow-x-auto p-5">
+                <h2 className="mb-2 text-blue-600 text-3xl">
+                  Lista dos Produtos
                 </h2>
-                <div className="flex items-left flex-col justify-between gap-2 mb-2">
-                  <span className="text-blue-700">
-                    Nome:&nbsp;
-                    <span className="text-black">{shippingAddress.name}</span>
-                  </span>
-                  <span className="text-blue-700">
-                    Logradouro:&nbsp;
-                    <span className="text-black">
-                      {shippingAddress.address}
-                    </span>
-                  </span>
-                  <span className="text-blue-700">
-                    Bairro:&nbsp;
-                    <span className="text-black">
-                      {shippingAddress.neighborhood}
-                    </span>
-                  </span>
-                  <span className="text-blue-700">
-                    Cidade:&nbsp;
-                    <span className="text-black">{shippingAddress.city}</span>
-                  </span>
-                  <span className="text-blue-700">
-                    CEP:&nbsp;
-                    <span className="text-black">
-                      {shippingAddress.postalCode}
-                    </span>
-                  </span>
-                  <span className="text-blue-700">
-                    Número:&nbsp;
-                    <span className="text-black">{shippingAddress.number}</span>
-                  </span>
-                  <span className="text-blue-700">
-                    Estado:&nbsp;
-                    <span className="text-black">{shippingAddress.state}</span>
-                  </span>
-                </div>
-                <div className="flex items-center flex-col">
-                  {isDelivered ? (
-                    <div className="alert-success">Entregue {deliveredAt}</div>
-                  ) : (
-                    <div className="alert-error">Não entregue</div>
-                  )}
-                </div>
+                <table className="min-w-full">
+                  <thead className="border-b">
+                    <tr className="text-blue-700 text-xl">
+                      <th className="px-5 text-center">Item</th>
+                      <th className="p-5 text-center">Quantidade</th>
+                      <th className="p-5 text-center">Preço Por Unidade</th>
+                      <th className="p-5 text-center">Preço Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {orderItems.map((item) => (
+                      <tr
+                        key={item._id}
+                        className="border-y divide-blue-600 border-blue-600"
+                      >
+                        <td>
+                          <Link href={`/product/${item.slug}`}>
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              width={50}
+                              height={50}
+                              className="cursor-pointer"
+                            ></Image>
+                          </Link>
+                        </td>
+                        <td className="p-5 text-xl only:text-center">
+                          {item.quantity}
+                        </td>
+                        <td className="p-5 text-xl text-center">
+                          R$&nbsp;{(item.price - (item.price * descount) / 100).toFixed(2)}
+                        </td>
+                        <td className="p-5 text-xl text-center">
+                          R$&nbsp;{(item.price * item.quantity).toFixed(2)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
-              <div className="card bg-white w-1/2 p-5">
-                <div className="flex flex-col justify-between h-full">
-                  <h2 className="mb-2 text-blue-800 text-center text-3xl">
-                    Método de pagamento
+              <div className="flex justify-between gap-5">
+                <div className="w-2/3 border border-gray-300 p-5">
+                  <h2 className="mb-2 text-blue-600 text-center text-3xl">
+                    Endereço para entrega
                   </h2>
-                  <div className="mb-2 text-xl text-center">
-                    {paymentMethod}
-                  </div>
-                  <div className="flex items-center flex-col">
-                    {isPaid ? (
-                      <div className="alert-success">
-                        Pago às {paidAt.substring(11, 19)} do dia{" "}
-                        {paidAt.substring(8, 10)}/{paidAt.substring(5, 7)}/
-                        {paidAt.substring(0, 4)}.
-                      </div>
-                    ) : (
-                      <div className="alert-error">Ainda não confirmado</div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="bg-blue-100 shadow-md rounded-lg p-5 border border-green-700">
-              <h2 className="mb-2 text-blue-600 text-center text-3xl">
-                Resumo da compra
-              </h2>
-              <ul>
-                <li>
-                  <div className="mb-2 gap-5 text-xl flex justify-between">
-                    <div>Itens</div>
-                    <div>R$&nbsp;{itemsPrice}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className="mb-2 flex text-xl justify-between">
-                    <div>Taxa</div>
-                    <div>R$&nbsp;{taxPrice}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className="mb-2 flex text-xl justify-between">
-                    <div>Entrega</div>
-                    <div>R$&nbsp;{shippingPrice}</div>
-                  </div>
-                </li>
-                <li>
-                  <div className="mb-2 flex text-xl justify-between">
-                    <div>Total</div>
-                    <div className="flex flex-col align-middle items-end">
-                      <span className="text-md text-red-600 line-through">
-                        de: R$&nbsp;
-                        {totalPrice}
+                  <div className="flex text-xl justify-between gap-2 mb-2">
+                    <div className="flex justify-between items-start flex-col">
+                      <span className="text-blue-700">
+                        Nome:&nbsp;
+                        <span className="text-black">{shippingAddress.name}</span>
                       </span>
-                      <span className="text-xl text-green-600">
-                        por: R$&nbsp;
-                        {descount}
+                      <span className="text-blue-700">
+                        Endereço:&nbsp;
+                        <span className="text-black">
+                          {shippingAddress.address}
+                        </span>
+                      </span>
+                      <span className="text-blue-700">
+                        Bairro:&nbsp;
+                        <span className="text-black">
+                          {shippingAddress.neighborhood}
+                        </span>
+                      </span>
+                      <span className="text-blue-700">
+                        Cidade:&nbsp;
+                        <span className="text-black">{shippingAddress.city}</span>
+                      </span>
+                      <span className="text-blue-700">
+                        CEP:&nbsp;
+                        <span className="text-black">
+                          {shippingAddress.postalCode}
+                        </span>
+                      </span>
+                      <span className="text-blue-700">
+                        Número:&nbsp;
+                        <span className="text-black">
+                          {shippingAddress.number}
+                        </span>
+                      </span>
+                      <span className="text-blue-700">
+                        Estado:&nbsp;
+                        <span className="text-black">
+                          {shippingAddress.state}
+                        </span>
                       </span>
                     </div>
                   </div>
-                </li>
-                {!isPaid && (
-                  <li>
-                    {isPending ? (
-                      <div>Carregando...</div>
+                  <div className="flex items-center flex-col">
+                    {isDelivered ? (
+                      <div className="alert-success">Entregue {deliveredAt}</div>
                     ) : (
-                      <div className="w-full">
-                        <PayPalButtons
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        ></PayPalButtons>
-                      </div>
+                      <div className="alert-error">Não entregue</div>
                     )}
-                    {loadingPay && <div>Carregando...</div>}
-                  </li>
-                )}
-                {session.user.isAdmin && order.isPaid && !order.isDelivered && (
+                  </div>
+                </div>
+                <div className="w-1/3 border border-gray-300 p-5">
+                  <div className="flex flex-col justify-between h-full">
+                    <h2 className="mb-2 text-blue-600 text-center text-3xl">
+                      Método de pagamento
+                    </h2>
+                    <div className="mb-2 text-xl text-center">
+                      {
+                        paymentMethod === 'Paypal' ?
+                          (
+                            <div className="flex justify-center">
+                              {paymentMethod}< BsPaypal />
+                            </div>
+                          )
+                          : paymentMethod === 'Stripe' ?
+                            (
+                              <div className="flex justify-center">
+                                {paymentMethod} <FaStripe />
+                              </div>
+                            ) : paymentMethod === 'PIX' ?
+                              (
+                                <div className="flex justify-center">
+                                  {paymentMethod} < GiReceiveMoney />
+                                </div>
+                              ) : paymentMethod === 'Boleto' ?
+                                (
+                                  <div className="flex justify-center">
+                                    {paymentMethod} < FaBarcode />
+                                  </div>
+                                )
+                                : ''
+                      }
+                    </div>
+                    <div className="flex items-center flex-col">
+                      {isPaid ? (
+                        <div className="alert-success">
+                          Pago às {paidAt.substring(11, 19)} do dia{" "}
+                          {paidAt.substring(8, 10)}/{paidAt.substring(5, 7)}/
+                          {paidAt.substring(0, 4)}.
+                        </div>
+                      ) : (
+                        <div className="alert-error">Ainda não confirmado</div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="overflow-x-auto md:col-span-3">
+              <div className="bg-white shadow-md rounded-lg p-5 border border-gray-300">
+                <h2 className="mb-2 text-blue-600 text-center text-3xl">
+                  Resumo do Pedido
+                </h2>
+                <ul>
                   <li>
-                    {loadingDeliver && <div>Carregando...</div>}
-                    <button
-                      className="primary-button text-xl bg-white w-full"
-                      onClick={deliverOrderHandler}
-                    >
-                      Confirmar entrega
-                    </button>
+                    <div className="mb-2 gap-5 text-xl flex justify-between">
+                      <div>Itens</div>
+                      <div>R$&nbsp;{itemsPrice}</div>
+                    </div>
                   </li>
-                )}
-              </ul>
+                  <li>
+                    <div className="mb-2 flex text-xl justify-between">
+                      <div>Taxa</div>
+                      <div>R$&nbsp;{taxPrice}</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="mb-2 flex text-xl justify-between">
+                      <div>Entrega</div>
+                      <div>R$&nbsp;{shippingPrice}</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div className="mb-2 flex text-xl justify-between">
+                      <div>Total</div>
+                      <div className="flex flex-col align-middle items-end">
+                        <span className="text-md text-red-500 line-through">
+                          de: R$&nbsp;
+                          {totalPrice}
+                        </span>
+                        <span className="text-xl text-green-600">
+                          por: R$&nbsp;
+                          {totalDescount.toFixed(2)}
+                        </span>
+                      </div>
+                    </div>
+                  </li>
+                  {!isPaid && (
+                    <li>
+                      {isPending ? (
+                        <div>Carregando...</div>
+                      ) : (
+                        <div className="w-full">
+                          <PayPalButtons
+                            createOrder={createOrder}
+                            onApprove={onApprove}
+                            onError={onError}
+                          ></PayPalButtons>
+                        </div>
+                      )}
+                      {loadingPay && <div>Carregando...</div>}
+                    </li>
+                  )}
+                  {session.user.isAdmin && order.isPaid && !order.isDelivered && (
+                    <li>
+                      {loadingDeliver && <div>Carregando...</div>}
+                      <button
+                        className="primary-button text-xl bg-white w-full"
+                        onClick={deliverOrderHandler}
+                      >
+                        Confirmar entrega
+                      </button>
+                    </li>
+                  )}
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </Layout>
   );
 }

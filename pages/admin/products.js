@@ -122,6 +122,7 @@ export default function ProdcutsScreen() {
                     <th className="p-5 text-center">Categoria</th>
                     <th className="p-5 text-center">Quantidade</th>
                     <th className="p-5 text-center">Avaliação</th>
+                    <th className="p-5 text-center">Desconto</th>
                     <th className="p-5 text-center">Ações</th>
                   </tr>
                 </thead>
@@ -137,6 +138,7 @@ export default function ProdcutsScreen() {
                       <td className=" p-5 ">{product.category}</td>
                       <td className=" p-5 ">{product.countInStock}</td>
                       <td className=" p-5 ">{product.rating}</td>
+                      <td className="p-5">{product.descount == 0 ? <span className='text-sm text-red-400'>Sem desconto</span> : `${product.descount} %`} </td>
                       <td className=" p-5 ">
                         <Link href={`/admin/product/${product._id}`}>
                           <button className="bg-blue-800 border text-white border-solid border-gray-300 w-15">

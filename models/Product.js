@@ -15,6 +15,7 @@ const productSchema = new mongoose.Schema(
     description: { type: String, required: true },
     gender: { type: String, required: true },
     sellCount: { type: Number, required: false, default: 0 },
+    descount: { type: Number, required: false, default: 1 },
   },
   {
     timestamps: true,

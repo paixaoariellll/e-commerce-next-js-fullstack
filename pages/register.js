@@ -61,7 +61,7 @@ export default function RegisterScreen() {
                 className="vertical_img"
               />
             </div>
-            <div className="bg-sky-100 p-5 rounded-lg shadow-xl xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-5">
+            <div className="bg-white p-5 rounded-lg shadow-xl xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-5">
               <form onSubmit={handleSubmit(submitHandler)}>
                 <div className="flex flex-row items-center justify-center lg:justify-start">
                   <p className="text-xl mb-0 mr-4">Registre-se com: </p>

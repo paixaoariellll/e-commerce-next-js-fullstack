@@ -4,6 +4,8 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import "remixicon/fonts/remixicon.css";
+import { toast } from "react-toastify";
+
 
 function reducer(state, action) {
   switch (action.type) {
@@ -19,7 +21,7 @@ function reducer(state, action) {
 }
 
 export default function AdminOrderScreen() {
-  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, orders, }, dispatch] = useReducer(reducer, {
     loading: true,
     orders: [],
     error: "",
@@ -69,7 +71,7 @@ export default function AdminOrderScreen() {
                       key={order._id}
                       className="border-t border-x text-center border-x-black border-t-black text-xl hover:bg-gray-100"
                     >
-                      <td className="p-5">{order._id.substring(20, 24)}</td>
+                      <td className="p-5" title={order._id} >{order._id.substring(20, 24)}</td>
                       <td className="p-5">
                         {order.user ? order.user.name :
                           <span className="text-red-200">Usuário deletado</span>
@@ -123,7 +125,7 @@ export default function AdminOrderScreen() {
                         )}
                       </td>
                       <td className="p-5">
-                        <Link href={`/order/${order._id}`} passHref>
+                        <Link href={`/ order / ${order._id} `} passHref>
                           <span className="cursor-pointer">
                             <i className="ri-file-list-3-line"></i>
                           </span>
@@ -137,7 +139,7 @@ export default function AdminOrderScreen() {
           )}
         </div>
       </div>
-    </Layout>
+    </Layout >
   );
 }
 

@@ -89,6 +89,7 @@ export default function AdminProductEditScreen() {
         setValue("image", data.image);
         setValue("sellCount", data.sellCount);
         setValue("category", data.category);
+        setValue("descount", data.descount);
         setValue("publisher", data.publisher);
         setValue("countInStock", data.countInStock);
         setValue("description", data.description);
@@ -108,6 +109,7 @@ export default function AdminProductEditScreen() {
     category,
     image,
     sellCount,
+    descount,
     publisher,
     countInStock,
     description,
@@ -123,6 +125,7 @@ export default function AdminProductEditScreen() {
         category,
         image,
         sellCount,
+        descount,
         publisher,
         countInStock,
         description,
@@ -216,23 +219,6 @@ export default function AdminProductEditScreen() {
                 )}
               </div>
               <div className="flex justify-between">
-                <div className="mb-4">
-                  <label htmlFor="image" className="text-2xl text-blue-700">
-                    Imagem
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
-                    id="image"
-                    {...register("image", {
-                      required:
-                        "Por favor, digite o diretório da imagem e seu tipo!",
-                    })}
-                  />
-                  {errors.image && (
-                    <div className="text-red-600">{errors.image.message}</div>
-                  )}
-                </div>
                 <div className="card p-5">
                   <Image
                     src={imageSrc ? imageSrc : noImage}
@@ -271,6 +257,23 @@ export default function AdminProductEditScreen() {
                   />
                   {errors.price && (
                     <div className="text-red-600">{errors.price.message}</div>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="descount" className="text-2xl text-blue-700">
+                    Desconto %
+                  </label>
+                  <input
+                    type="numer"
+                    className="form-control block w-fit px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
+                    id="descount"
+                    {...register("descount", {
+                      required: "Por favor, digite um valor válido",
+                    })}
+                    sufixer="%"
+                  />
+                  {errors.descount && (
+                    <div className="text-red-600">{errors.descount.message}</div>
                   )}
                 </div>
                 <div className="mb-4">

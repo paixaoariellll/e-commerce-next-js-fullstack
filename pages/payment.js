@@ -5,6 +5,16 @@ import Cookies from "js-cookie";
 import CheckoutWizard from "../components/CheckoutWizard";
 import Layout from "../components/Layout";
 import { Store } from "../utils/Store";
+import { BsPaypal } from "react-icons/bs";
+import { FaBarcode, FaStripe } from "react-icons/fa";
+import { GiReceiveMoney } from "react-icons/gi";
+
+const method = [
+  "Paypal",
+  "PIX",
+  "Boleto",
+  "Stripe",
+]
 
 export default function PaymentScreen() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
@@ -42,29 +52,49 @@ export default function PaymentScreen() {
           <h1 className="my-4 text-center text-blue-800 text-5xl">
             Método de Pagamento
           </h1>
-          <div className="flex items-center flex-col">
-            {["PayPal", "Stripe", "Boleto", "Pix"].map(
-              (payment) => (
-                <div
-                  key={payment}
-                  onChange={() => setSelectedPaymentMethod(payment)}
-                  className="mb-4 cursor-pointer text-xl p-2 w-1/3 card bg-white hover:text-white hover:bg-blue-800"
-                >
-                  <input
-                    name="paymentMethod"
-                    className="p-2 cursor-pointer outline-non focus:ring-0"
-                    id={payment}
-                    type="radio"
-                    checked={selectedPaymentMethod === payment}
-
-                  />
-                  <label className="p-2 cursor-pointer" htmlFor={payment}>
-                    {payment}
-                  </label>
-                </div>
-              )
-            )}
-          </div>
+          {
+            method.map((payment, index) => (
+              <div key={index} className=" flex flex-col items-center ">
+                <label className="focus:bg-blue-600 w-1/3 cursor-pointer text-xl px-10 py-2 card bg-white hover:text-white  hover:shadow-slate-500 hover:bg-indigo-500 hover:border-blue-600 hover:outline-none" htmlFor={payment}>
+                  <span className="flex justify-between gap-x-3">
+                    <input
+                      name="paymentMethod"
+                      className="p-2 m-2 cursor-pointer outline-non focus:ring-0"
+                      id={payment}
+                      type="radio"
+                      checked={selectedPaymentMethod === payment}
+                      onChange={() => setSelectedPaymentMethod(payment)}
+                    />
+                    {
+                      payment === 'Paypal' ?
+                        (
+                          <div className="flex gap-x-10 justify-between">
+                            {payment}< BsPaypal />
+                          </div>
+                        )
+                        : payment === 'Stripe' ?
+                          (
+                            <div className="flex gap-x-10 justify-between">
+                              {payment} <FaStripe />
+                            </div>
+                          ) : payment === 'PIX' ?
+                            (
+                              <div className="flex gap-x-14 justify-between">
+                                {payment} < GiReceiveMoney />
+                              </div>
+                            ) : payment === 'Boleto' ?
+                              (
+                                <div className="flex gap-x-10 justify-between">
+                                  {payment} < FaBarcode />
+                                </div>
+                              )
+                              : ''
+                    }
+                  </span>
+                </label>
+              </div>
+            ))
+          }
           <div className="mb-4 text-xl flex justify-between">
             <button
               onClick={() => router.push("/shipping")}

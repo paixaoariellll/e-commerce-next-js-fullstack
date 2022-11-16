@@ -31,6 +31,7 @@ const postHandler = async (req, res) => {
     category: "Xbox",
     publisher: "Simples distribuidora",
     countInStock: 1,
+    descount: 1,
     description: "Produto gerado pela 'POST-HANDLER' feita pelo grupo GameOn - 2022",
     rating: 0,
     sellCount: 0,

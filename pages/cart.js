@@ -8,9 +8,11 @@ import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import { toast } from "react-toastify";
 import { RiDeleteBin2Line } from "react-icons/ri"
+import { useSession } from "next-auth/react";
 
 
 function CartScreen() {
+  const { data: session } = useSession();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
 
@@ -94,11 +96,11 @@ function CartScreen() {
                           ))}
                         </select>
                       </td>
-                      <td className="p-5 pointer-events-none text-blue-800 text-center">
-                        $&nbsp;{item.price}
+                      <td className="p-5 pointer-events-none  text-center">
+                        $&nbsp;{(item.price - (item.price * item.descount) / 100).toFixed(2)}
                       </td>
-                      <td className="p-5 pointer-events-none text-blue-800 text-center">
-                        $&nbsp;{item.price * item.quantity}
+                      <td className="p-5 pointer-events-none text-indigo-700 text-center">
+                        $&nbsp;{((item.price - (item.price * item.descount) / 100) * item.quantity).toFixed(2)}
                       </td>
                       <td className="p-5 text-center">
                         <button
@@ -119,13 +121,13 @@ function CartScreen() {
               <ul className="card bg-white p-5">
                 <li>
                   <div className="pb-3 text-xl">
-                    Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : $
-                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}
+                    Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : R$
+                    {cartItems.reduce((a, c) => a + c.quantity * (c.price - (c.price * c.descount) / 100), 0).toFixed(2)}
                   </div>
                 </li>
                 <li>
                   <button
-                    onClick={() => router.push("login?redirect=shipping")}
+                    onClick={session?.user ? (() => router.push("/shipping")) : (router.push("login?redirect=shipping"))}
                     className="primary-button w-full border border-solid border-gray-300"
                   >
                     Confirmar
