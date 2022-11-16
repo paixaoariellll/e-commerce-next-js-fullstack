@@ -4,7 +4,6 @@ import Layout from "../../components/Layout";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import "remixicon/fonts/remixicon.css";
-import { toast } from "react-toastify";
 
 
 function reducer(state, action) {

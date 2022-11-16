@@ -55,8 +55,8 @@ function DashboardScreen() {
 
   const data = {
     type: 'line',
-    labels: summary.salesDataPrice.map((x) => x._id), // 2022/01 2022/03
-    labels: summary.salesDataDescount.map((x) => x._id), // 2022/01 2022/03
+    label1: summary.salesDataPrice.map((x) => x._id), // 2022/01 2022/03
+    label2: summary.salesDataDescount.map((x) => x._id), // 2022/01 2022/03
     datasets: [
       {
         label: "Valor Total",

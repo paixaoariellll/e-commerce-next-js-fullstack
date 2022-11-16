@@ -5,13 +5,13 @@ import Layout from '../../components/Layout'
 import { MdAdminPanelSettings } from 'react-icons/md'
 import { useForm } from 'react-hook-form'
 
-export default function adminProfile() {
+export default function AdminProfile() {
     const { data: session } = useSession()
     const { register, handleSubmit, setValue } = useForm()
 
-    const checkCNPJ = (e) => {
+    const checkCNPJ = () => {
         const cnpjEmpresa = '60316817000103';
-        const cnpj = e.target.value.replace(/\D/g, '')
+        /*   const cnpj = e.target.value.replace(/\D/g, '') */
         fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpjEmpresa}`)
             .then(res => res.json())
             .then(data => {
