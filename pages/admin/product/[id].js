@@ -270,7 +270,6 @@ export default function AdminProductEditScreen() {
                     {...register("descount", {
                       required: "Por favor, digite um valor válido",
                     })}
-                    sufixer={`%`}
                   />
                   {errors.descount && (
                     <div className="text-red-600">{errors.descount.message}</div>
