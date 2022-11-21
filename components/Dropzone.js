@@ -5,7 +5,6 @@ import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import image from '../public/img/image.svg';
 import { IoIosClose } from 'react-icons/io';
-import { useForm } from 'react-hook-form';
 
 export default function Dropzone() {
     const [images, setImages] = useState([]);
@@ -57,6 +56,7 @@ export default function Dropzone() {
                     <span className='flex flex-col'>
                         <Image
                             src={image}
+                            alt="imagem"
                             width={100}
                             heigth={100}
                             unoptmized >
@@ -66,6 +66,7 @@ export default function Dropzone() {
                     <span className='flex flex-col'>
                         <Image
                             src={image}
+                            alt="imagem"
                             width={100}
                             heigth={100}
                             unoptmized >

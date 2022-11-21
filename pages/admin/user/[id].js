@@ -31,7 +31,7 @@ export default function AdminUserEditScreen() {
     const router = useRouter();
     const { query } = useRouter();
     const userId = query.id;
-    const [{ loading, error, loadingUpdate, successDelete, loadingDelete }, dispatch] =
+    const [{ loading, error, loadingUpdate, successDelete }, dispatch] =
         useReducer(reducer, {
             loading: true,
             error: "",
@@ -62,7 +62,7 @@ export default function AdminUserEditScreen() {
             dispatch({ type: "DELETE_RESET" });
         } else {
             fetchData();
-        };
+        }
     }, [userId, setValue, successDelete]);
     const submitHandler = async ({ name, lastName, image, email, isAdmin, password, }) => {
         try {

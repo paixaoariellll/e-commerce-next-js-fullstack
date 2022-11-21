@@ -56,7 +56,7 @@ function DashboardScreen() {
   const data = {
     type: 'line',
     labels: summary.salesDataPrice.map((x) => x._id), // 2022/01 2022/03
-    labels: summary.salesDataDescount.map((x) => x._id), // 2022/01 2022/03
+    label: summary.salesDataDescount.map((x) => x._id), // 2022/01 2022/03
     datasets: [
       {
         label: "Valor Total",
@@ -69,7 +69,6 @@ function DashboardScreen() {
         data: summary.salesDataDescount.map((x) => x.totalSales),
       },
     ],
-
   };
 
   useEffect(() => {
@@ -85,8 +84,6 @@ function DashboardScreen() {
 
     fetchData();
   }, []);
-
-
 
   return (
     <Layout title="Visão Geral">
