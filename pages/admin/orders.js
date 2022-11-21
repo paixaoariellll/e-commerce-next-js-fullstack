@@ -3,6 +3,7 @@ import { getError } from "../../utils/error";
 import Layout from "../../components/Layout";
 import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
+import ReactTooltip from "react-tooltip";
 import "remixicon/fonts/remixicon.css";
 
 
@@ -70,7 +71,7 @@ export default function AdminOrderScreen() {
                       key={order._id}
                       className="border-t border-x text-center border-x-black border-t-black text-xl hover:bg-gray-100"
                     >
-                      <td className="p-5" title={order._id} >{order._id.substring(20, 24)}</td>
+                      <td className="p-5" data-tip={order._id} >{order._id.substring(20, 24)}</td>
                       <td className="p-5">
                         {order.user ? order.user.name :
                           <span className="text-red-200">Usuário deletado</span>
@@ -130,6 +131,14 @@ export default function AdminOrderScreen() {
                           </span>
                         </Link>
                       </td>
+                      <ReactTooltip
+                        delayHide={1000}
+                        place="right"
+                        type="info"
+                        backgroundColor="#2028b3"
+                        textColor="#fff"
+                        borderColor="#cbd5e0"
+                      />
                     </tr>
                   ))}
                 </tbody>
@@ -138,6 +147,7 @@ export default function AdminOrderScreen() {
           )}
         </div>
       </div>
+
     </Layout >
   );
 }

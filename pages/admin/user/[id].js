@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
-
 function reducer(state, action) {
     switch (action.type) {
         case "FETCH_REQUEST":
@@ -15,6 +14,14 @@ function reducer(state, action) {
             return { ...state, loading: false, error: "" };
         case "FETCH_FAIL":
             return { ...state, loading: false, error: action.payload };
+        case "DELETE_REQUEST":
+            return { ...state, loadingDelete: true };
+        case "DELETE_SUCCESS":
+            return { ...state, loadingDelete: false, successDelete: true };
+        case "DELETE_FAIL":
+            return { ...state, loadingDelete: false };
+        case "DELETE_RESET":
+            return { ...state, loadingDelete: false, successDelete: false };
         default:
             return state;
     }
@@ -24,7 +31,7 @@ export default function AdminUserEditScreen() {
     const router = useRouter();
     const { query } = useRouter();
     const userId = query.id;
-    const [{ loading, error, loadingUpdate }, dispatch] =
+    const [{ loading, error, loadingUpdate, successDelete, loadingDelete }, dispatch] =
         useReducer(reducer, {
             loading: true,
             error: "",
@@ -51,8 +58,12 @@ export default function AdminUserEditScreen() {
                 dispatch({ type: "FETCH_FAIL", payload: getError(err) });
             }
         };
-        fetchData();
-    }, [userId, setValue]);
+        if (successDelete) {
+            dispatch({ type: "DELETE_RESET" });
+        } else {
+            fetchData();
+        };
+    }, [userId, setValue, successDelete]);
     const submitHandler = async ({ name, lastName, image, email, isAdmin, password, }) => {
         try {
             dispatch({ type: "UPDATE_REQUEST" });
@@ -62,6 +73,7 @@ export default function AdminUserEditScreen() {
                 lastName,
                 email,
                 isAdmin,
+                userId,
                 password,
             });
             dispatch({ type: "UPDATE_SUCCESS" });
@@ -71,6 +83,22 @@ export default function AdminUserEditScreen() {
             dispatch({ type: "UPDATE_FAIL", payload: getError(err) });
             toast.error(getError(err));
         }
+    };
+
+    const deleteHandler = async (userId) => {
+        if (!window.confirm("Você tem certeza?")) {
+            return;
+        }
+        try {
+            dispatch({ type: "DELETE_REQUEST" });
+            await axios.delete(`/api/admin/users/${userId}`);
+            dispatch({ type: "DELETE_SUCCESS" });
+            toast.success("Usuário deletado com sucesso!");
+        } catch (err) {
+            dispatch({ type: "DELETE_FAIL" });
+            toast.error(getError(err));
+        }
+        router.push("/admin/users")
     };
 
     return (
@@ -209,6 +237,13 @@ export default function AdminUserEditScreen() {
                                     className="primary-button bg-white border border-solid border-gray-300"
                                 >
                                     Voltar
+                                </button>
+                                <button
+                                    type="button"
+                                    className="bg-blue-800 hover:bg-red-600 text-white border border-solid border-gray-300 w-25"
+                                    onClick={() => deleteHandler(userId)}
+                                >
+                                    Deletar
                                 </button>
                                 <button
                                     disabled={loadingUpdate}

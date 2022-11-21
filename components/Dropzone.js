@@ -5,6 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { toast } from 'react-toastify';
 import image from '../public/img/image.svg';
 import { IoIosClose } from 'react-icons/io';
+import { useForm } from 'react-hook-form';
 
 export default function Dropzone() {
     const [images, setImages] = useState([]);
@@ -47,7 +48,6 @@ export default function Dropzone() {
         toast.error("Imagem removida")
         setImages(updatedList);
     }
-
     return (
         <div className='card p-5 h-fit'>
             <div {...getRootProps()}

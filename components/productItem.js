@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { SiXbox, SiPlaystation } from "react-icons/si"
 
-
 export default function productItem({ product, addToCartHandler }) {
   return (
     <div className="card p-5 hover:-translate-y-2">

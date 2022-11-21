@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import ReactTooltip from "react-tooltip";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -132,7 +133,7 @@ export default function ProdcutsScreen() {
                       key={product._id}
                       className="border-t border-x text-center border-x-black border-t-black text-xl hover:bg-gray-100"
                     >
-                      <td className=" p-5 ">{product._id.substring(20, 24)}</td>
+                      <td className=" p-5 " data-tip={product._id}>{product._id.substring(20, 24)}</td>
                       <td className=" p-5 ">{product.name}</td>
                       <td className=" p-5 ">R$ {product.price}</td>
                       <td className=" p-5 ">{product.category}</td>
@@ -154,6 +155,15 @@ export default function ProdcutsScreen() {
                           Deletar
                         </button>
                       </td>
+                      <ReactTooltip
+                        delayHide={1000}
+                        place="right"
+                        type="info"
+                        effect="solid"
+                        backgroundColor="#2028b3"
+                        textColor="#fff"
+                        borderColor="#cbd5e0"
+                      />
                     </tr>
                   ))}
                 </tbody>
