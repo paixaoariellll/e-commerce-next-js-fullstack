@@ -3,10 +3,10 @@ import Link from "next/link";
 import React from "react";
 import "remixicon/fonts/remixicon.css";
 import { toast } from "react-toastify";
-import { AiOutlineShoppingCart } from "react-icons/ai"
-import { SiXbox, SiPlaystation } from "react-icons/si"
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { SiXbox, SiPlaystation } from "react-icons/si";
 
-export default function productItem({ product, addToCartHandler }) {
+function ProductItem({ product, addToCartHandler }) {
   return (
     <div className="card p-5 hover:-translate-y-2">
       <p className="mb-2 ml-3 text-black">
@@ -21,12 +21,11 @@ export default function productItem({ product, addToCartHandler }) {
             height={500}
             className="rounded card w-full"
           />
-          {
-            product.category == 'Xbox' ?
-              <SiXbox className="translate-y-8 absolute flex z-20 text-green-700" />
-              :
-              <SiPlaystation className="translate-y-8 absolute flex z-20 text-blue-700" />
-          }
+          {product.category == "Xbox" ? (
+            <SiXbox className="translate-y-8 absolute flex z-20 text-green-700" />
+          ) : (
+            <SiPlaystation className="translate-y-8 absolute flex z-20 text-blue-700" />
+          )}
         </div>
       </Link>
       <div className="mx-2">
@@ -53,7 +52,13 @@ export default function productItem({ product, addToCartHandler }) {
             </span>
             <span className="text-xl text-green-600">
               <span className="text-black">por:</span>{" "}
-              <span>R$&nbsp;{(product.price - (product.price * product.descount / 100)).toFixed(2)}</span>
+              <span>
+                R$&nbsp;
+                {(
+                  product.price -
+                  (product.price * product.descount) / 100
+                ).toFixed(2)}
+              </span>
             </span>
           </div>
           <div>
@@ -63,7 +68,7 @@ export default function productItem({ product, addToCartHandler }) {
                 type="button"
                 onClick={() => addToCartHandler(product)}
               >
-                < AiOutlineShoppingCart />
+                <AiOutlineShoppingCart />
               </button>
             ) : (
               <button
@@ -80,3 +85,5 @@ export default function productItem({ product, addToCartHandler }) {
     </div>
   );
 }
+
+export default ProductItem;

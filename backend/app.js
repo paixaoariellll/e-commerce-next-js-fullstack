@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 app.use(cors({ origin: "*" }))
 
 app.get('/', async (req, res, next) => {
-  res.send({ message: 'Tá funcionando já! ❤️' });
+  res.send({ message: 'It is working...' });
 });
 
 app.post('/upload', async (req, res, next) => {

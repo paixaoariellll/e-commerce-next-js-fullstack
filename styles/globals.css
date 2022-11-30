@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: MediuN;
-  src: url("../assets/fonts/Mediu.otf");
+  src: url("../assets/fonts/medium.otf");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: MediuS;
-  src: url("../assets/fonts/Supreme-Medium.otf");
+  src: url("../assets/fonts/supreme-medium.otf");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
@@ -20,7 +20,7 @@
 
 @font-face {
   font-family: Regular;
-  src: url("../assets/fonts/Supreme-Regular.otf");
+  src: url("../assets/fonts/supreme-regular.otf");
   font-weight: 500;
   font-display: swap;
   font-style: normal;
@@ -28,7 +28,7 @@
 
 @font-face {
   font-family: ExtraN;
-  src: url("../assets/fonts/ExtraboldItalic.otf");
+  src: url("../assets/fonts/extra-bold-italic.otf");
   font-weight: 800;
   font-display: swap;
   font-style: italic;
@@ -36,7 +36,7 @@
 
 @font-face {
   font-family: ExtraS;
-  src: url("../assets/fonts/Supreme-ExtraboldItalic.otf");
+  src: url("../assets/fonts/supreme-extra-bold-italic.otf");
   font-weight: 800;
   font-display: swap;
   font-style: italic;
@@ -44,13 +44,13 @@
 
 @font-face {
   font-family: Big;
-  src: url("../assets/fonts/The\ Bigger\ The\ Better.ttf");
+  src: url("../assets/fonts/the-bigger-the-better.ttf");
   font-weight: 600;
 }
 
 @font-face {
   font-family: Iceland;
-  src: url("../assets/font/Iceland-Regular.ttf");
+  src: url("../assets/fonts/iceland-regular.ttf");
   font-weight: 700;
 }
 
@@ -61,7 +61,7 @@
   --text-color: #fff;
   --gray: #2028b3;
   --gray-light: #cbd5e0;
-  --text-blue-800: rgb(30 64 175)
+  --text-blue-800: rgb(30 64 175);
 }
 
 html,

@@ -3,7 +3,7 @@ import DropdownLink from "./DropdownLink";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import M from "../public/img/M.svg";
+import ControllerLogo from "../public/images/controller.svg";
 import { Menu } from "@headlessui/react";
 import React, { useContext, useEffect, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,7 +17,8 @@ import { BsArrowUpCircleFill } from "react-icons/bs";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { RiLoginBoxLine } from "react-icons/ri";
 
-export default function Layout({ title, children }) {
+function Layout({ title, children }) {
+
   const { status, data: session } = useSession();
   const year = new Date().getFullYear();
   const [cartItemsCount, setCartItemsCount] = useState(0);
@@ -53,30 +54,29 @@ export default function Layout({ title, children }) {
 
   useEffect(() => {
     window.addEventListener("scroll", homeFunc);
-
     return () => window.removeEventListener("scroll", homeFunc);
   }, []);
 
   return (
     <>
       <Head>
-        <title>{title ? title + " - GameOn" : " - GameOn"} </title>
+        <title>{title ? title + " - GameOn" : "GameOn"} </title>
         <meta charset="UTF-8" />
-        <meta name="GameOn" content="Um e-commerce de jogos eletrônicos." />
+        <meta name="GameOn" content="Um e-commerce de jogos eletrônicos de mídia física." />
         <meta
           name="description"
-          content="Encontre jogos eletrônicos com preços acessíveis e muita variedade!"
+          content="Encontre jogos eletrônicos de mídia física com preços acessíveis e com muita variedade."
         />
         <meta
           name="keywords"
-          content="Comércio eletrônico, loja de jogos, loja de Games, loja eletrônica, games, jogos, mídia física"
+          content="Comércio eletrônico, loja de jogos, loja de games, loja eletrônica, games, jogos, mídia física"
         />
         <meta
           name="author"
           content="Ariel Paixão, Carlos Junior e João Machado"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" href="img/logo-icon.svg" />
+        <link rel="icon" href="images/white-controller.svg" />
       </Head>
       <ToastContainer position="bottom-center" limit={2} />
       <div className="flex flex-col justify-between">
@@ -91,11 +91,11 @@ export default function Layout({ title, children }) {
                   <div className="text-blue-800 cursor-pointer text-5xl">
                     <span>Ga</span>
                     <Image
-                      src={M}
-                      alt="Ícone de um controle parecendo a letra M."
+                      src={ControllerLogo}
+                      alt="Um ícone de um controle que se parece com a letra M."
                       width={50}
                       height={30}
-                    ></Image>
+                    />
                     <span>e</span>
                     <span className="bg-blue-800 rounded-lg text-white text-5xl">
                       On
@@ -227,3 +227,5 @@ export default function Layout({ title, children }) {
     </>
   );
 }
+
+export default Layout;
