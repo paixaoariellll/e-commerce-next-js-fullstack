@@ -1,38 +1,48 @@
 import axios from "axios";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Cookies from "js-cookie";
-import React, { useContext, useEffect, useState } from "react";
-import { toast } from "react-toastify";
-import CheckoutWizard from "../components/CheckoutWizard";
-import Layout from "../components/Layout";
-import { getError } from "../utils/error";
-import { Store } from "../utils/Store";
 import { BsPaypal } from "react-icons/bs";
+import CheckoutWizard from "../components/CheckoutWizard";
+import Cookies from "js-cookie";
 import { FaBarcode, FaStripe } from "react-icons/fa";
+import { getError } from "../utils/error";
 import { GiReceiveMoney } from "react-icons/gi";
+import Image from "next/image";
+import Layout from "../components/Layout";
+import Link from "next/link";
+import React, { useContext, useEffect, useState } from "react";
+import { Store } from "../utils/Store";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
-export default function PlaceOrderScreen() {
+function PlaceOrderScreen() {
+  
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { cartItems, shippingAddress, paymentMethod } = cart;
-  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100
+
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
   const itemsPrice = round2(
-    cartItems.reduce((a, c) => a + c.quantity * (c.price - (c.price * c.descount / 100)), 0).toFixed(2)
-  )
-  const shippingPrice = itemsPrice > 200 ? 0 : 15
-  const taxPrice = round2(itemsPrice * 0.15)
-  const descount = round2(cartItems.reduce((a, c) => a + c.price, 0))
-  const totalPrice = round2((itemsPrice) + shippingPrice + taxPrice)
-  const totalDescount = round2(totalPrice * 0.95)
+    cartItems
+      .reduce(
+        (a, c) => a + c.quantity * (c.price - (c.price * c.descount) / 100),
+        0
+      )
+      .toFixed(2)
+  );
+
+  const shippingPrice = itemsPrice > 200 ? 0 : 15;
+  const taxPrice = round2(itemsPrice * 0.15);
+  const descount = round2(cartItems.reduce((a, c) => a + c.price, 0));
+  const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
+  const totalDescount = round2(totalPrice * 0.95);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   useEffect(() => {
     if (!paymentMethod) {
       router.push("/payment");
     }
   }, [paymentMethod, router]);
+
   const placeOrderHandler = async () => {
     try {
       setLoading(true);
@@ -63,20 +73,20 @@ export default function PlaceOrderScreen() {
   };
 
   return (
-    <Layout title="Revisão do Pedido">
+    <Layout title="Revisão do pedido">
       <CheckoutWizard activeStep={3} />
       <div className="card border border-gray-300 p-5">
         <h1 className="mb-4 text-center text-blue-800 text-5xl">
-          Revisão do Pedido
+          Revisão do pedido
         </h1>
         {cartItems.length === 0 ? (
           <div className="card w-full p-5 bg-white">
-            <h1 className="text-center text-red-500 text-3xl">
-              Parece que você se perdeu né?
+            <h1 className="text-center text-red-600 text-3xl">
+              Parece que você se perdeu, não é?
             </h1>
             {
-              <div className="mb-4 text-xl text-center text-red-500">
-                Você não possui itens adicionados ao carrinho
+              <div className="mb-4 text-xl text-center text-red-600">
+                Você não possui produtos no carrinho!
               </div>
             }
             <div className="text-center">
@@ -85,7 +95,7 @@ export default function PlaceOrderScreen() {
                 type="button"
                 className="primary-button text-xl"
               >
-                Vamos às Compras!
+                Voltar para a página inicial
               </button>
             </div>
           </div>
@@ -94,15 +104,15 @@ export default function PlaceOrderScreen() {
             <div className="overflow-x-auto md:col-span-5">
               <div className="text-center border border-gray-300 mb-5 overflow-x-auto p-5">
                 <h2 className="mb-2 text-blue-600 text-3xl">
-                  Lista dos Produtos
+                  Lista de produtos
                 </h2>
                 <table className="min-w-full">
                   <thead className="border-b">
                     <tr className="text-blue-700 text-xl">
-                      <th className="px-5 text-center">Item</th>
+                      <th className="px-5 text-center">Produto</th>
                       <th className="p-5 text-center">Quantidade</th>
-                      <th className="p-5 text-center">Preço Por Unidade</th>
-                      <th className="p-5 text-center">Preço Total</th>
+                      <th className="p-5 text-center">Preço unitário</th>
+                      <th className="p-5 text-center">Preço total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -126,10 +136,18 @@ export default function PlaceOrderScreen() {
                           {item.quantity}
                         </td>
                         <td className="p-5 text-xl text-center">
-                          R$&nbsp;{(item.price - (item.price * item.descount / 100)).toFixed(2)}
+                          R$&nbsp;
+                          {(
+                            item.price -
+                            (item.price * item.descount) / 100
+                          ).toFixed(2)}
                         </td>
                         <td className="p-5 text-xl text-center">
-                          R$ {((item.price - (item.price * item.descount) / 100) * item.quantity).toFixed(2)}
+                          R$&nbsp;
+                          {(
+                            (item.price - (item.price * item.descount) / 100) *
+                            item.quantity
+                          ).toFixed(2)}
                         </td>
                       </tr>
                     ))}
@@ -139,13 +157,15 @@ export default function PlaceOrderScreen() {
               <div className="flex justify-between gap-5">
                 <div className="w-2/3 border border-gray-300 p-5">
                   <h2 className="mb-2 text-blue-600 text-center text-3xl">
-                    Endereço para entrega
+                    Endereço para a entrega
                   </h2>
                   <div className="flex text-xl justify-between gap-2 mb-2">
                     <div className="flex justify-between items-start flex-col">
                       <span className="text-blue-700">
                         Nome:&nbsp;
-                        <span className="text-black">{shippingAddress.name}</span>
+                        <span className="text-black">
+                          {shippingAddress.name}
+                        </span>
                       </span>
                       <span className="text-blue-700">
                         Endereço:&nbsp;
@@ -161,7 +181,9 @@ export default function PlaceOrderScreen() {
                       </span>
                       <span className="text-blue-700">
                         Cidade:&nbsp;
-                        <span className="text-black">{shippingAddress.city}</span>
+                        <span className="text-black">
+                          {shippingAddress.city}
+                        </span>
                       </span>
                       <span className="text-blue-700">
                         CEP:&nbsp;
@@ -197,31 +219,26 @@ export default function PlaceOrderScreen() {
                       Método de pagamento
                     </h2>
                     <div className="mb-2 text-xl text-center">
-                      {
-                        paymentMethod === 'Paypal' ?
-                          (
-                            <div className="flex justify-center">
-                              {paymentMethod}< BsPaypal />
-                            </div>
-                          )
-                          : paymentMethod === 'Stripe' ?
-                            (
-                              <div className="flex justify-center">
-                                {paymentMethod} <FaStripe />
-                              </div>
-                            ) : paymentMethod === 'PIX' ?
-                              (
-                                <div className="flex justify-center">
-                                  {paymentMethod} < GiReceiveMoney />
-                                </div>
-                              ) : paymentMethod === 'Boleto' ?
-                                (
-                                  <div className="flex justify-center">
-                                    {paymentMethod} < FaBarcode />
-                                  </div>
-                                )
-                                : ''
-                      }
+                      {paymentMethod === "Paypal" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod}
+                          <BsPaypal />
+                        </div>
+                      ) : paymentMethod === "Stripe" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod} <FaStripe />
+                        </div>
+                      ) : paymentMethod === "PIX" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod} <GiReceiveMoney />
+                        </div>
+                      ) : paymentMethod === "Boleto" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod} <FaBarcode />
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
                     <div className="flex items-center flex-col">
                       <Link href="/payment">
@@ -237,7 +254,7 @@ export default function PlaceOrderScreen() {
             <div className="overflow-x-auto md:col-span-3">
               <div className="bg-white shadow-md rounded-lg p-5 border border-gray-300">
                 <h2 className="mb-2 text-blue-600 text-center text-3xl">
-                  Resumo do Pedido
+                  Resumo do pedido
                 </h2>
                 <ul>
                   <li>
@@ -262,7 +279,7 @@ export default function PlaceOrderScreen() {
                     <div className="mb-2 flex text-xl justify-between">
                       <div>Total</div>
                       <div className="flex flex-col align-middle items-end">
-                        <span className="text-md text-red-500 line-through">
+                        <span className="text-md text-red-600 line-through">
                           de: R$&nbsp;
                           {totalPrice}
                         </span>
@@ -293,3 +310,5 @@ export default function PlaceOrderScreen() {
 }
 
 PlaceOrderScreen.auth = true;
+
+export default PlaceOrderScreen;

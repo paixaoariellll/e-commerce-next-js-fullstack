@@ -13,7 +13,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdOutlineDriveFileRenameOutline } from "react-icons/md";
 
-export default function ProfileScreen() {
+function ProfileScreen() {
   const router = useRouter();
   const { data: session } = useSession();
   const {
@@ -237,3 +237,5 @@ export default function ProfileScreen() {
 }
 
 ProfileScreen.auth = true;
+
+export default ProfileScreen;

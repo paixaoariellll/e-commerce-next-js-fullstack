@@ -299,12 +299,12 @@ function OrderScreen() {
                             ) : paymentMethod === 'PIX' ?
                               (
                                 <div className="flex justify-center">
-                                  {paymentMethod} < GiReceiveMoney />
+                                  {paymentMethod} <GiReceiveMoney />
                                 </div>
                               ) : paymentMethod === 'Boleto' ?
                                 (
                                   <div className="flex justify-center">
-                                    {paymentMethod} < FaBarcode />
+                                    {paymentMethod} <FaBarcode />
                                   </div>
                                 )
                                 : ''
@@ -328,12 +328,12 @@ function OrderScreen() {
             <div className="overflow-x-auto md:col-span-3">
               <div className="bg-white shadow-md rounded-lg p-5 border border-gray-300">
                 <h2 className="mb-2 text-blue-600 text-center text-3xl">
-                  Resumo do Pedido
+                  Resumo do pedido
                 </h2>
                 <ul>
                   <li>
                     <div className="mb-2 gap-5 text-xl flex justify-between">
-                      <div>Itens</div>
+                      <div>Produtos</div>
                       <div>R$&nbsp;{itemsPrice}</div>
                     </div>
                   </li>

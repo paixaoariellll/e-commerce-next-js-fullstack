@@ -4,60 +4,29 @@ import { signIn, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
 import Image from "next/image";
-import login from "../public/img/login.svg";
+import LoginBg from "../public/images/login.svg";
 import { getError } from "../utils/error";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-/* import googleOneTap from 'google-one-tap'; */
-/* import { useState } from "react"; */
-/* const options = {
-  client_id: process.env.CLIENT_ID,
-  auto_select: false,
-  cancel_on_tap_outside: false,
-  context: "signin",
-}; */
-export default function LoginScreen() {
-  /*   const [loginData, setLoginData] = useState(
-      localStorage.getItem("loginData")
-        ? JSON.parse(localStorage.getItem("loginData"))
-        : null
-    );
-    useEffect(() => {
-      if (!loginData) {
-        googleOneTap(options, async (response) => {
-          console.log(response);
-          const res = await fetch("/api/google-login", {
-            method: "POST",
-            body: JSON.stringify({
-              token: response.credential,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          const data = await res.json();
-          setLoginData(data);
-          localStorage.setItem("loginData", JSON.stringify(data));
-        });
-      }
-    }, [loginData]);
-    const handleLogout = () => {
-      localStorage.removeItem("loginData");
-      setLoginData(null);
-    }; */
+
+function LoginScreen() {
+
   const { data: session } = useSession();
   const router = useRouter();
   const { redirect } = router.query;
+
   useEffect(() => {
     if (session?.user) {
       router.push(redirect || "/");
     }
   }, [router, session, redirect]);
+
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
+
   const submitHandler = async ({ email, password }) => {
     try {
       const result = await signIn("credentials", {
@@ -72,36 +41,35 @@ export default function LoginScreen() {
       toast.error(getError(err));
     }
   };
+
   return (
     <Layout title="Login">
       <div className="h-full">
         <div className="px-6 h-full text-gray-800">
           <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
             <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-              <Image src={login} width={640} height={640} alt="Sample image" className="vertical_img" />
+              <Image
+                src={LoginBg}
+                width={640}
+                height={640}
+                alt="Imagem de um adolescente cartunizado sentado em uma cadeira gamer e digitando em seu teclado apressadamente."
+                className="vertical_img"
+              />
             </div>
             <div className="bg-white p-5 rounded-lg shadow-xl xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-5">
               <form onSubmit={handleSubmit(submitHandler)}>
-                <div className="flex flex-row items-center justify-center lg:justify-start">
-                  <p className="text-xl mb-0 mr-4">Conecte-se com: </p>
-
-                </div>
-                <div className="flex items-center my-4 before:flex-1 before:border-t before:border-white before:mt-0.5 after:flex-1 after:border-t after:border-white after:mt-0.5">
-                  <p className="text-center text-4xl text-blue-700 mx-4 mb-0">
-                    Ou
-                  </p>
-                </div>
                 <div className="mb-6">
                   <label htmlFor="email" className="text-blue-700 text-2xl">
                     E-mail
                   </label>
                   <input
+                    placeholder="Seu e-mail"
                     {...register("email", {
-                      required: "Por favor, digite seu e-mail",
+                      required: "Por favor, digite o seu e-mail.",
                       pattern: {
                         value:
                           /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
-                        message: "Por favor, digite um e-mail válido",
+                        message: "Por favor, digite um e-mail válido.",
                       },
                     })}
                     type="email"
@@ -120,9 +88,10 @@ export default function LoginScreen() {
                     Senha
                   </label>
                   <input
+                    placeholder="Sua senha"
                     type="password"
                     {...register("password", {
-                      required: "Por favor, digite sua senha",
+                      required: "Por favor, digite a sua senha.",
                       pattern: {
                         value:
                           /^(?=(.*[a-z]){3,})(?=(.*[A-Z]){2,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/,
@@ -160,14 +129,14 @@ export default function LoginScreen() {
                       className="form-check-label inline-block text-gray-800"
                       htmlFor="checkbox"
                     >
-                      Lembrar-me
+                      Lembrar da conta
                     </label>
                   </div>
-                  <p className="text-md flex font-semibold mt-2 pt-1 mb-0">
+                  <p className="text-md flex font-semibold pt-1 mb-0">
                     Não possui uma conta?&nbsp;
                     <Link href={`/register?redirect=${redirect || "/"}`}>
                       <div className="hover:text-blue-700 hover:underline text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
-                        Registre-se
+                        Registre-se!
                       </div>
                     </Link>
                   </p>
@@ -192,3 +161,5 @@ export default function LoginScreen() {
     </Layout>
   );
 }
+
+export default LoginScreen;

@@ -1,16 +1,17 @@
 import axios from "axios";
 import db from "../../utils/db";
+import Image from "next/image";
 import Layout from "../../components/Layout";
 import Link from "next/link";
-import Image from "next/image";
-import imgErro from "../../public/img/imgErro.svg";
 import Product from "../../models/Product";
 import React, { useContext } from "react";
+import ResponseHTTP404 from "../../components/ResponseHTTP404";
 import { Store } from "../../utils/Store";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
-export default function ProductScreen(props) {
+function ProductScreen(props) {
+
   const { product } = props;
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
@@ -18,26 +19,7 @@ export default function ProductScreen(props) {
   if (!product) {
     return (
       <Layout title="Produto não encontrado">
-        <div className="card flex items-center flex-col ">
-          <div className="text-5xl text-center">
-            <h1 className="text-blue-800">Parece que não há nada por aqui!</h1>
-            <div className="flex text-center">
-              <Image
-                src={imgErro}
-                alt="Um animal fantástico segura e morde o número zero do erro 404."
-                width={500}
-                height={500}
-                className="vertical_img"
-              />
-              <Link href="/">
-                <button className="bg-zinc-800 error_404 text-white hover:bg-red-800">
-                  {" "}
-                  Voltar
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
+        <ResponseHTTP404 />
       </Layout>
     );
   }
@@ -78,10 +60,10 @@ export default function ProductScreen(props) {
       </div>
       <div className="grid md:grid-cols-5 md:gap-4">
         <div className="md:col-span-2">
-          <div className=" mb-5 shadow-gray-900 shadow-xl rounded border-8">
+          <div className="mb-5 shadow-gray-600 shadow-md rounded-full">
             <Image
               src={product.image}
-              alt="imagem do produto"
+              alt={"Capa do jogo " + product.name}
               width={640}
               height={640}
               layout="responsive"
@@ -159,3 +141,5 @@ export async function getServerSideProps(context) {
     },
   };
 }
+
+export default ProductScreen;

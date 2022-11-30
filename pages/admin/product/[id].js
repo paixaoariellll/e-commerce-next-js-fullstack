@@ -1,13 +1,13 @@
 import axios from "axios";
+import ControllerLogo from "../../../public/images/controller.svg";
 import { getError } from "../../../utils/error";
+import Image from "next/image";
 import Layout from "../../../components/Layout";
 import React, { useEffect, useReducer } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Image from "next/image";
-import noImage from "../../../public/img/M.svg"
 
 function reducer(state, action) {
   switch (action.type) {
@@ -38,15 +38,19 @@ function reducer(state, action) {
   }
 }
 
-export default function AdminProductEditScreen() {
+function AdminProductEditScreen() {
+
   const [imageSrc, setImageSrc] = useState();
   const { query } = useRouter();
   const productId = query.id;
+  const router = useRouter();
+
   const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
     useReducer(reducer, {
       loading: true,
       error: "",
     });
+
   const uploadHandler = async (e, imageField = "image") => {
     const url = `https://api.cloudinary.com/v1_1/dins1fpk3/upload`;
     try {
@@ -70,12 +74,14 @@ export default function AdminProductEditScreen() {
       toast.error(getError(err));
     }
   };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
   } = useForm();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -100,7 +106,7 @@ export default function AdminProductEditScreen() {
     };
     fetchData();
   }, [productId, setValue]);
-  const router = useRouter();
+
   const submitHandler = async ({
     name,
     slug,
@@ -139,6 +145,7 @@ export default function AdminProductEditScreen() {
       toast.error(getError(err));
     }
   };
+
   return (
     <Layout title={`Editar produto ${productId}`}>
       <div className="grid md:grid-cols-4 md:gap-5">
@@ -150,7 +157,7 @@ export default function AdminProductEditScreen() {
             <div className="alert-error">{error}</div>
           ) : (
             <form
-              className="mx-auto text-xl p-10 w-full card "
+              className="mx-auto text-xl p-10 w-full card"
               onSubmit={handleSubmit(submitHandler)}
             >
               <div className="flex justify-between gap-5">
@@ -160,14 +167,15 @@ export default function AdminProductEditScreen() {
                   </label>
                   <input
                     type="text"
+                    placeholder="Nome"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="name"
                     autoFocus
                     {...register("name", {
-                      required: "Por favor, digite o nome do produto",
+                      required: "Por favor, digite o nome do produto.",
                       minLength: {
-                        value: 3,
-                        message: "Por favor, digite um nome válido",
+                        value: 2,
+                        message: "Por favor, digite um nome válido.",
                       },
                     })}
                   />
@@ -185,10 +193,10 @@ export default function AdminProductEditScreen() {
                     id="title"
                     autoFocus
                     {...register("title", {
-                      required: "Por favor, digite o título do produto",
+                      required: "Por favor, digite o título do produto.",
                       minLength: {
-                        value: 3,
-                        message: "Por favor, digite um título válido",
+                        value: 2,
+                        message: "Por favor, digite um título válido.",
                       },
                     })}
                   />
@@ -221,17 +229,17 @@ export default function AdminProductEditScreen() {
               <div className="flex justify-between">
                 <div className="card p-5">
                   <Image
-                    src={imageSrc ? imageSrc : noImage}
-                    alt="imagem"
+                    src={imageSrc ? imageSrc : ControllerLogo}
+                    alt="Imagem adicionada para o produto."
                     width={300}
                     height={300}
                     unoptimized
-                  >
-                  </Image>
+                  ></Image>
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="imageFile"
-                    className='text-2xl text-blue-700'>Carregar imagem</label>
+                  <label htmlFor="imageFile" className="text-2xl text-blue-700">
+                    Carregar imagem
+                  </label>
                   <input
                     type="file"
                     multiple
@@ -252,7 +260,7 @@ export default function AdminProductEditScreen() {
                     className="form-control block w-fit px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="price"
                     {...register("price", {
-                      required: "Por favor, digite um valor válido",
+                      required: "Por favor, digite um valor válido.",
                     })}
                   />
                   {errors.price && (
@@ -268,11 +276,13 @@ export default function AdminProductEditScreen() {
                     className="form-control block w-fit px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="descount"
                     {...register("descount", {
-                      required: "Por favor, digite um valor válido",
+                      required: "Por favor, digite um valor válido.",
                     })}
                   />
                   {errors.descount && (
-                    <div className="text-red-600">{errors.descount.message}</div>
+                    <div className="text-red-600">
+                      {errors.descount.message}
+                    </div>
                   )}
                 </div>
                 <div className="mb-4">
@@ -284,7 +294,7 @@ export default function AdminProductEditScreen() {
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="publisher"
                     {...register("publisher", {
-                      required: "Por favor, digite o nome da Distribuidora",
+                      required: "Por favor, digite o nome da distribuidora.",
                     })}
                   />
                   {errors.publisher && (
@@ -329,6 +339,8 @@ export default function AdminProductEditScreen() {
                   >
                     <option id="category">Xbox</option>
                     <option id="category">PlayStation</option>
+                    <option id="category">Nintendo Switch</option>
+                    <option id="category">Todos</option>
                   </select>
                   {errors.category && (
                     <div className="text-red-600">
@@ -347,32 +359,33 @@ export default function AdminProductEditScreen() {
                       required: "Por favor, escolha pelo menos um gênero",
                     })}
                   >
-                    <option id="gender">FPS</option>
+                    <option id="gender">Ação</option>
+                    <option id="gender">Aventura</option>
                     <option id="gender">Battle Royale</option>
-                    <option id="gender">FPA</option>
-                    <option id="gender">PVP</option>
-                    <option id="gender">RTS</option>
-                    <option id="gender">MOBA</option>
-                    <option id="gender">RPG</option>
+                    <option id="gender">Corrida</option>
+                    <option id="gender">Esporte</option>
+                    <option id="gender">Estratégia</option>
                     <option id="gender">MMORPG</option>
+                    <option id="gender">Plataforma</option>
+                    <option id="gender">RPG</option>
+                    <option id="gender">Simulação</option>
+                    <option id="gender">Survival Horror</option>
                   </select>
                   {errors.gender && (
-                    <div className="text-red-600">
-                      {errors.gender.message}
-                    </div>
+                    <div className="text-red-600">{errors.gender.message}</div>
                   )}
                 </div>
               </div>
               <div className="mb-4">
                 <label htmlFor="description" className="text-2xl text-blue-700">
-                  descrição
+                  Descrição
                 </label>
                 <textarea
                   type="text"
                   className="form-control h-52 block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                   id="description"
                   {...register("description", {
-                    required: "Please enter description",
+                    required: "Por favor, digite uma descrição.",
                   })}
                 />
                 {errors.description && (
@@ -399,8 +412,10 @@ export default function AdminProductEditScreen() {
           )}
         </div>
       </div>
-    </Layout >
+    </Layout>
   );
 }
 
 AdminProductEditScreen.auth = { adminOnly: true };
+
+export default AdminProductEditScreen;

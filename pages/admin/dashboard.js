@@ -37,7 +37,7 @@ function reducer(state, action) {
 }
 
 export const options = {
-  type: 'line',
+  type: "line",
   responsive: true,
   plugins: {
     legend: {
@@ -47,6 +47,7 @@ export const options = {
 };
 
 function DashboardScreen() {
+  
   const [{ loading, error, summary }, dispatch] = useReducer(reducer, {
     loading: true,
     summary: { salesDataPrice: [], salesDataDescount: [] },
@@ -54,7 +55,7 @@ function DashboardScreen() {
   });
 
   const data = {
-    type: 'line',
+    type: "line",
     labels: summary.salesDataPrice.map((x) => x._id), // 2022/01 2022/03
     label: summary.salesDataDescount.map((x) => x._id), // 2022/01 2022/03
     datasets: [
@@ -163,4 +164,5 @@ function DashboardScreen() {
 }
 
 DashboardScreen.auth = { adminOnly: true };
+
 export default DashboardScreen;
