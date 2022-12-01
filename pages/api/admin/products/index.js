@@ -23,16 +23,16 @@ const handler = async (req, res) => {
 const postHandler = async (req, res) => {
   await db.connect();
   const newProduct = new Product({
-    name: "Simples nome",
-    slug: "Simples-nome-" + Number.parseInt(Math.random() * 100 + 1),
-    title: "Simples título",
+    name: "Título",
+    slug: "url" + Math.random() * 10000 + 1,
+    title: "Título",
     image: "/img/game.jpg",
-    price: 50,
+    price: 0,
     category: "Xbox",
-    publisher: "Simples distribuidora",
+    publisher: "Distribuidora",
     countInStock: 1,
-    descount: 1,
-    description: "Produto gerado pela 'POST-HANDLER' feita pelo grupo GameOn - 2022",
+    descount: 0,
+    description: "Descrição",
     rating: 0,
     sellCount: 0,
     numReviews: 0,

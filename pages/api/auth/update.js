@@ -20,7 +20,8 @@ async function handler(req, res) {
   if (
     !name ||
     !lastName ||
-    !email || !email.includes("@") ||
+    !email ||
+    !email.includes("@") ||
     (password && password.trim().length < 7)
   ) {
     res.status(422).json({
