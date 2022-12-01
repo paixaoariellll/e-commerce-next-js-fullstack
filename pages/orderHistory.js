@@ -20,11 +20,13 @@ function reducer(state, action) {
 }
 
 function OrderHistoryScreen() {
+  
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
     orders: [],
     error: "",
   });
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -39,8 +41,8 @@ function OrderHistoryScreen() {
   }, []);
 
   return (
-    <Layout title="Histórico de compras">
-      <h1 className="mb-4 text-center text-blue-800 text-5xl bg-white shadow-md  shadow-gray-400 rounded-xl">
+    <Layout title="Histórico">
+      <h1 className="mb-4 text-center text-blue-800 text-5xl bg-white shadow-md shadow-gray-400 rounded-xl">
         Histórico de compras
       </h1>
       {loading ? (
@@ -50,8 +52,8 @@ function OrderHistoryScreen() {
       ) : (
         <div className="overflow-x-auto card">
           <table className="min-w-full p-5">
-            <thead className="border-b-8 border-b-blue-800">
-              <tr className="text-2xl text-blue-800">
+            <thead className="border-b border-b-black">
+              <tr className="text-2xl text-black">
                 <th className="p-5 text-center">Data do pedido</th>
                 <th className="p-5 text-center">Total</th>
                 <th className="p-5 text-center">Pagamento</th>
@@ -61,10 +63,7 @@ function OrderHistoryScreen() {
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr
-                  key={order._id}
-                  className="border-t-2 text-xl border-t-blue-800"
-                >
+                <tr key={order._id} className="border-t text-xl border-t-black">
                   <td className="p-5 text-center">
                     {order.createdAt.substring(8, 10)}/
                     {order.createdAt.substring(5, 7)}/

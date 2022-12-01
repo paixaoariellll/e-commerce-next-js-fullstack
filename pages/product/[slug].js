@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 function ProductScreen(props) {
-
+  
   const { product } = props;
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
@@ -117,7 +117,7 @@ function ProductScreen(props) {
               {product.title}
             </h1>
             <li className="text-sm p-4 text-left shadow-md border border-solid border-gray-300 bg-white rounded-xl m-1 cursor-text">
-              <span className="flex text-2xl  py-4 justify-center text-center w-full">
+              <span className="flex text-2xl py-4 justify-center text-center w-full">
                 Descrição
               </span>
               <span className="text-lg">{product.description}</span>

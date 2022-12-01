@@ -3,11 +3,10 @@ import ControllerLogo from "../../../public/images/controller.svg";
 import { getError } from "../../../utils/error";
 import Image from "next/image";
 import Layout from "../../../components/Layout";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -39,7 +38,7 @@ function reducer(state, action) {
 }
 
 function AdminProductEditScreen() {
-
+  
   const [imageSrc, setImageSrc] = useState();
   const { query } = useRouter();
   const productId = query.id;
@@ -163,11 +162,11 @@ function AdminProductEditScreen() {
               <div className="flex justify-between gap-5">
                 <div className="mb-4 w-full">
                   <label htmlFor="name" className="text-2xl text-blue-700">
-                    Nome
+                    Título
                   </label>
                   <input
                     type="text"
-                    placeholder="Nome"
+                    placeholder="Título"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="name"
                     autoFocus
@@ -178,6 +177,8 @@ function AdminProductEditScreen() {
                         message: "Por favor, digite um nome válido.",
                       },
                     })}
+                    minLength={2}
+                    maxLength={25}
                   />
                   {errors.name && (
                     <div className="text-red-600">{errors.name.message}</div>
@@ -185,10 +186,11 @@ function AdminProductEditScreen() {
                 </div>
                 <div className="mb-4 w-full">
                   <label htmlFor="title" className="text-2xl text-blue-700">
-                    Título
+                    Título completo
                   </label>
                   <input
                     type="text"
+                    placeholder="Título completo"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="title"
                     autoFocus
@@ -199,6 +201,8 @@ function AdminProductEditScreen() {
                         message: "Por favor, digite um título válido.",
                       },
                     })}
+                    minLength={2}
+                    maxLength={50}
                   />
                   {errors.title && (
                     <div className="text-red-600">{errors.title.message}</div>
@@ -211,16 +215,19 @@ function AdminProductEditScreen() {
                 </label>
                 <input
                   type="text"
+                  placeholder="URL"
                   className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                   id="slug"
                   {...register("slug", {
                     pattern: {
                       value: /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
-                      message: "É permitido apenas letras, números e dashes.",
+                      message: "É permitido apenas letras, números e hífens.",
                     },
                     required:
                       "Os slugs representam o ID nominal. Por favor, escreva-os sem espaços e sem letras maiúsculas!",
                   })}
+                  minLength={2}
+                  maxLength={50}
                 />
                 {errors.slug && (
                   <div className="text-red-600">{errors.slug.message}</div>
@@ -234,7 +241,7 @@ function AdminProductEditScreen() {
                     width={300}
                     height={300}
                     unoptimized
-                  ></Image>
+                  />
                 </div>
                 <div className="mb-4">
                   <label htmlFor="imageFile" className="text-2xl text-blue-700">
@@ -243,6 +250,7 @@ function AdminProductEditScreen() {
                   <input
                     type="file"
                     multiple
+                    placeholder="Escolher arquivo(s)"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="imageFile"
                     onChange={uploadHandler}
@@ -253,15 +261,18 @@ function AdminProductEditScreen() {
               <div className="flex justify-between">
                 <div className="mb-4">
                   <label htmlFor="price" className="text-2xl text-blue-700">
-                    Preço
+                    Preço em R$
                   </label>
                   <input
                     type="number"
+                    placeholder="Valor"
                     className="form-control block w-fit px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="price"
                     {...register("price", {
                       required: "Por favor, digite um valor válido.",
                     })}
+                    min={1}
+                    max={1000}
                   />
                   {errors.price && (
                     <div className="text-red-600">{errors.price.message}</div>
@@ -269,12 +280,15 @@ function AdminProductEditScreen() {
                 </div>
                 <div className="mb-4">
                   <label htmlFor="descount" className="text-2xl text-blue-700">
-                    Desconto %
+                    Desconto em %
                   </label>
                   <input
-                    type="numer"
+                    type="number"
+                    placeholder="%"
                     className="form-control block w-fit px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="descount"
+                    min={0}
+                    max={100}
                     {...register("descount", {
                       required: "Por favor, digite um valor válido.",
                     })}
@@ -291,11 +305,14 @@ function AdminProductEditScreen() {
                   </label>
                   <input
                     type="text"
+                    placeholder="Distribuidora"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="publisher"
                     {...register("publisher", {
                       required: "Por favor, digite o nome da distribuidora.",
                     })}
+                    minLength={2}
+                    maxLength={15}
                   />
                   {errors.publisher && (
                     <div className="text-red-600">
@@ -312,11 +329,14 @@ function AdminProductEditScreen() {
                   </label>
                   <input
                     type="number"
+                    placeholder="Quantidade"
                     className="form-control block w-52 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="countInStock"
                     {...register("countInStock", {
-                      required: "Please enter countInStock",
+                      required: "Por favor, insita a quantidade em estoque.",
                     })}
+                    min={1}
+                    max={1000}
                   />
                   {errors.countInStock && (
                     <div className="text-red-600">
@@ -331,6 +351,7 @@ function AdminProductEditScreen() {
                     Categoria
                   </label>
                   <select
+                    placeholder="Categoria"
                     className="form-control block w-52 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="category"
                     {...register("category", {
@@ -353,10 +374,11 @@ function AdminProductEditScreen() {
                     Gênero
                   </label>
                   <select
+                    placeholder="Gênero"
                     className="form-control block w-52 px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                     id="gender"
                     {...register("gender", {
-                      required: "Por favor, escolha pelo menos um gênero",
+                      required: "Por favor, escolha um gênero",
                     })}
                   >
                     <option id="gender">Ação</option>
@@ -382,11 +404,13 @@ function AdminProductEditScreen() {
                 </label>
                 <textarea
                   type="text"
+                  placeholder="Digite uma descrição para o produto"
                   className="form-control h-52 block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                   id="description"
                   {...register("description", {
                     required: "Por favor, digite uma descrição.",
                   })}
+                  maxLength={5000}
                 />
                 {errors.description && (
                   <div className="text-red-600">
@@ -405,7 +429,7 @@ function AdminProductEditScreen() {
                   disabled={loadingUpdate}
                   className="primary-button bg-white border border-solid border-gray-300"
                 >
-                  {loadingUpdate ? "Carregando" : "Atualizar"}
+                  {loadingUpdate ? "Carregando" : "Salvar"}
                 </button>
               </div>
             </form>

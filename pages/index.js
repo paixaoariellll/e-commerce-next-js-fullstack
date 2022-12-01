@@ -25,7 +25,7 @@ function Home({ products }) {
 
   return (
     <Layout title="Home">
-      <h1 className="text-5xl text-blue-700 my-5 card p-5 text-center w-full">
+      <h1 className="text-5xl text-blue-800 my-5 card p-5 text-center w-full">
         Catálogo de jogos
       </h1>
       <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">

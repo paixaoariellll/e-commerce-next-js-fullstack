@@ -1,5 +1,8 @@
 import axios from "axios";
+import { BsPaypal } from "react-icons/bs";
+import { FaBarcode, FaStripe } from "react-icons/fa";
 import { getError } from "../../utils/error";
+import { GiReceiveMoney } from "react-icons/gi";
 import Image from "next/image";
 import Layout from "../../components/Layout";
 import Link from "next/link";
@@ -8,9 +11,6 @@ import { toast } from "react-toastify";
 import { useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
-import { BsPaypal } from "react-icons/bs";
-import { FaBarcode, FaStripe } from "react-icons/fa";
-import { GiReceiveMoney } from "react-icons/gi";
 
 function reducer(state, action) {
   switch (action.type) {
@@ -46,10 +46,12 @@ function reducer(state, action) {
 }
 
 function OrderScreen() {
+
   const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
   const { query } = useRouter();
   const orderId = query.id;
   const { data: session } = useSession();
+
   const [
     {
       loading,
@@ -66,6 +68,7 @@ function OrderScreen() {
     order: {},
     error: "",
   });
+
   useEffect(() => {
     const fetchOrder = async () => {
       try {
@@ -104,6 +107,7 @@ function OrderScreen() {
       loadPaypalScript();
     }
   }, [order, orderId, paypalDispatch, successDeliver, successPay]);
+
   function createOrder(data, actions) {
     return actions.order
       .create({
@@ -117,6 +121,7 @@ function OrderScreen() {
         return orderID;
       });
   }
+
   async function deliverOrderHandler() {
     try {
       dispatch({ type: "DELIVER_REQUEST" });
@@ -125,12 +130,13 @@ function OrderScreen() {
         {}
       );
       dispatch({ type: "DELIVER_SUCCESS", payload: data });
-      toast.success("O pedido foi entregue");
+      toast.success("O pedido foi entregue!");
     } catch (err) {
       dispatch({ type: "DELIVER_FAIL", payload: getError(err) });
       toast.error(getError(err));
     }
   }
+
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
       try {
@@ -166,12 +172,12 @@ function OrderScreen() {
     isDelivered,
     deliveredAt,
   } = order;
-  const totalDescount = (totalPrice * 0.95);
+  const totalDescount = totalPrice * 0.95;
 
   return (
-    <Layout title={`Pedido ${orderId}`}>
+    <Layout title="Pedido">
       <div className="card border border-gray-300 p-5">
-        <h1 className="mb-4 text-center text-blue-700 text-3xl card">{`ID: ${orderId}`}</h1>
+        <h1 className="mb-4 text-center text-blue-800 text-3xl card">{`ID: ${orderId}`}</h1>
         {loading ? (
           <div>Carregando...</div>
         ) : error ? (
@@ -181,15 +187,15 @@ function OrderScreen() {
             <div className="overflow-x-auto md:col-span-5">
               <div className="text-center border border-gray-300 mb-5 overflow-x-auto p-5">
                 <h2 className="mb-2 text-blue-600 text-3xl">
-                  Lista dos Produtos
+                  Lista de produtos
                 </h2>
                 <table className="min-w-full">
                   <thead className="border-b">
                     <tr className="text-blue-700 text-xl">
-                      <th className="px-5 text-center">Item</th>
+                      <th className="px-5 text-center">Produto</th>
                       <th className="p-5 text-center">Quantidade</th>
-                      <th className="p-5 text-center">Preço Por Unidade</th>
-                      <th className="p-5 text-center">Preço Total</th>
+                      <th className="p-5 text-center">Preço unitário</th>
+                      <th className="p-5 text-center">Preço total</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -206,14 +212,17 @@ function OrderScreen() {
                               width={50}
                               height={50}
                               className="cursor-pointer"
-                            ></Image>
+                            />
                           </Link>
                         </td>
                         <td className="p-5 text-xl only:text-center">
                           {item.quantity}
                         </td>
                         <td className="p-5 text-xl text-center">
-                          R$&nbsp;{(item.price - (item.price * descount) / 100).toFixed(2)}
+                          R$&nbsp;
+                          {(item.price - (item.price * descount) / 100).toFixed(
+                            2
+                          )}
                         </td>
                         <td className="p-5 text-xl text-center">
                           R$&nbsp;{(item.price * item.quantity).toFixed(2)}
@@ -226,13 +235,15 @@ function OrderScreen() {
               <div className="flex justify-between gap-5">
                 <div className="w-2/3 border border-gray-300 p-5">
                   <h2 className="mb-2 text-blue-600 text-center text-3xl">
-                    Endereço para entrega
+                    Endereço para a entrega
                   </h2>
                   <div className="flex text-xl justify-between gap-2 mb-2">
                     <div className="flex justify-between items-start flex-col">
                       <span className="text-blue-700">
                         Nome:&nbsp;
-                        <span className="text-black">{shippingAddress.name}</span>
+                        <span className="text-black">
+                          {shippingAddress.name}
+                        </span>
                       </span>
                       <span className="text-blue-700">
                         Endereço:&nbsp;
@@ -248,7 +259,9 @@ function OrderScreen() {
                       </span>
                       <span className="text-blue-700">
                         Cidade:&nbsp;
-                        <span className="text-black">{shippingAddress.city}</span>
+                        <span className="text-black">
+                          {shippingAddress.city}
+                        </span>
                       </span>
                       <span className="text-blue-700">
                         CEP:&nbsp;
@@ -272,7 +285,9 @@ function OrderScreen() {
                   </div>
                   <div className="flex items-center flex-col">
                     {isDelivered ? (
-                      <div className="alert-success">Entregue {deliveredAt}</div>
+                      <div className="alert-success">
+                        Entregue {deliveredAt}
+                      </div>
                     ) : (
                       <div className="alert-error">Não entregue</div>
                     )}
@@ -284,31 +299,26 @@ function OrderScreen() {
                       Método de pagamento
                     </h2>
                     <div className="mb-2 text-xl text-center">
-                      {
-                        paymentMethod === 'Paypal' ?
-                          (
-                            <div className="flex justify-center">
-                              {paymentMethod}< BsPaypal />
-                            </div>
-                          )
-                          : paymentMethod === 'Stripe' ?
-                            (
-                              <div className="flex justify-center">
-                                {paymentMethod} <FaStripe />
-                              </div>
-                            ) : paymentMethod === 'PIX' ?
-                              (
-                                <div className="flex justify-center">
-                                  {paymentMethod} <GiReceiveMoney />
-                                </div>
-                              ) : paymentMethod === 'Boleto' ?
-                                (
-                                  <div className="flex justify-center">
-                                    {paymentMethod} <FaBarcode />
-                                  </div>
-                                )
-                                : ''
-                      }
+                      {paymentMethod === "Paypal" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod}
+                          <BsPaypal />
+                        </div>
+                      ) : paymentMethod === "Stripe" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod} <FaStripe />
+                        </div>
+                      ) : paymentMethod === "PIX" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod} <GiReceiveMoney />
+                        </div>
+                      ) : paymentMethod === "Boleto" ? (
+                        <div className="flex justify-center">
+                          {paymentMethod} <FaBarcode />
+                        </div>
+                      ) : (
+                        ""
+                      )}
                     </div>
                     <div className="flex items-center flex-col">
                       {isPaid ? (
@@ -353,7 +363,7 @@ function OrderScreen() {
                     <div className="mb-2 flex text-xl justify-between">
                       <div>Total</div>
                       <div className="flex flex-col align-middle items-end">
-                        <span className="text-md text-red-500 line-through">
+                        <span className="text-md text-red-600 line-through">
                           de: R$&nbsp;
                           {totalPrice}
                         </span>
@@ -402,4 +412,5 @@ function OrderScreen() {
 }
 
 OrderScreen.auth = true;
+
 export default OrderScreen;

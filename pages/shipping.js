@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import CheckoutWizard from "../components/CheckoutWizard";
 import Layout from "../components/Layout";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
@@ -61,17 +61,21 @@ function ShippingScreen() {
     router.push("/payment");
   };
 
+  const [cep, setCep] = useState("");
+
   const checkCEP = (e) => {
     const cepValidate = e.target.value.replace(/\D/g, "");
-    fetch(`https://viacep.com.br/ws/${cepValidate}/json/`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setValue("address", data.logradouro);
-        setValue("neighborhood", data.bairro);
-        setValue("city", data.localidade);
-        setValue("state", data.uf);
-      });
+    if (cep.length === 8) {
+      fetch(`https://viacep.com.br/ws/${cepValidate}/json/`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setValue("address", data.logradouro);
+          setValue("neighborhood", data.bairro);
+          setValue("city", data.localidade);
+          setValue("state", data.uf);
+        });
+    }
   };
 
   return (
@@ -94,6 +98,8 @@ function ShippingScreen() {
               id="name"
               label="Nome completo"
               autoFocus
+              minLength={2}
+              maxLength={100}
               {...register("name", {
                 required: "Por favor, digite o seu nome completo.",
               })}
@@ -112,9 +118,10 @@ function ShippingScreen() {
                 placeholder="Seu CEP"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                 id="postalCode"
+                onChange={(e) => setCep(e.target.value)}
                 onBlurCapture={checkCEP}
-                minLength="8"
-                maxLength="8"
+                minLength={8}
+                maxLength={8}
                 {...register("postalCode", {
                   required: "Por favor, digite o CEP.",
                   minLength: {
@@ -140,7 +147,7 @@ function ShippingScreen() {
                 placeholder="Número"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                 id="number"
-                min="1"
+                min={1}
                 {...register("number", {
                   required: "Por favor, digite o número de seu endereço",
                   minLength: {
@@ -165,6 +172,7 @@ function ShippingScreen() {
                 placeholder="Nome da sua rua"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                 id="address"
+                maxLength={100}
                 {...register("address", {
                   required: "Por favor, digite o nome da sua rua.",
                   minLength: {
@@ -187,6 +195,7 @@ function ShippingScreen() {
                 placeholder="Nome do seu bairro"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                 id="neighborhood"
+                maxLength={100}
                 {...register("neighborhood", {
                   required: "Por favor, digite o nome do seu bairro.",
                 })}
@@ -208,6 +217,7 @@ function ShippingScreen() {
                 placeholder="Nome da sua cidade"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                 id="city"
+                maxLength={100}
                 {...register("city", {
                   required: "Por favor, digite sua cidade.",
                 })}
@@ -225,6 +235,8 @@ function ShippingScreen() {
                 placeholder="Sigla da sua UF"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                 id="state"
+                minLength={2}
+                maxLength={2}
                 {...register("state", {
                   required: "Por favor, digite a sua UF.",
                   minLength: {

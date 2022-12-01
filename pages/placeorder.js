@@ -296,7 +296,7 @@ function PlaceOrderScreen() {
                       onClick={placeOrderHandler}
                       className="text-blue-800 text-2xl border border-gray-300 bg-white shadow-md w-full"
                     >
-                      {loading ? "Carregando..." : "Realizar Pedido"}
+                      {loading ? "Carregando..." : "Realizar pedido"}
                     </button>
                   </li>
                 </ul>

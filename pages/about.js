@@ -10,8 +10,8 @@ function AboutScreen() {
         <div className="col-span-1 text-center">
           <Image
             src={TeamSvg}
-            className="w-full card !shadow-none vertical_img !bg-sky-100"
             alt="Imagem cartunizada dos membros da equipe de desenvolvedores da plataforma GameOn."
+            className="w-full card !shadow-none vertical_img !bg-sky-100"
             layout="responsive"
             width={350}
             height={350}

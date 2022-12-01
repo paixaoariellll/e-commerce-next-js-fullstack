@@ -3,7 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 
 function UnauthorizedProfile() {
-
+  
   const router = useRouter();
   const { message } = router.query;
 
@@ -22,7 +22,7 @@ function UnauthorizedProfile() {
           <button
             onClick={() => router.push("/")}
             type="button"
-            className=" bg-blue-800 text-xl text-white"
+            className="bg-blue-800 text-xl text-white"
           >
             Voltar
           </button>

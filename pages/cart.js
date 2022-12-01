@@ -3,14 +3,15 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import { toast } from "react-toastify";
 import { RiDeleteBin2Line } from "react-icons/ri";
+import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
 function CartScreen() {
+  
   const { data: session } = useSession();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
@@ -36,7 +37,7 @@ function CartScreen() {
 
   return (
     <Layout title="Carrinho">
-      <h1 className="mb-5 text-5xl text-blue-700 text-center card">
+      <h1 className="mb-5 text-5xl text-blue-800 text-center card">
         Carrinho de compras
       </h1>
       {cartItems.length === 0 ? (
@@ -68,7 +69,7 @@ function CartScreen() {
                 </thead>
                 <tbody>
                   {cartItems.map((item) => (
-                    <tr key={item.slug} className="border-t border-t-blue-800">
+                    <tr key={item.slug} className="border-t border-t-black">
                       <td>
                         <Link href={`/product/${item.slug}`}>
                           <div className="flex cursor-pointer justify-center text-center">

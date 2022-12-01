@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 const methods = ["Paypal", "PIX", "Boleto", "Stripe"];
 
 function PaymentScreen() {
+  
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
@@ -45,14 +46,14 @@ function PaymentScreen() {
     <Layout title="Pagamento">
       <CheckoutWizard activeStep={2} />
       <div className="card w-full">
-        <form className="mx-auto max-w-screen-md " onSubmit={submitHandler}>
+        <form className="mx-auto max-w-screen-md" onSubmit={submitHandler}>
           <h1 className="my-4 text-center text-blue-800 text-5xl">
             Método de pagamento
           </h1>
           {methods.map((payment, index) => (
-            <div key={index} className=" flex flex-col items-center ">
+            <div key={index} className="flex flex-col items-center">
               <label
-                className="focus:bg-blue-600 w-1/3 cursor-pointer text-xl px-10 py-2 card bg-white hover:text-white  hover:shadow-slate-500 hover:bg-indigo-500 hover:border-blue-600 hover:outline-none"
+                className="focus:bg-blue-600 w-1/3 cursor-pointer text-xl px-10 py-2 card bg-white hover:text-white hover:shadow-slate-500 hover:bg-indigo-500 hover:border-blue-600 hover:outline-none"
                 htmlFor={payment}
               >
                 <span className="flex justify-between gap-x-3">

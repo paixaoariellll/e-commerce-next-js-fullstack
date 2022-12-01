@@ -22,7 +22,7 @@ function Unauthorized() {
           <button
             onClick={() => router.push("/login")}
             type="button"
-            className=" bg-blue-800 text-xl text-white"
+            className="bg-blue-800 text-xl text-white"
           >
             Fazer login agora
           </button>

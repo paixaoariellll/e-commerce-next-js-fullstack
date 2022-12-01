@@ -60,12 +60,12 @@ function DashboardScreen() {
     label: summary.salesDataDescount.map((x) => x._id), // 2022/01 2022/03
     datasets: [
       {
-        label: "Valor Total",
+        label: "Valor total",
         backgroundColor: "blue",
         data: summary.salesDataPrice.map((x) => x.totalSales),
       },
       {
-        label: "Valor com Desconto",
+        label: "Valor com desconto",
         backgroundColor: "#670999",
         data: summary.salesDataDescount.map((x) => x.totalSales),
       },
