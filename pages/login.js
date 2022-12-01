@@ -27,6 +27,8 @@ function LoginScreen() {
     formState: { errors },
   } = useForm();
 
+  console.log(errors);
+
   const submitHandler = async ({ email, password }) => {
     try {
       const result = await signIn("credentials", {

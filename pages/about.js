@@ -35,6 +35,7 @@ function AboutScreen() {
               <a
                 href="https://github.com/machado-joao/trabalho-graduacao"
                 target="_blank"
+                rel="noreferrer"
               >
                 GitHub
               </a>

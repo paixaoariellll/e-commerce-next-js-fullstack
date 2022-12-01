@@ -3,7 +3,7 @@ import { getError } from "../utils/error";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import RegisterBg from "../public/images/register.svg";
 import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
