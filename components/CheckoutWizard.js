@@ -41,7 +41,7 @@ function CheckoutWizard({ activeStep = 0 }) {
           className={`flex-1 border-b-4 text-center text-2xl 
                         ${
                           index <= activeStep
-                            ? "border-blue-700 text-blue-700  "
+                            ? "border-blue-700 text-blue-700"
                             : "border-gray-400 text-gray-400"
                         }
          `}
@@ -51,13 +51,13 @@ function CheckoutWizard({ activeStep = 0 }) {
             className="cursor-pointer card py-3 !flex !flex-col !items-center"
           >
             {step.display}
-            <step>
+            <i>
               {index == activeStep ? (
                 <AiOutlineLoading className="rotate" />
               ) : (
                 <step.icon />
               )}
-            </step>
+            </i>
           </span>
         </div>
       ))}

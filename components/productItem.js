@@ -1,12 +1,37 @@
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import "remixicon/fonts/remixicon.css";
+import { SiXbox, SiPlaystation, SiNintendoswitch } from "react-icons/si";
 import { toast } from "react-toastify";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { SiXbox, SiPlaystation } from "react-icons/si";
 
 function ProductItem({ product, addToCartHandler }) {
+  
+  function getCategoryIcons(category) {
+    if (category == "Xbox") {
+      return (
+        <SiXbox className="translate-y-8 absolute flex z-20 text-green-700" />
+      );
+    } else if (category == "PlayStation") {
+      return (
+        <SiPlaystation className="translate-y-8 absolute flex z-20 text-blue-700" />
+      );
+    } else if (category == "Nintendo Switch") {
+      return (
+        <SiNintendoswitch className="translate-y-8 absolute flex z-20 text-red-700" />
+      );
+    } else {
+      return (
+        <div>
+          <SiXbox className="translate-y-8 translate-x-1 absolute z-20 text-green-700" />
+          <SiPlaystation className="translate-y-8 translate-x-6 absolute z-20 text-blue-700" />
+          <SiNintendoswitch className="translate-y-8 translate-x-11 absolute z-20 text-red-700" />
+        </div>
+      );
+    }
+  }
+
   return (
     <div className="card p-5 hover:-translate-y-2">
       <p className="mb-2 ml-3 text-black">
@@ -16,21 +41,19 @@ function ProductItem({ product, addToCartHandler }) {
         <div className="cursor-pointer">
           <Image
             src={product.image}
-            alt={product.name}
+            alt={"Capa do jogo " + product.name}
+            className="rounded card w-full"
             width={500}
             height={500}
-            className="rounded card w-full"
           />
-          {product.category == "Xbox" ? (
-            <SiXbox className="translate-y-8 absolute flex z-20 text-green-700" />
-          ) : (
-            <SiPlaystation className="translate-y-8 absolute flex z-20 text-blue-700" />
-          )}
         </div>
       </Link>
+      {getCategoryIcons(product.category)}
       <div className="mx-2">
         <Link href={`/product/${product.slug}`}>
-          <h2 className="text-2xl text-center text-blue-800">{product.name}</h2>
+          <h2 className="text-2xl text-center text-blue-800 cursor-pointer">
+            {product.name}
+          </h2>
         </Link>
         <div className="text-center text-black text-md">
           Restam: <span>{product.countInStock}</span>{" "}
@@ -40,13 +63,13 @@ function ProductItem({ product, addToCartHandler }) {
             <span className="flex">
               <span className=" flex-col items-center flex">
                 <span className="flex">
-                  <span className="text-black text-sm">de:</span>{" "}
+                  <span className="text-black text-sm">de: </span>{" "}
                   <span className="line-through text-sm text-red-600">
                     R$ &nbsp;{product.price.toFixed(2)}
                   </span>
                 </span>
                 <span className="text-xs">
-                  {product.descount} % de desconto!
+                  {product.descount}% de desconto!
                 </span>
               </span>
             </span>
@@ -74,9 +97,9 @@ function ProductItem({ product, addToCartHandler }) {
               <button
                 className="primary-button bg-white hover:bg-current border border-solid cursor-not-allowed border-gray-300"
                 type="button"
-                onClick={() => toast.error("Produto indisponível")}
+                onClick={() => toast.error("Produto indisponível!")}
               >
-                <AiOutlineShoppingCart className="text-red-600 text-2xl " />
+                <AiOutlineShoppingCart className="text-red-600 text-2xl" />
               </button>
             )}
           </div>

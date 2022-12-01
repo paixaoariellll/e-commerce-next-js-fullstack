@@ -18,7 +18,7 @@ function DashboardLinks() {
             <FaUserAlt />
           </li>
         </Link>
-        <hr className="mt-1 mb-4 w-full flex flex-1"></hr>
+        <hr className="mt-1 mb-4 w-full flex flex-1" />
         <Link href="/admin/dashboard">
           <li
             className="card px-2 py-2 cursor-pointer !rounded-sm hover:scale-125 text-blue-700"

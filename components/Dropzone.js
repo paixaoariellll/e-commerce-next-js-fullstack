@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useDropzone } from "react-dropzone";
 
 function Dropzone() {
-    
+
   const [images, setImages] = useState([]);
 
   function handleUpload() {
@@ -70,7 +70,7 @@ function Dropzone() {
               width={100}
               heigth={100}
               unoptmized
-            ></Image>
+            />
           </span>
         ) : (
           <span className="flex flex-col">
@@ -80,7 +80,7 @@ function Dropzone() {
               width={100}
               heigth={100}
               unoptmized
-            ></Image>
+            />
             <span className="ml-1">
               Clique aqui para selecionar as imagens ou arraste e solte suas
               imagens aqui!

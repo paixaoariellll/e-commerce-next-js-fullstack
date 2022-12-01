@@ -1,21 +1,20 @@
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { BsArrowUpCircleFill } from "react-icons/bs";
+import ControllerLogo from "../public/images/controller.svg";
 import Cookies from "js-cookie";
+import DashboardLinks from "./DashboardLinks";
 import DropdownLink from "./DropdownLink";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import ControllerLogo from "../public/images/controller.svg";
 import { Menu } from "@headlessui/react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import "remixicon/fonts/remixicon.css";
+import { RiLoginBoxLine } from "react-icons/ri";
 import { signOut, useSession } from "next-auth/react";
 import { Store } from "../utils/Store";
 import { ToastContainer } from "react-toastify";
-import { useRef } from "react";
-import DashboardLinks from "./DashboardLinks";
-import { BsArrowUpCircleFill } from "react-icons/bs";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { RiLoginBoxLine } from "react-icons/ri";
 
 function Layout({ title, children }) {
 
@@ -37,6 +36,7 @@ function Layout({ title, children }) {
   const homeRef = useRef(null);
   const navRef = useRef(null);
   const rocketRef = useRef(null);
+
   const homeFunc = () => {
     if (
       document.body.scrollTop > 80 ||
@@ -61,7 +61,7 @@ function Layout({ title, children }) {
     <>
       <Head>
         <title>{title ? title + " - GameOn" : "GameOn"} </title>
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta name="GameOn" content="Um e-commerce de jogos eletrônicos de mídia física." />
         <meta
           name="description"
