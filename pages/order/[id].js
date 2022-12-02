@@ -99,7 +99,7 @@ function OrderScreen() {
           type: "resetOptions",
           value: {
             "client-id": clientId,
-            currency: "USD",
+            currency: "BRL",
           },
         });
         paypalDispatch({ type: "setLoadingStatus", value: "pending" });
@@ -113,7 +113,7 @@ function OrderScreen() {
       .create({
         purchase_units: [
           {
-            amount: { value: descount },
+            amount: { value: itemsPrice, currency: "BRL" },
           },
         ],
       })
@@ -163,8 +163,6 @@ function OrderScreen() {
     paymentMethod,
     orderItems,
     itemsPrice,
-    taxPrice,
-    shippingPrice,
     totalPrice,
     descount,
     isPaid,
@@ -172,7 +170,8 @@ function OrderScreen() {
     isDelivered,
     deliveredAt,
   } = order;
-  const totalDescount = totalPrice * 0.95;
+  const totalDescount = totalPrice;
+  console.log(descount);
 
   return (
     <Layout title="Pedido">
@@ -191,10 +190,10 @@ function OrderScreen() {
                 </h2>
                 <table className="min-w-full">
                   <thead className="border-b">
-                    <tr className="text-blue-700 text-xl">
+                    <tr className="text-black text-xl">
                       <th className="px-5 text-center">Produto</th>
                       <th className="p-5 text-center">Quantidade</th>
-                      <th className="p-5 text-center">Preço unitário</th>
+                      {/* <th className="p-5 text-center">Preço unitário</th> */}
                       <th className="p-5 text-center">Preço total</th>
                     </tr>
                   </thead>
@@ -202,7 +201,7 @@ function OrderScreen() {
                     {orderItems.map((item) => (
                       <tr
                         key={item._id}
-                        className="border-y divide-blue-600 border-blue-600"
+                        className="border-y divide-black border-black"
                       >
                         <td>
                           <Link href={`/product/${item.slug}`}>
@@ -218,14 +217,12 @@ function OrderScreen() {
                         <td className="p-5 text-xl only:text-center">
                           {item.quantity}
                         </td>
-                        <td className="p-5 text-xl text-center">
+                        {/*<td className="p-5 text-xl text-center">
                           R$&nbsp;
-                          {(item.price - (item.price * descount) / 100).toFixed(
-                            2
-                          )}
-                        </td>
+                          {(item.price - (item.price * descount / 100)).toFixed(2)}
+                        </td> */}
                         <td className="p-5 text-xl text-center">
-                          R$&nbsp;{(item.price * item.quantity).toFixed(2)}
+                          R$&nbsp;{(itemsPrice).toFixed(2)}
                         </td>
                       </tr>
                     ))}
@@ -344,31 +341,15 @@ function OrderScreen() {
                   <li>
                     <div className="mb-2 gap-5 text-xl flex justify-between">
                       <div>Produtos</div>
-                      <div>R$&nbsp;{itemsPrice}</div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="mb-2 flex text-xl justify-between">
-                      <div>Taxa</div>
-                      <div>R$&nbsp;{taxPrice}</div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="mb-2 flex text-xl justify-between">
-                      <div>Entrega</div>
-                      <div>R$&nbsp;{shippingPrice}</div>
+                      <div>R$&nbsp;{itemsPrice.toFixed(2)}</div>
                     </div>
                   </li>
                   <li>
                     <div className="mb-2 flex text-xl justify-between">
                       <div>Total</div>
                       <div className="flex flex-col align-middle items-end">
-                        <span className="text-md text-red-600 line-through">
-                          de: R$&nbsp;
-                          {totalPrice}
-                        </span>
-                        <span className="text-xl text-green-600">
-                          por: R$&nbsp;
+                        <span className="text-xl text-black">
+                          R$&nbsp;
                           {totalDescount.toFixed(2)}
                         </span>
                       </div>

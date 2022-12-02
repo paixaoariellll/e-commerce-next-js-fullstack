@@ -1,13 +1,13 @@
 import Cookies from "js-cookie";
 import CheckoutWizard from "../components/CheckoutWizard";
 import Layout from "../components/Layout";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Store } from "../utils/Store";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
 function ShippingScreen() {
-  
+
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { shippingAddress } = cart;
@@ -61,21 +61,21 @@ function ShippingScreen() {
     router.push("/payment");
   };
 
-  const [cep, setCep] = useState("");
+  /*   const [cep, setCep] = useState(""); */
 
   const checkCEP = (e) => {
     const cepValidate = e.target.value.replace(/\D/g, "");
-    if (cep.length === 8) {
-      fetch(`https://viacep.com.br/ws/${cepValidate}/json/`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          setValue("address", data.logradouro);
-          setValue("neighborhood", data.bairro);
-          setValue("city", data.localidade);
-          setValue("state", data.uf);
-        });
-    }
+    /* if (cep.length === 8) { */
+    fetch(`https://viacep.com.br/ws/${cepValidate}/json/`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setValue("address", data.logradouro);
+        setValue("neighborhood", data.bairro);
+        setValue("city", data.localidade);
+        setValue("state", data.uf);
+      });
+    /*  } */
   };
 
   return (
@@ -118,10 +118,9 @@ function ShippingScreen() {
                 placeholder="Seu CEP"
                 className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-white focus:bg-blue-800 focus:border-blue-600 focus:outline-none"
                 id="postalCode"
-                onChange={(e) => setCep(e.target.value)}
                 onBlurCapture={checkCEP}
-                minLength={8}
-                maxLength={8}
+                minLength={7}
+                maxLength={9}
                 {...register("postalCode", {
                   required: "Por favor, digite o CEP.",
                   minLength: {

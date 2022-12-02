@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 
 function PlaceOrderScreen() {
-  
+
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const { cartItems, shippingAddress, paymentMethod } = cart;
@@ -29,11 +29,11 @@ function PlaceOrderScreen() {
       .toFixed(2)
   );
 
-  const shippingPrice = itemsPrice > 200 ? 0 : 15;
-  const taxPrice = round2(itemsPrice * 0.15);
+  const shippingPrice = 0;
+  const taxPrice = round2(itemsPrice * 0);
   const descount = round2(cartItems.reduce((a, c) => a + c.price, 0));
   const totalPrice = round2(itemsPrice + shippingPrice + taxPrice);
-  const totalDescount = round2(totalPrice * 0.95);
+  const totalDescount = round2(totalPrice);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -108,7 +108,7 @@ function PlaceOrderScreen() {
                 </h2>
                 <table className="min-w-full">
                   <thead className="border-b">
-                    <tr className="text-blue-700 text-xl">
+                    <tr className="text-black text-xl">
                       <th className="px-5 text-center">Produto</th>
                       <th className="p-5 text-center">Quantidade</th>
                       <th className="p-5 text-center">Preço unitário</th>
@@ -119,7 +119,7 @@ function PlaceOrderScreen() {
                     {cartItems.map((item) => (
                       <tr
                         key={item._id}
-                        className="border-y divide-blue-600 border-blue-600"
+                        className="border-y divide-black border-blak"
                       >
                         <td>
                           <Link href={`/product/${item.slug}`}>
@@ -260,32 +260,16 @@ function PlaceOrderScreen() {
                   <li>
                     <div className="mb-2 gap-5 text-xl flex justify-between">
                       <div>Itens</div>
-                      <div>R$&nbsp;{itemsPrice}</div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="mb-2 flex text-xl justify-between">
-                      <div>Taxa</div>
-                      <div>R$&nbsp;{taxPrice}</div>
-                    </div>
-                  </li>
-                  <li>
-                    <div className="mb-2 flex text-xl justify-between">
-                      <div>Entrega</div>
-                      <div>R$&nbsp;{shippingPrice}</div>
+                      <div>R$&nbsp;{itemsPrice.toFixed(2)}</div>
                     </div>
                   </li>
                   <li>
                     <div className="mb-2 flex text-xl justify-between">
                       <div>Total</div>
                       <div className="flex flex-col align-middle items-end">
-                        <span className="text-md text-red-600 line-through">
-                          de: R$&nbsp;
-                          {totalPrice}
-                        </span>
-                        <span className="text-xl text-green-600">
-                          por: R$&nbsp;
-                          {totalDescount}
+                        <span className="text-xl text-black">
+                          R$&nbsp;
+                          {totalDescount.toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -305,7 +289,7 @@ function PlaceOrderScreen() {
           </div>
         )}
       </div>
-    </Layout>
+    </Layout >
   );
 }
 

@@ -60,7 +60,7 @@ function Layout({ title, children }) {
   return (
     <>
       <Head>
-        <title>{title ? title + " - GameOn" : "GameOn"} </title>
+        <title>{title}</title>
         <meta charSet="UTF-8" />
         <meta name="GameOn" content="Um e-commerce de jogos eletrônicos de mídia física." />
         <meta

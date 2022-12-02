@@ -8,7 +8,7 @@ const handler = async (req, res) => {
       .status(401)
       .send("Acesse sua conta antes de prosseguir com o pagamento.");
   }
-  res.send(process.env.PAYPAL_CLIENT_ID || "USD");
+  res.send(process.env.PAYPAL_CLIENT_ID || "BRL");
 };
 
 export default handler;
