@@ -11,22 +11,6 @@
 }
 
 @font-face {
-  font-family: MediuS;
-  src: url("../assets/fonts/supreme-medium.otf");
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: Regular;
-  src: url("../assets/fonts/supreme-regular.otf");
-  font-weight: 500;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
   font-family: ExtraN;
   src: url("../assets/fonts/extra-bold-italic.otf");
   font-weight: 800;
@@ -34,13 +18,6 @@
   font-style: italic;
 }
 
-@font-face {
-  font-family: ExtraS;
-  src: url("../assets/fonts/supreme-extra-bold-italic.otf");
-  font-weight: 800;
-  font-display: swap;
-  font-style: italic;
-}
 
 @font-face {
   font-family: Big;
