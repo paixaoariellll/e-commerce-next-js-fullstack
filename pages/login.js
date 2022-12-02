@@ -1,63 +1,34 @@
-import React, { useEffect } from "react";
-import Layout from "../components/Layout";
-import { signIn, useSession } from "next-auth/react";
-import { useForm } from "react-hook-form";
-import Link from "next/link";
-import Image from "next/image";
-import login from "../public/img/login.svg";
 import { getError } from "../utils/error";
+import Image from "next/image";
+import Layout from "../components/Layout";
+import Link from "next/link";
+import LoginBg from "../public/images/login.svg";
+import React, { useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
-/* import googleOneTap from 'google-one-tap'; */
-/* import { useState } from "react"; */
-/* const options = {
-  client_id: process.env.CLIENT_ID,
-  auto_select: false,
-  cancel_on_tap_outside: false,
-  context: "signin",
-}; */
-export default function LoginScreen() {
-  /*   const [loginData, setLoginData] = useState(
-      localStorage.getItem("loginData")
-        ? JSON.parse(localStorage.getItem("loginData"))
-        : null
-    );
-    useEffect(() => {
-      if (!loginData) {
-        googleOneTap(options, async (response) => {
-          console.log(response);
-          const res = await fetch("/api/google-login", {
-            method: "POST",
-            body: JSON.stringify({
-              token: response.credential,
-            }),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-          const data = await res.json();
-          setLoginData(data);
-          localStorage.setItem("loginData", JSON.stringify(data));
-        });
-      }
-    }, [loginData]);
-    const handleLogout = () => {
-      localStorage.removeItem("loginData");
-      setLoginData(null);
-    }; */
+
+function LoginScreen() {
+  
   const { data: session } = useSession();
   const router = useRouter();
   const { redirect } = router.query;
+
   useEffect(() => {
     if (session?.user) {
       router.push(redirect || "/");
     }
   }, [router, session, redirect]);
+
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
+
+  console.log(errors);
+
   const submitHandler = async ({ email, password }) => {
     try {
       const result = await signIn("credentials", {
@@ -72,48 +43,42 @@ export default function LoginScreen() {
       toast.error(getError(err));
     }
   };
+
   return (
     <Layout title="Login">
       <div className="h-full">
         <div className="px-6 h-full text-gray-800">
           <div className="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
             <div className="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
-              <Image src={login} width={640} height={640} alt="Sample image" className="vertical_img" />
+              <Image
+                src={LoginBg}
+                alt="Imagem de um adolescente cartunizado sentado em uma cadeira gamer e digitando em seu teclado apressadamente."
+                className="vertical_img"
+                width={640}
+                height={640}
+              />
             </div>
             <div className="bg-white p-5 rounded-lg shadow-xl xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-5">
               <form onSubmit={handleSubmit(submitHandler)}>
-                <div className="flex flex-row items-center justify-center lg:justify-start">
-                  <p className="text-xl mb-0 mr-4">Conecte-se com: </p>
-
-                </div>
-                <div className="flex items-center my-4 before:flex-1 before:border-t before:border-white before:mt-0.5 after:flex-1 after:border-t after:border-white after:mt-0.5">
-                  <p className="text-center text-4xl text-blue-700 mx-4 mb-0">
-                    Ou
-                  </p>
-                </div>
                 <div className="mb-6">
                   <label htmlFor="email" className="text-blue-700 text-2xl">
                     E-mail
                   </label>
                   <input
+                    type="email"
+                    placeholder="Seu e-mail"
                     {...register("email", {
-                      required: "Por favor, digite seu e-mail",
+                      required: "Por favor, digite o seu e-mail.",
                       pattern: {
                         value:
                           /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
-                        message: "Por favor, digite um e-mail válido",
+                        message: "Por favor, digite um e-mail válido.",
                       },
                     })}
-                    type="email"
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="email"
                     autoFocus
-                  />{" "}
-                  {errors.email && (
-                    <div className="text-sm text-red-500">
-                      {errors.email.message}
-                    </div>
-                  )}
+                  />
                 </div>
                 <div className="mb-6">
                   <label htmlFor="password" className="text-blue-700 text-2xl">
@@ -121,33 +86,19 @@ export default function LoginScreen() {
                   </label>
                   <input
                     type="password"
+                    placeholder="Sua senha"
                     {...register("password", {
-                      required: "Por favor, digite sua senha",
-                      pattern: {
+                      required: "Por favor, digite a sua senha.",
+                      /* pattern: {
                         value:
                           /^(?=(.*[a-z]){3,})(?=(.*[A-Z]){2,})(?=(.*[0-9]){2,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/,
-                        message: "Sua senha deve obedecer a ISO / 27000",
-                      },
+                        message: "Sua senha deve obedecer aos critérios de segurança.",
+                      }, */
                     })}
                     className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                     id="password"
                     autoFocus
                   />
-                  {errors.password && (
-                    <div className="text-sm flex justify-between text-red-500">
-                      {errors.password.message}
-                      <span
-                        onClick={() => {
-                          toast(
-                            "Sobre a ISO/IEC 27000: 3 letras minúsculas. \n 2 letras maiúsculas. \n 2 números. \n 1 caracter especial. \n 8 caracteres ou mais",
-                            { position: "top-center" }
-                          );
-                        }}
-                      >
-                        <i className="cursor-pointer text-xl ri-alert-line"></i>
-                      </span>
-                    </div>
-                  )}
                 </div>
                 <div className="flex justify-between items-center mb-6">
                   <div className="form-group form-check">
@@ -160,14 +111,14 @@ export default function LoginScreen() {
                       className="form-check-label inline-block text-gray-800"
                       htmlFor="checkbox"
                     >
-                      Lembrar-me
+                      Lembrar da conta
                     </label>
                   </div>
-                  <p className="text-md flex font-semibold mt-2 pt-1 mb-0">
+                  <p className="text-md flex font-semibold pt-1 mb-0">
                     Não possui uma conta?&nbsp;
                     <Link href={`/register?redirect=${redirect || "/"}`}>
                       <div className="hover:text-blue-700 hover:underline text-right focus:text-red-700 cursor-pointer transition duration-200 ease-in-out">
-                        Registre-se
+                        Registre-se!
                       </div>
                     </Link>
                   </p>
@@ -192,3 +143,5 @@ export default function LoginScreen() {
     </Layout>
   );
 }
+
+export default LoginScreen;

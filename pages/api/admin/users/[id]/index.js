@@ -39,7 +39,9 @@ const putHandler = async (req, res) => {
     user.isAdmin = req.body.isAdmin;
     await user.save();
     await db.disconnect();
-    res.send({ message: "As informações do usuário foram atualizadas com sucesso!" });
+    res.send({
+      message: "As informações do usuário foram atualizadas com sucesso!",
+    });
   } else {
     await db.disconnect();
     res.status(404).send({ message: "Usuário não encontrado!" });
@@ -50,9 +52,7 @@ const deleteHandler = async (req, res) => {
   await db.connect();
   const user = await User.findById(req.query.id);
   if (user) {
-    if (
-      user.email === "admin@example.com"
-    ) {
+    if (user.email === "admin@example.com") {
       return res.status(400).send({
         message: "Você não pode deletar o administrador desta página!",
       });

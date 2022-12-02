@@ -34,7 +34,8 @@ function reducer(state, action) {
   }
 }
 
-export default function ProdcutsScreen() {
+function ProductsScreen() {
+
   const router = useRouter();
   const [
     { loading, error, products, loadingCreate, successDelete, loadingDelete },
@@ -44,6 +45,7 @@ export default function ProdcutsScreen() {
     products: [],
     error: "",
   });
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -60,6 +62,7 @@ export default function ProdcutsScreen() {
       fetchData();
     }
   }, [successDelete]);
+
   const deleteHandler = async (productId) => {
     if (!window.confirm("Você tem certeza?")) {
       return;
@@ -74,6 +77,7 @@ export default function ProdcutsScreen() {
       toast.error(getError(err));
     }
   };
+
   const createHandler = async () => {
     if (!window.confirm("Você tem certeza?")) {
       return;
@@ -104,8 +108,11 @@ export default function ProdcutsScreen() {
               onClick={createHandler}
               className="mb-4  grid-cols-1 text-center card py-2 text-blue-700 text-2xl"
             >
-              {loadingCreate ? "Carregando" :
-                <span className="text-3xl">Adicionar produto</span>}
+              {loadingCreate ? (
+                "Carregando..."
+              ) : (
+                <span className="text-3xl">Adicionar produto</span>
+              )}
             </button>
           </div>
           {loading ? (
@@ -133,20 +140,29 @@ export default function ProdcutsScreen() {
                       key={product._id}
                       className="border-t border-x text-center border-x-black border-t-black text-xl hover:bg-gray-100"
                     >
-                      <td className=" p-5 " data-tip={product._id}>{product._id.substring(20, 24)}</td>
+                      <td className=" p-5 " data-tip={product._id}>
+                        {product._id.substring(20, 24)}
+                      </td>
                       <td className=" p-5 ">{product.name}</td>
                       <td className=" p-5 ">R$ {product.price}</td>
                       <td className=" p-5 ">{product.category}</td>
                       <td className=" p-5 ">{product.countInStock}</td>
                       <td className=" p-5 ">{product.rating}</td>
-                      <td className="p-5">{product.descount == 0 ? <span className='text-sm text-red-400'>Sem desconto</span> : `${product.descount} %`} </td>
+                      <td className="p-5">
+                        {product.descount == 0 ? (
+                          <span className="text-sm text-red-400">
+                            Sem desconto
+                          </span>
+                        ) : (
+                          `${product.descount} %`
+                        )}{" "}
+                      </td>
                       <td className=" p-5 ">
                         <Link href={`/admin/product/${product._id}`}>
                           <button className="bg-blue-800 border text-white border-solid border-gray-300 w-15">
                             Editar
                           </button>
-                        </Link>
-                        {" "}
+                        </Link>{" "}
                         <button
                           onClick={() => deleteHandler(product._id)}
                           type="button"
@@ -176,4 +192,6 @@ export default function ProdcutsScreen() {
   );
 }
 
-ProdcutsScreen.auth = { adminOnly: true };
+ProductsScreen.auth = { adminOnly: true };
+
+export default ProductsScreen;

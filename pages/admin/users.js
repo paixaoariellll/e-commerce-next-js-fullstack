@@ -27,6 +27,7 @@ function reducer(state, action) {
 }
 
 function AdminUsersScreen() {
+
   const [{ loading, error, users, successDelete, loadingDelete }, dispatch] =
     useReducer(reducer, {
       loading: true,
@@ -95,7 +96,7 @@ function AdminUsersScreen() {
                   {users.map((user) => (
                     <tr
                       key={user._id}
-                      className="border-t border-x text-center border-x-black  border-t-black  text-xl hover:bg-gray-100"
+                      className="border-t border-x text-center border-x-black border-t-black text-xl hover:bg-gray-100"
                     >
                       <td className="p-5">{user._id.substring(20, 24)}</td>
                       <td className="p-5">{user.name}</td>
@@ -130,4 +131,5 @@ function AdminUsersScreen() {
 }
 
 AdminUsersScreen.auth = { adminOnly: true };
+
 export default AdminUsersScreen;

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import React from "react";
 
-export default function DropdownLink(props) {
+function DropdownLink(props) {
+  
   let { href, children, ...rest } = props;
 
   return (
@@ -10,3 +11,5 @@ export default function DropdownLink(props) {
     </Link>
   );
 }
+
+export default DropdownLink;

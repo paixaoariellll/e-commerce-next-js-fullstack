@@ -7,14 +7,18 @@ async function connect() {
     console.log("Está conectado!");
     return;
   }
+
   if (mongoose.connections.length > 0) {
     connection.isConnected = mongoose.connections[0].readyState;
+
     if (connection.isConnected === 1) {
       console.log("Ainda está conectado!");
       return;
     }
+
     await mongoose.disconnect();
   }
+
   const db = await mongoose.connect(process.env.MONGODB_URI);
   console.log(`Nova conexão estabelecida: ${db}.`);
   connection.isConnected = mongoose.connections[0].readyState;
@@ -37,5 +41,6 @@ function convertDocToObj(doc) {
   doc.updatedAt = doc.updatedAt.toString();
   return doc;
 }
+
 const db = { connect, disconnect, convertDocToObj };
 export default db;

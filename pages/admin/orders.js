@@ -6,8 +6,8 @@ import React, { useEffect, useReducer } from "react";
 import ReactTooltip from "react-tooltip";
 import "remixicon/fonts/remixicon.css";
 
-
 function reducer(state, action) {
+  
   switch (action.type) {
     case "FETCH_REQUEST":
       return { ...state, loading: true, error: "" };
@@ -20,8 +20,8 @@ function reducer(state, action) {
   }
 }
 
-export default function AdminOrderScreen() {
-  const [{ loading, error, orders, }, dispatch] = useReducer(reducer, {
+function AdminOrderScreen() {
+  const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
     orders: [],
     error: "",
@@ -71,11 +71,15 @@ export default function AdminOrderScreen() {
                       key={order._id}
                       className="border-t border-x text-center border-x-black border-t-black text-xl hover:bg-gray-100"
                     >
-                      <td className="p-5" data-tip={order._id} >{order._id.substring(20, 24)}</td>
+                      <td className="p-5" data-tip={order._id}>
+                        {order._id.substring(20, 24)}
+                      </td>
                       <td className="p-5">
-                        {order.user ? order.user.name :
+                        {order.user ? (
+                          order.user.name
+                        ) : (
                           <span className="text-red-200">Usuário deletado</span>
-                        }
+                        )}
                       </td>
                       <td className="p-5">
                         {order.createdAt.substring(8, 10)}/
@@ -87,9 +91,7 @@ export default function AdminOrderScreen() {
                         {order.isPaid ? (
                           <span className="flex flex-col items-center w-full">
                             <span className="flex flex-col p-2 w-fit bg-green-200 rounded-xl">
-                              <span>
-                                {order.paidAt.substring(11, 19)}
-                              </span>
+                              <span>{order.paidAt.substring(11, 19)}</span>
                               <span>
                                 {order.paidAt.substring(8, 10)}/
                                 {order.paidAt.substring(5, 7)}/
@@ -99,7 +101,7 @@ export default function AdminOrderScreen() {
                           </span>
                         ) : (
                           <span className="bg-red-200 text-md p-2 rounded-xl">
-                            Não Pago
+                            Não pago
                           </span>
                         )}
                       </td>
@@ -113,13 +115,12 @@ export default function AdminOrderScreen() {
                         ) : (
                           <div className="flex flex-col items-center">
                             <span className="text-sm">
-                              Previsão:{" "}
-                              {order.createdAt.substring(8, 10)}/
+                              Previsão: {order.createdAt.substring(8, 10)}/
                               {order.createdAt.substring(5, 7)}/
                               {order.createdAt.substring(0, 4)}
                             </span>
                             <span className="bg-red-200 text-md p-2 rounded-xl">
-                              Não Entregue
+                              Não entregue
                             </span>
                           </div>
                         )}
@@ -147,9 +148,10 @@ export default function AdminOrderScreen() {
           )}
         </div>
       </div>
-
-    </Layout >
+    </Layout>
   );
 }
 
 AdminOrderScreen.auth = { adminOnly: true };
+
+export default AdminOrderScreen;

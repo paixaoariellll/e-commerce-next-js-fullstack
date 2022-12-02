@@ -39,14 +39,16 @@ function Auth({ children, adminOnly }) {
   const { status, data: session } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push("/unauthorized?message=Por favor, acesse sua conta.");
+      router.push("/unauthorized?message=Por favor, acesse a sua conta.");
     },
   });
   if (status === "loading") {
     return <div>Carregando...</div>;
   }
   if (adminOnly && !session.user.isAdmin) {
-    router.push("/unauthorized?message=Administrador, por favor, acesse sua conta.");
+    router.push(
+      "/unauthorized?message=Se você é um administrador acesse a sua conta."
+    );
   }
 
   return children;

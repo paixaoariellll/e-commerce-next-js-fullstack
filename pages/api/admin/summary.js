@@ -15,40 +15,41 @@ const handler = async (req, res) => {
   const ordersCount = await Order.countDocuments();
   const productsCount = await Product.countDocuments();
   const usersCount = await User.countDocuments();
-  const ordersPriceGroup = await Order.aggregate(
-    [
-      {
-        $group: {
-          _id: null,
-          sales: { $sum: "$descount" },
-        },
+  const ordersPriceGroup = await Order.aggregate([
+    {
+      $group: {
+        _id: null,
+        sales: { $sum: "$descount" },
       },
-    ]
-  );
+    },
+  ]);
   const ordersPrice =
     ordersPriceGroup.length > 0 ? ordersPriceGroup[0].sales : 0;
-  const salesDataDescount = await Order.aggregate(
-    [
-      {
-        $group: {
-          _id: { $dateToString: { format: "%d/%m", date: "$createdAt" } }, // Relatório por dia e mês 
-          totalSales: { $sum: "$descount" },
-        },
+  const salesDataDescount = await Order.aggregate([
+    {
+      $group: {
+        _id: { $dateToString: { format: "%d/%m", date: "$createdAt" } }, // Relatório por dia e mês
+        totalSales: { $sum: "$descount" },
       },
-    ]
-  );
-  const salesDataPrice = await Order.aggregate(
-    [
-      {
-        $group: {
-          _id: { $dateToString: { format: "%d/%m", date: "$createdAt" } }, // Relatório por dia e mês 
-          totalSales: { $sum: "$totalPrice" },
-        },
+    },
+  ]);
+  const salesDataPrice = await Order.aggregate([
+    {
+      $group: {
+        _id: { $dateToString: { format: "%d/%m", date: "$createdAt" } }, // Relatório por dia e mês
+        totalSales: { $sum: "$totalPrice" },
       },
-    ]
-  );
+    },
+  ]);
   await db.disconnect();
-  res.send({ ordersCount, productsCount, usersCount, ordersPrice, salesDataPrice, salesDataDescount });
+  res.send({
+    ordersCount,
+    productsCount,
+    usersCount,
+    ordersPrice,
+    salesDataPrice,
+    salesDataDescount,
+  });
 };
 
 export default handler;

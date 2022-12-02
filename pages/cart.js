@@ -3,15 +3,15 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Layout from "../components/Layout";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import { Store } from "../utils/Store";
 import { toast } from "react-toastify";
-import { RiDeleteBin2Line } from "react-icons/ri"
+import { RiDeleteBin2Line } from "react-icons/ri";
+import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
-
 function CartScreen() {
+  
   const { data: session } = useSession();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
@@ -22,6 +22,7 @@ function CartScreen() {
 
   const removeItemHandler = (item) => {
     dispatch({ type: "CART_REMOVE_ITEM", payload: item });
+    toast.success("O produto foi removido do carrinho!");
   };
 
   const updateCartHandler = async (item, qty) => {
@@ -36,7 +37,7 @@ function CartScreen() {
 
   return (
     <Layout title="Carrinho">
-      <h1 className="mb-5 text-5xl text-blue-700 text-center card">
+      <h1 className="mb-5 text-5xl text-blue-800 text-center card">
         Carrinho de compras
       </h1>
       {cartItems.length === 0 ? (
@@ -57,24 +58,24 @@ function CartScreen() {
           <div className="grid md:grid-cols-4 text-xl md:gap-5">
             <div className="overflow-x-auto md:col-span-3 card">
               <table className="min-w-full">
-                <thead className="border-b-8 border-b-blue-800">
-                  <tr className="text-center text-2xl text-blue-700">
-                    <th className="p-5 text-center">Item</th>
+                <thead>
+                  <tr className="text-center text-2xl text-black">
+                    <th className="p-5 text-center">Produto</th>
                     <th className="p-5 text-center">Quantidade</th>
-                    <th className="p-5 text-center">Preço Por Unidade</th>
-                    <th className="p-5 text-center">Preço Total</th>
+                    <th className="p-5 text-center">Preço unitário</th>
+                    <th className="p-5 text-center">Preço total</th>
                     <th className="p-5 text-center">Remover</th>
                   </tr>
                 </thead>
                 <tbody>
                   {cartItems.map((item) => (
-                    <tr key={item.slug} className="border-t border-t-blue-800">
+                    <tr key={item.slug} className="border-t border-t-black">
                       <td>
                         <Link href={`/product/${item.slug}`}>
                           <div className="flex cursor-pointer justify-center text-center">
                             <Image
                               src={item.image}
-                              alt={item.name}
+                              alt={"Capa do jogo " + item.name}
                               width={80}
                               height={80}
                             />
@@ -83,7 +84,7 @@ function CartScreen() {
                       </td>
                       <td className="p-5 text-center">
                         <select
-                          className="bg-white-900 p-1 text-blue-800 text-xl"
+                          className="bg-white-900 p-1 text-black text-xl"
                           value={item.quantity}
                           onChange={(e) =>
                             updateCartHandler(item, e.target.value)
@@ -96,11 +97,19 @@ function CartScreen() {
                           ))}
                         </select>
                       </td>
-                      <td className="p-5 pointer-events-none  text-center">
-                        $&nbsp;{(item.price - (item.price * item.descount) / 100).toFixed(2)}
+                      <td className="p-5 pointer-events-none text-black text-center">
+                        R$&nbsp;
+                        {(
+                          item.price -
+                          (item.price * item.descount) / 100
+                        ).toFixed(2)}
                       </td>
-                      <td className="p-5 pointer-events-none text-indigo-700 text-center">
-                        $&nbsp;{((item.price - (item.price * item.descount) / 100) * item.quantity).toFixed(2)}
+                      <td className="p-5 pointer-events-none text-black text-center">
+                        R$&nbsp;
+                        {(
+                          (item.price - (item.price * item.descount) / 100) *
+                          item.quantity
+                        ).toFixed(2)}
                       </td>
                       <td className="p-5 text-center">
                         <button
@@ -121,13 +130,25 @@ function CartScreen() {
               <ul className="card bg-white p-5">
                 <li>
                   <div className="pb-3 text-xl">
-                    Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}) : R$
-                    {cartItems.reduce((a, c) => a + c.quantity * (c.price - (c.price * c.descount) / 100), 0).toFixed(2)}
+                    Total ({cartItems.reduce((a, c) => a + c.quantity, 0)}) :
+                    R$&nbsp;
+                    {cartItems
+                      .reduce(
+                        (a, c) =>
+                          a +
+                          c.quantity * (c.price - (c.price * c.descount) / 100),
+                        0
+                      )
+                      .toFixed(2)}
                   </div>
                 </li>
                 <li>
                   <button
-                    onClick={session?.user ? (() => router.push("/shipping")) : (router.push("login?redirect=shipping"))}
+                    onClick={
+                      session?.user
+                        ? () => router.push("/shipping")
+                        : router.push("login?redirect=shipping")
+                    }
                     className="primary-button w-full border border-solid border-gray-300"
                   >
                     Confirmar

@@ -1,9 +1,9 @@
 import axios from "axios";
-import moment from "moment";
-import Link from "next/link";
-import React, { useEffect, useReducer } from "react";
-import Layout from "../components/Layout";
 import { getError } from "../utils/error";
+import Layout from "../components/Layout";
+import Link from "next/link";
+import moment from "moment";
+import React, { useEffect, useReducer } from "react";
 import "remixicon/fonts/remixicon.css";
 
 function reducer(state, action) {
@@ -20,11 +20,13 @@ function reducer(state, action) {
 }
 
 function OrderHistoryScreen() {
+  
   const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
     loading: true,
     orders: [],
     error: "",
   });
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
@@ -40,8 +42,8 @@ function OrderHistoryScreen() {
 
   return (
     <Layout title="Histórico">
-      <h1 className="mb-4 text-center text-blue-800 text-5xl bg-white shadow-md  shadow-gray-400 rounded-xl">
-        Histórico de Compras
+      <h1 className="mb-4 text-center text-blue-800 text-5xl bg-white shadow-md shadow-gray-400 rounded-xl">
+        Histórico de compras
       </h1>
       {loading ? (
         <div>Carregando...</div>
@@ -50,9 +52,8 @@ function OrderHistoryScreen() {
       ) : (
         <div className="overflow-x-auto card">
           <table className="min-w-full p-5">
-            <thead className="border-b-8 border-b-blue-800">
-              <tr className="text-2xl text-blue-800">
-                <th className="px-5 text-center">ID</th>
+            <thead className="border-b border-b-black">
+              <tr className="text-2xl text-black">
                 <th className="p-5 text-center">Data do pedido</th>
                 <th className="p-5 text-center">Total</th>
                 <th className="p-5 text-center">Pagamento</th>
@@ -62,13 +63,7 @@ function OrderHistoryScreen() {
             </thead>
             <tbody>
               {orders.map((order) => (
-                <tr
-                  key={order._id}
-                  className="border-t-2 text-xl border-t-blue-800"
-                >
-                  <td className="p-5 text-center">
-                    {order._id.substring(20, 24)}
-                  </td>
+                <tr key={order._id} className="border-t text-xl border-t-black">
                   <td className="p-5 text-center">
                     {order.createdAt.substring(8, 10)}/
                     {order.createdAt.substring(5, 7)}/
@@ -84,7 +79,7 @@ function OrderHistoryScreen() {
                       </span>
                     ) : (
                       <span className="bg-red-200 p-2 rounded-xl">
-                        Não Pago
+                        Não pago
                       </span>
                     )}
                   </td>
@@ -99,7 +94,7 @@ function OrderHistoryScreen() {
                           Previsão: {moment().add(7, "days").fromNow()}
                         </span>
                         <span className="bg-red-200 p-2 rounded-xl">
-                          Não Entregue
+                          Não entregue
                         </span>
                       </div>
                     )}
@@ -122,4 +117,5 @@ function OrderHistoryScreen() {
 }
 
 OrderHistoryScreen.auth = true;
+
 export default OrderHistoryScreen;

@@ -6,9 +6,9 @@ import ProductItem from "../components/productItem";
 import { Store } from "../utils/Store";
 import { toast } from "react-toastify";
 import { useContext } from "react";
-/* import Hero from "../components/Hero"; */
 
-export default function Home({ products }) {
+function Home({ products }) {
+  
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
 
@@ -25,14 +25,8 @@ export default function Home({ products }) {
 
   return (
     <Layout title="Home">
-      {/*       <h1 className="text-5xl text-blue-700 my-5 card p-5 text-center w-full">
-        {" "}
-        Jogos Em Destaque
-      </h1>
-      <Hero /> */}
-      <h1 className="text-5xl text-blue-700 my-5 card p-5 text-center w-full">
-        {" "}
-        Games disponíveis
+      <h1 className="text-5xl text-blue-800 my-5 card p-5 text-center w-full">
+        Catálogo de jogos
       </h1>
       <div className="grid grid-cols-2 sm:grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
@@ -56,3 +50,5 @@ export async function getServerSideProps() {
     },
   };
 }
+
+export default Home;
