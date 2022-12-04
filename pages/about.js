@@ -23,6 +23,8 @@ function AboutScreen() {
   const toRotatei = ["GameOn", "Ariel Paixão", "Carlos Júnior", "João Machado", "Apenas uma pessoas qualquer com a capacidade de insistir... "];
   const toRotatej = ["Sejam Bem vindos!      ", "Ariel Paixão      🫡   ", "Carlos Júnior      🫡   ", "João Machado      🫡   ", "GameOn    🎮   "];
 
+  console.log(indexi, indexj);
+
   const periodi = 1500;
   const periodj = 100;
 
@@ -87,7 +89,7 @@ function AboutScreen() {
           {({ isVisible }) =>
             <div className={isVisible
               ? "animate__animated animate__backInLeft grid mb-14 grid-cols-1 md:grid-cols-1 bg_img lg:grid-cols-2 sm:grid-cols-1 gap-4 container"
-              : "animate__animated animate__fadeOutUp grid mb-14 grid-cols-1 md:grid-cols-1 bg_img lg:grid-cols-2 sm:grid-cols-1 gap-4 container"}
+              : "animate__animated animate__fadeOutUp"}
             >
               <div div className="col-span-1 text-center">
                 <Image
