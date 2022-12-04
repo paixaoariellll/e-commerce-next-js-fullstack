@@ -88,11 +88,11 @@ function AboutScreen() {
         <TrackVisibility>
           {
             ({ isVisible }) =>
-              <section className={isVisible
+              <div className={isVisible
                 ? "animate__animated animate__backInLeft grid mb-14 grid-cols-1 md:grid-cols-1 bg_img lg:grid-cols-2 sm:grid-cols-1 gap-4 container"
                 : "animate__animated animate__fadeOutUp"}
               >
-                <div div className="col-span-1 text-center">
+                <div className="col-span-1 text-center">
                   <Image
                     src={TeamSvg}
                     alt="Imagem cartunizada dos membros da equipe de desenvolvedores da plataforma GameOn."
@@ -128,7 +128,7 @@ function AboutScreen() {
                     </div>
                   </div>
                 </div>
-              </section>
+              </div>
           }
         </TrackVisibility >
       </section>
