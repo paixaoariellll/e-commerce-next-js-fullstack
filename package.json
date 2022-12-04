@@ -13,6 +13,7 @@
     "@badrap/bar-of-progress": "^0.2.1",
     "@headlessui/react": "^1.7.2",
     "@paypal/react-paypal-js": "^7.8.1",
+    "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.9.1",
@@ -30,6 +31,7 @@
     "react-dropzone": "^14.2.3",
     "react-hook-form": "^7.36.0",
     "react-icons": "^4.6.0",
+    "react-on-screen": "^2.1.1",
     "react-toastify": "^9.0.8",
     "react-tooltip": "^4.5.0",
     "remixicon": "^2.5.0"
