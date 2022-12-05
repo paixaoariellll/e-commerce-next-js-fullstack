@@ -27,6 +27,7 @@ function AboutScreen() {
   const [indexj, setIndexj] = useState(2);
   const toRotatej = ["Sejam bem-vindos!      ", "Ariel Paixão      🫡   ", "Carlos Júnior      🫡   ", "João Machado      🫡   ", "GameOn    🎮   "];
   const periodj = 100;
+  console.log(indexj);
   useEffect(() => {
     let ticker = setInterval(() => {
       tick();
