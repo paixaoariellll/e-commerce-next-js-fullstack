@@ -188,7 +188,7 @@ function AboutScreen() {
           <TrackVisibility className="h-fit flex w-full">
             {({ isVisible }) =>
               <div className={isVisible ? "animate__animated animate__fadeInRight animate__delay-1s" : "animate__animated animate__fadeOutUp animate__delay-0.5s"}>
-                <h1 className="text-5xl card text-blue-800 text-center"> Carlos Marques de Oliveira Júnior</h1>
+                <h1 className="text-5xl card text-blue-800 p-5 text-center"> Carlos Marques de Oliveira Júnior</h1>
                 <div className="pt-10 text-3xl card p-5">
                   <p className="text-center pb-5 text-4xl">
                     Desenvolvedor
